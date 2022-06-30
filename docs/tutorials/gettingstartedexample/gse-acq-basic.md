@@ -10,6 +10,9 @@
 ![7Open NI Example Finder](images/LabVIEW-Help-FindExamples.png)
 ![8Open NI Example Finder](docs/images/LabVIEW-Help-FindExamples.png)
 
+![9Open NI Example Finder](./images/LabVIEW-Help-FindExamples.png)
+![10Open NI Example Finder](./docs/images/LabVIEW-Help-FindExamples.png)
+
 
 ## Overview
 
