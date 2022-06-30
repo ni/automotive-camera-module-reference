@@ -31,7 +31,7 @@ A supported interface module and camera on a PXI system running Windows.
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
     - Open LabVIEW and click **Help -> Find Examples...**
-    ![Open NI Example Finder](/documentation/.attachments/LabVIEW-Help-FindExamples.png)
+    ![Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
     ![NI Example Finder](/documentation/.attachments/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
