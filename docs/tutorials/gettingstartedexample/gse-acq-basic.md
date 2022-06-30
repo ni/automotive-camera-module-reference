@@ -1,28 +1,5 @@
 # 148X Getting Started Example - Basic Acquisition Tutorial
 
-![1Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
-![2Open NI Example Finder](/docs/.attachments/LabVIEW-Help-FindExamples.png)
-![3Open NI Example Finder](.attachments/LabVIEW-Help-FindExamples.png)
-![4Open NI Example Finder](docs/.attachments/LabVIEW-Help-FindExamples.png)
-
-![5Open NI Example Finder](/images/LabVIEW-Help-FindExamples.png)
-![6Open NI Example Finder](/docs/images/LabVIEW-Help-FindExamples.png)
-![7Open NI Example Finder](images/LabVIEW-Help-FindExamples.png)
-![8Open NI Example Finder](docs/images/LabVIEW-Help-FindExamples.png)
-
-![9Open NI Example Finder](./images/LabVIEW-Help-FindExamples.png)
-![10Open NI Example Finder](./docs/images/LabVIEW-Help-FindExamples.png)
-
-![11Open NI Example Finder](/automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
-![12Open NI Example Finder](/automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
-![13Open NI Example Finder](automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
-![14Open NI Example Finder](automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
-![15Open NI Example Finder](./automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
-![16Open NI Example Finder](./automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
-
-
-
-
 ## Overview
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
@@ -52,7 +29,7 @@ A supported interface module and camera on a PXI system running Windows.
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
     - Open LabVIEW and click **Help -> Find Examples...**
-    ![Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
+    ![Open NI Example Finder](/automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
     ![NI Example Finder](/documentation/.attachments/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
