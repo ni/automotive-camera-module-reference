@@ -1,3 +1,7 @@
+layout: page
+title: "148X Getting Started Example - Basic Acquisition Tutorial"
+permalink: /tutorials/gettingstartedexample/gse-acq-basic/
+
 # Overview
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
