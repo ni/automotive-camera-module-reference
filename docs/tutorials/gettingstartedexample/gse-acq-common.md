@@ -1,14 +1,14 @@
-# Overview
+# # 148X Getting Started Example - Common Acquisition Tutorials
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-# Prerequisites
+## Prerequisites
 
 This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29560/148X-Getting-Started-Example-Basic-Acquisition-Tutorial) before attempting this tutorial.
 
 **Note:** The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
 
-# Acquiring and Filtering LLP Packets
+## Acquiring and Filtering LLP Packets
 
 This tutorial shows you how to acquire packets from a camera on a serial channel and demonstrates different options for filtering those packets.
 
@@ -96,7 +96,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 13. Click on the **First Serial Channel Packets** tab to view information about the acquired data.
     > The Frame Start and RAW12 packets are filtered out, so the only packets displayed are Frame End packets. You can use the timestamps of these packets to verify the frame rate of the camera data.
 
-# Setting FPGA Display Parameters
+## Setting FPGA Display Parameters
 
 This tutorial shows you how to configure the **FPGA Display Parameters** to change the images being displayed from the camera.
 
@@ -113,7 +113,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
     | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
     | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
 
-## Displaying Acquired Images
+### Displaying Acquired Images
 
 1.  Select the **Serial Channel** tab and make the following modifications.
 
@@ -139,12 +139,12 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
     - Note the two FPS indicators. The **Source Rate (fps)** indicator displays the frame rate in frames per second at which the image data is being received. The **Update Rate (fps)** indicator displays the rate in frames per second at which the image display indicator is being updated.
 
-## Reducing System Bandwidth Usage
+### Reducing System Bandwidth Usage
 This section demonstrates useful techniques for reducing the system bandwidth needed to transfer data from the FPGA to the host.
 
 > Note: If the **Update Rate (fps)** indicator is significantly less than the **Source Rate (fps)** indicator, the system is struggling to display images at the rate it receives them. Reducing resolution or skipping frames are two techniques to help resolve this issue.
 
-### Reducing Horizontal Resolution
+#### Reducing Horizontal Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -161,7 +161,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
 
     - Select the **First Display Channel** tab and observe the change to the horizontal resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the **Word Count** (bytes) for each RAW 12 packet type is unchanged.
-### Reducing Vertical Resolution
+#### Reducing Vertical Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -179,7 +179,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the vertical resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the number of packets per frame is unchanged.
 
-### Reducing the Frame Rate
+#### Reducing the Frame Rate
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the **Source Rate (fps)(1st Display)** indicator value.
@@ -198,7 +198,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the **Source Rate (fps)(1st Display)** indicator value.
     - Select the **First Serial Channel Packets** tab and observe the frame period is unchanged.
 
-# Setting RAW Display Parameters
+## Setting RAW Display Parameters
 <span style="color:red">**[TODO: What would make a good intermediate level tutorial for these? The 490 works with the default settings. Bayer decoding is an advanced topic on its own]**</span>
 
     > Note: The RAW Display parameters only apply to packets with RAW data types and are intended to be used to match the camera Bayer decoding scheme so that the images can be decoded and displayed correctly.
@@ -207,14 +207,14 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
 
 We do talk about RGB gain in the basic tutorial.
 
-# Setting Serial Channel Configurations
+## Setting Serial Channel Configurations
 <span style="color:red">**[TODO: Write a descriptive 1-2 sentences for each of these topics describing what we intend to cover in each tutorial.]**</span>
    - Acquire on multiple channels
    - Scripts explained (maybe in help)
    - Run with pat gen script (1486 only)
    - Virtual Channel stuff?
 
-# Acquiring and Displaying I2C Timestamps
+## Acquiring and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module.
 
 > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
@@ -247,7 +247,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
     ![I2C Timestamps Data](/.attachments/image020-84c67bbe-e98a-4d52-9950-ee27dffe8dfa.png)
 
-# Manually Reading and Writing to GPIO
+## Manually Reading and Writing to GPIO
 
 This tutorial shows how to manually read and write to the GPIO banks on the PXIe-148X interface module and display the digital waveform of the GPIO lines. This tutorial modifies GPIO line values  while the acquisition is running and logs the GPIO timestamps to disk.
 
