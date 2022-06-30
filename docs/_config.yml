@@ -1,2 +1,5 @@
 theme: jekyll-theme-slate
-title: NI Automotive Camera Module Documentation
+title: NI Automotive Camera Module
+
+url: 'https://ni.github.io/'
+baseurl: 'automotive-camera-module-reference/'
