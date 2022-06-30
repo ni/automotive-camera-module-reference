@@ -51,12 +51,12 @@ A supported interface module and camera on a PXI system running Windows.
     - Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
     - Set the **Bitfile Path** to the bitfile that corresponds to your interface module. The default shipping bitfile is in the 'FPGA Bitfiles' subfolder located in the project folder (created at the Project Root location specified in Project Creator):
 
-    | **Interface Module**   | **Bitfile**                           |
-    |------------------------|---------------------------------------|
-    | PXIe-1486 (8 In)       | FPGA Bitfiles\\PXIe_1486_8\_In.lvbitx                |
-    | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
-    | PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
-    | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+| **Interface Module**   | **Bitfile**                           |
+|------------------------|---------------------------------------|
+| PXIe-1486 (8 In)       | FPGA Bitfiles\\PXIe_1486_8\_In.lvbitx                |
+| PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
+| PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
+| PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
@@ -65,12 +65,12 @@ A supported interface module and camera on a PXI system running Windows.
 2.  Select the **Serial Channel** tab and make the following modifications.
     - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
 
-        | **Interface Module**     | **Configuration Script**                                           |
-        |--------------------------|--------------------------------------------------------------------|
-        | PXIe-1486 (8 In)         | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
-        | PXIe-1486 (4 In 4 Out) | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
-        | PXIe-1487 (8 In)         | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
-        | PXIe-1487 (4 In 4 Out) | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
+| **Interface Module**     | **Configuration Script**                                           |
+|--------------------------|--------------------------------------------------------------------|
+| PXIe-1486 (8 In)         | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
+| PXIe-1486 (4 In 4 Out)   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
+| PXIe-1487 (8 In)         | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
+| PXIe-1487 (4 In 4 Out)   | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
@@ -95,7 +95,8 @@ A supported interface module and camera on a PXI system running Windows.
 
 8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
     > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
-# Performing a Finite Acquisition with Data Logging
+
+## Performing a Finite Acquisition with Data Logging
 
 > Note: The Finite Acquisition with Data Logging tutorial assumes that all input parameters are still configured as specified in the Simple Continuous Acquisition tutorial.
 
