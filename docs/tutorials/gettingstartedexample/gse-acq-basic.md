@@ -1,3 +1,9 @@
+---
+layout: page
+title: "148X Getting Started Example - Basic Acquisition Tutorial"
+---
+
+
 # 148X Getting Started Example - Basic Acquisition Tutorial
 
 ![1Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
