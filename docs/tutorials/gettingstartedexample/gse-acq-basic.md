@@ -57,10 +57,10 @@ A supported interface module and camera on a PXI system running Windows.
 | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
 | PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
 | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
-
-    > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
-
-    ![Configuration Settings Resource Tab](/automotive-camera-module-reference/images/image006-ae0a4126-71e1-4457-81c2-2db4fb618da1.png)
+    
+   > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
+    
+   ![Configuration Settings Resource Tab](/automotive-camera-module-reference/images/image006-ae0a4126-71e1-4457-81c2-2db4fb618da1.png)
 
 2.  Select the **Serial Channel** tab and make the following modifications.
     - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
@@ -72,9 +72,9 @@ A supported interface module and camera on a PXI system running Windows.
 | PXIe-1487 (8 In)         | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
 | PXIe-1487 (4 In 4 Out)   | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
 
-    > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
+   > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/automotive-camera-module-reference/images/image008-1691d3dd-1d15-48ac-811f-dced51d76554.png)
+   ![Configuration Settings Serial Channel Tab](/automotive-camera-module-reference/images/image008-1691d3dd-1d15-48ac-811f-dced51d76554.png)
 
 3.  Select the **Board** tab and make the following modifications.
     - In the **Power Over Coax Source** drop down menu, select **Internal** to power the attached camera from the interface module's internal 12V supply.
