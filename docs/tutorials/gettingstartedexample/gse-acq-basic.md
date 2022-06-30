@@ -1,12 +1,16 @@
-layout: page
-title: "148X Getting Started Example - Basic Acquisition Tutorial"
-permalink: /tutorials/gettingstartedexample/gse-acq-basic/
+# 148X Getting Started Example - Basic Acquisition Tutorial
 
-# Overview
+![1Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
+![2Open NI Example Finder](/docs/.attachments/LabVIEW-Help-FindExamples.png)
+![3Open NI Example Finder](.attachments/LabVIEW-Help-FindExamples.png)
+![4Open NI Example Finder](docs/.attachments/LabVIEW-Help-FindExamples.png)
+
+
+## Overview
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
 
-# Prerequisites
+## Prerequisites
 
 Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
 
@@ -21,12 +25,12 @@ A supported interface module and camera on a PXI system running Windows.
 | PXIe-1487 (8 In)       | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/) |
 | PXIe-1487 (4 In 4 Out) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/) |
 
-# Initial Hardware Setup
+## Initial Hardware Setup
 
 1.  First complete installation of hardware as described in the Getting Started Guide linked above.
 2.  Connect the camera to serial input channel 0 (SI0) on the interface module with a FAKRA cable
 
-# Initial Software Setup
+## Initial Software Setup
 
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
@@ -45,7 +49,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     ![Acquisition CSE Front Panel](/documentation/.attachments/PXIe-148X-AcqGSE-FrontPanel.png)
 
-# Performing a Simple Continuous Acquisition
+## Performing a Simple Continuous Acquisition
 
 > **Note:** For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
@@ -149,7 +153,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > Note: The camera does not toggle GPIOs by default. The change shown in the figure above reflects GPIO level reset when the example VI is first run.
 
-# Reviewing Previously Logged Data
+## Reviewing Previously Logged Data
 
 > Note: The Review Previously Logged Data tutorial assumes that the previous tutorials in this document were completed first.
 
