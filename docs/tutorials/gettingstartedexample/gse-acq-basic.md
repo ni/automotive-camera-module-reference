@@ -1,9 +1,3 @@
----
-layout: page
-title: "148X Getting Started Example - Basic Acquisition Tutorial"
----
-
-
 # 148X Getting Started Example - Basic Acquisition Tutorial
 
 ![1Open NI Example Finder](/.attachments/LabVIEW-Help-FindExamples.png)
@@ -18,6 +12,15 @@ title: "148X Getting Started Example - Basic Acquisition Tutorial"
 
 ![9Open NI Example Finder](./images/LabVIEW-Help-FindExamples.png)
 ![10Open NI Example Finder](./docs/images/LabVIEW-Help-FindExamples.png)
+
+![11Open NI Example Finder](/automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
+![12Open NI Example Finder](/automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
+![13Open NI Example Finder](automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
+![14Open NI Example Finder](automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
+![15Open NI Example Finder](./automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
+![16Open NI Example Finder](./automotive-camera-module-reference/docs/images/LabVIEW-Help-FindExamples.png)
+
+
 
 
 ## Overview
