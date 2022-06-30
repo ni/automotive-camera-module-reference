@@ -5,6 +5,11 @@
 ![3Open NI Example Finder](.attachments/LabVIEW-Help-FindExamples.png)
 ![4Open NI Example Finder](docs/.attachments/LabVIEW-Help-FindExamples.png)
 
+![5Open NI Example Finder](/images/LabVIEW-Help-FindExamples.png)
+![6Open NI Example Finder](/docs/images/LabVIEW-Help-FindExamples.png)
+![7Open NI Example Finder](images/LabVIEW-Help-FindExamples.png)
+![8Open NI Example Finder](docs/images/LabVIEW-Help-FindExamples.png)
+
 
 ## Overview
 
