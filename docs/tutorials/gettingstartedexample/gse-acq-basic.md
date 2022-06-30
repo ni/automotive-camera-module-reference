@@ -31,17 +31,17 @@ A supported interface module and camera on a PXI system running Windows.
     - Open LabVIEW and click **Help -> Find Examples...**
     ![Open NI Example Finder](/automotive-camera-module-reference/images/LabVIEW-Help-FindExamples.png)
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
-    ![NI Example Finder](/documentation/.attachments/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
+    ![NI Example Finder](/automotive-camera-module-reference/images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
-    ![FlexRIO with Integrated IO Project Creator](/documentation/.attachments/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
+    ![FlexRIO with Integrated IO Project Creator](/automotive-camera-module-reference/images/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
 
 3.  Double click the Acquisition Example VI in the LabVIEW project.
 
-    ![Open Acquisition Example VI](/documentation/.attachments/PXIe-148X-AcqGSE-Project.png)
+    ![Open Acquisition Example VI](/automotive-camera-module-reference/images/PXIe-148X-AcqGSE-Project.png)
 
     > The opened front panel of the Getting Started Example is similar to the figure below.
 
-    ![Acquisition CSE Front Panel](/documentation/.attachments/PXIe-148X-AcqGSE-FrontPanel.png)
+    ![Acquisition CSE Front Panel](/automotive-camera-module-reference/images/PXIe-148X-AcqGSE-FrontPanel.png)
 
 ## Performing a Simple Continuous Acquisition
 
@@ -60,7 +60,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Resource Tab](/documentation/.attachments/image006-ae0a4126-71e1-4457-81c2-2db4fb618da1.png)
+    ![Configuration Settings Resource Tab](/automotive-camera-module-reference/images/image006-ae0a4126-71e1-4457-81c2-2db4fb618da1.png)
 
 2.  Select the **Serial Channel** tab and make the following modifications.
     - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
@@ -74,24 +74,24 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/documentation/.attachments/image008-1691d3dd-1d15-48ac-811f-dced51d76554.png)
+    ![Configuration Settings Serial Channel Tab](/automotive-camera-module-reference/images/image008-1691d3dd-1d15-48ac-811f-dced51d76554.png)
 
 3.  Select the **Board** tab and make the following modifications.
     - In the **Power Over Coax Source** drop down menu, select **Internal** to power the attached camera from the interface module's internal 12V supply.
 
     > The values on the **Board** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Board Tab](/documentation/.attachments/image010-47e550aa-8128-4917-a85e-664028c93faf.png)
+    ![Configuration Settings Board Tab](/automotive-camera-module-reference/images/image010-47e550aa-8128-4917-a85e-664028c93faf.png)
 
 4.  Run the VI to start a continuous acquisition. Images captured from the camera display automatically in the **First Display Channel** tab.
 5.  While the VI is running, use the displayed image to focus the camera.
 
-    ![First Display Channel Tab](/documentation/.attachments/image012-7c0ae261-b91f-4647-934e-6146ace63453.png)
+    ![First Display Channel Tab](/automotive-camera-module-reference/images/image012-7c0ae261-b91f-4647-934e-6146ace63453.png)
 
 6.  Click the **Stop Acquisition** button to stop the acquisition and stop the VI.
 7.  (Optional) Update the **Red Gain**, **Green Gain**, and **Blue Gain** display parameters on the **Serial Channel** tab -> **Channel Configurations** control to better match the acquired image to the actual color of the object.
 
-    ![Channel Configurations Control](/documentation/.attachments/image014-497f8909-8d00-4215-92f7-785a941755c4.png)
+    ![Channel Configurations Control](/automotive-camera-module-reference/images/image014-497f8909-8d00-4215-92f7-785a941755c4.png)
 
 8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
     > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
@@ -108,26 +108,26 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
     
-    ![Configuration Settings Resource Tab Log to Disk](/documentation/.attachments/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
+    ![Configuration Settings Resource Tab Log to Disk](/automotive-camera-module-reference/images/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
 
 2.  Select the **Acquisition** tab and disable **Continuous Acquisition**.
 
     > The values on the **Acquisition** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Acquisition Tab Finite](/documentation/.attachments/PXIe-148X-Acq-AquisitionTab-FiniteAcq.png)
+    ![Configuration Settings Acquisition Tab Finite](/automotive-camera-module-reference/images/PXIe-148X-Acq-AquisitionTab-FiniteAcq.png)
 
 3.  Select the **I2C** tab and add **User24** to the **timestamp filter** array to enable I2C timestamp logging on the SI0 channel.
 
     > The values on the **I2C** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings I2C Tab with User24](/documentation/.attachments/image020-fd543147-10a0-4438-9c32-bb16123e83e8.png)
+    ![Configuration Settings I2C Tab with User24](/automotive-camera-module-reference/images/image020-fd543147-10a0-4438-9c32-bb16123e83e8.png)
 
 4.  Select the **GPIO** tab and make the following modifications.
     - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Des0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SI0 channel connected to the camera.
 
     > The values on the **GPIO** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings GPIO Tab with Des0 GPIO0](/documentation/.attachments/PXIe-148X-Acq-GPIOTab-DisplayDes0GPIO0.png)
+    ![Configuration Settings GPIO Tab with Des0 GPIO0](/automotive-camera-module-reference/images/PXIe-148X-Acq-GPIOTab-DisplayDes0GPIO0.png)
 
 5.  Run the VI to start the acquisition and wait for the acquisition to complete. The default acquisition duration of 1 second is run and results are displayed on the various tabs in the **Data Output** indicator.
 
@@ -135,15 +135,15 @@ A supported interface module and camera on a PXI system running Windows.
     - The **Bytes Acquired (1st Channel)** indicator updates as the acquisition is occurring.
     - The **Packets Logged (1st Channel)** indicator updates after acquisition completes.
 
-    ![First Serial Channel Packets Tab](/documentation/.attachments/image024-4503e058-d5c9-45a7-8290-1070039f8841.png)
+    ![First Serial Channel Packets Tab](/automotive-camera-module-reference/images/image024-4503e058-d5c9-45a7-8290-1070039f8841.png)
 
     > I2C timestamp data is displayed in the **I2C Timestamps** tab.
 
-    ![I2C Timestamps Tab](/documentation/.attachments/image026-edb70bc5-51b1-4679-8439-1ba736858038.png)
+    ![I2C Timestamps Tab](/automotive-camera-module-reference/images/image026-edb70bc5-51b1-4679-8439-1ba736858038.png)
 
 8.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
 
-    ![GPIO Timestamps](/documentation/.attachments/image028-78a1f0fa-9a32-441e-b1b0-90d1b95dfa20.png)
+    ![GPIO Timestamps](/automotive-camera-module-reference/images/image028-78a1f0fa-9a32-441e-b1b0-90d1b95dfa20.png)
 
     > Note: The camera does not toggle GPIOs by default. The change shown in the figure above reflects GPIO level reset when the example VI is first run.
 
@@ -153,15 +153,15 @@ A supported interface module and camera on a PXI system running Windows.
 
 TDMS files containing acquired data from the camera were saved to the \"TDMS Files\" subfolder in the previous tutorial. The GPIO timestamps, user timestamps, and data acquired from the camera are stored in individual TDMS files. You can use the file viewer utility to review the acquired packet data.
 
-![TDMS Files](/documentation/.attachments/image030-64038bc9-d745-4137-ad70-3d8fc681b3c6.png)
+![TDMS Files](/automotive-camera-module-reference/images/image030-64038bc9-d745-4137-ad70-3d8fc681b3c6.png)
 
 1.  Double click the TDMS File Viewer VI in the LabVIEW project.
   
-    ![Open TDMS File Viewer VI](/documentation/.attachments/PXIe-148X-GSE-TDMSFileViewer.png)
+    ![Open TDMS File Viewer VI](/automotive-camera-module-reference/images/PXIe-148X-GSE-TDMSFileViewer.png)
 
     > The opened front panel of the File Viewer will be similar to the figure below.
 
-    ![TDMS File Viewer VI Front Panel](/documentation/.attachments/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
+    ![TDMS File Viewer VI Front Panel](/automotive-camera-module-reference/images/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
 
 2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\TDMS Files</font>.
 
@@ -169,7 +169,7 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 
 3.  Run the VI to load the TDMS file and view the packet data.
 
-    ![TDMS File Viewer VI Front Panel With Data](/documentation/.attachments/PXIe-148X-GSE-TDMSFileViewer-FrontPanelWithData.png)
+    ![TDMS File Viewer VI Front Panel With Data](/automotive-camera-module-reference/images/PXIe-148X-GSE-TDMSFileViewer-FrontPanelWithData.png)
 
     > Note: The **Update TDMS File Packet Offset Data** control is enabled by default. Enabling this option results in re-saving a TDMS file with additional packet indexing information the first time the TDMS file is loaded. This indexing information can reduce the future load time of the file, particularly when reading only a subset of the packet data.
 
