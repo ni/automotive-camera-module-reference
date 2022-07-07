@@ -1,8 +1,8 @@
-# Overview
+# PXIe-148X Getting Started Example - Basic Acquisition Tutorial
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
 
-# Prerequisites
+## Prerequisites
 
 Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
 
@@ -10,19 +10,19 @@ Basic knowledge of LabVIEW and LabVIEW FPGA concepts.
 
 A supported interface module and camera on a PXI system running Windows.
 
-| **Interface Module**   | **Camera**                            |
-|------------------------|---------------------------------------|
+| **Interface Module**   | **Camera**                                                                                                                            |
+|------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
 | PXIe-1486 (8 In)       | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
 | PXIe-1486 (4 In 4 Out) | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1487 (8 In)       | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/) |
-| PXIe-1487 (4 In 4 Out) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/) |
+| PXIe-1487 (8 In)       | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| PXIe-1487 (4 In 4 Out) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
 
-# Initial Hardware Setup
+## Initial Hardware Setup
 
 1.  First complete installation of hardware as described in the Getting Started Guide linked above.
 2.  Connect the camera to serial input channel 0 (SI0) on the interface module with a FAKRA cable
 
-# Initial Software Setup
+## Initial Software Setup
 
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
@@ -41,7 +41,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     ![Acquisition CSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
 
-# Performing a Simple Continuous Acquisition
+## Performing a Simple Continuous Acquisition
 
 > **Note:** For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
@@ -49,8 +49,8 @@ A supported interface module and camera on a PXI system running Windows.
     - Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
     - Set the **Bitfile Path** to the bitfile that corresponds to your interface module. The default shipping bitfile is in the 'FPGA Bitfiles' subfolder located in the project folder (created at the Project Root location specified in Project Creator):
 
-    | **Interface Module**   | **Bitfile**                           |
-    |------------------------|---------------------------------------|
+    | **Interface Module**   | **Bitfile**                                          |
+    |------------------------|------------------------------------------------------|
     | PXIe-1486 (8 In)       | FPGA Bitfiles\\PXIe_1486_8\_In.lvbitx                |
     | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
     | PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
@@ -63,11 +63,11 @@ A supported interface module and camera on a PXI system running Windows.
 2.  Select the **Serial Channel** tab and make the following modifications.
     - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
 
-        | **Interface Module**     | **Configuration Script**                                           |
-        |--------------------------|--------------------------------------------------------------------|
-        | PXIe-1486 (8 In)         | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
+        | **Interface Module**   | **Configuration Script**                                           |
+        |------------------------|--------------------------------------------------------------------|
+        | PXIe-1486 (8 In)       | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
         | PXIe-1486 (4 In 4 Out) | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
-        | PXIe-1487 (8 In)         | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
+        | PXIe-1487 (8 In)       | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
         | PXIe-1487 (4 In 4 Out) | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
@@ -93,7 +93,7 @@ A supported interface module and camera on a PXI system running Windows.
 
 8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
     > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
-# Performing a Finite Acquisition with Data Logging
+## Performing a Finite Acquisition with Data Logging
 
 > Note: The Finite Acquisition with Data Logging tutorial assumes that all input parameters are still configured as specified in the Simple Continuous Acquisition tutorial.
 
@@ -145,7 +145,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > Note: The camera does not toggle GPIOs by default. The change shown in the figure above reflects GPIO level reset when the example VI is first run.
 
-# Reviewing Previously Logged Data
+## Reviewing Previously Logged Data
 
 > Note: The Review Previously Logged Data tutorial assumes that the previous tutorials in this document were completed first.
 

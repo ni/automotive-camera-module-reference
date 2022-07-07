@@ -1,14 +1,14 @@
-# Overview
+# PXIe-148X Getting Started Example - Common Acquisition Tutorials
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-# Prerequisites
+## Prerequisites
 
 This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](gse-acq-basic.md) before attempting this tutorial.
 
 **Note:** The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
 
-# Acquiring and Filtering LLP Packets
+## Acquiring and Filtering LLP Packets
 
 This tutorial shows you how to acquire packets from a camera on a serial channel and demonstrates different options for filtering those packets.
 
@@ -96,24 +96,24 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 13. Click on the **First Serial Channel Packets** tab to view information about the acquired data.
     > The Frame Start and RAW12 packets are filtered out, so the only packets displayed are Frame End packets. You can use the timestamps of these packets to verify the frame rate of the camera data.
 
-# Setting FPGA Display Parameters
+## Setting FPGA Display Parameters
 
 This tutorial shows you how to configure the **FPGA Display Parameters** to change the images being displayed from the camera.
 
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Control                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
-    | Resource       | Log Packets to Disk     | Enabled |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                                                                          |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Control                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Log Packets to Disk     | Enabled                                                                                                                                                             |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
-## Displaying Acquired Images
+### Displaying Acquired Images
 
 1.  Select the **Serial Channel** tab and make the following modifications.
 
@@ -139,12 +139,12 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
     - Note the two FPS indicators. The **Source Rate (fps)** indicator displays the frame rate in frames per second at which the image data is being received. The **Update Rate (fps)** indicator displays the rate in frames per second at which the image display indicator is being updated.
 
-## Reducing System Bandwidth Usage
+### Reducing System Bandwidth Usage
 This section demonstrates useful techniques for reducing the system bandwidth needed to transfer data from the FPGA to the host.
 
 > Note: If the **Update Rate (fps)** indicator is significantly less than the **Source Rate (fps)** indicator, the system is struggling to display images at the rate it receives them. Reducing resolution or skipping frames are two techniques to help resolve this issue.
 
-### Reducing Horizontal Resolution
+#### Reducing Horizontal Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -161,7 +161,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
 
     - Select the **First Display Channel** tab and observe the change to the horizontal resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the **Word Count** (bytes) for each RAW 12 packet type is unchanged.
-### Reducing Vertical Resolution
+#### Reducing Vertical Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -179,7 +179,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the vertical resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the number of packets per frame is unchanged.
 
-### Reducing the Frame Rate
+#### Reducing the Frame Rate
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the **Source Rate (fps)(1st Display)** indicator value.
@@ -198,21 +198,21 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the **Source Rate (fps)(1st Display)** indicator value.
     - Select the **First Serial Channel Packets** tab and observe the frame period is unchanged.
 
-# Setting RAW Display Parameters
+## Setting RAW Display Parameters
 
 This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed from the camera that are being sent in RAW packets.
 
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Control                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                                                                          |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Control                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **Serial Channel** tab and make the following modifications.
 
@@ -263,7 +263,7 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
    - Select the **First Display Channel** tab and observe the image displayed looks correct. The **RAW Display Parameters** now match the RAW 12 packet data from the Leopard Imaging IMX490 camera.
 
 
-# Setting Serial Channel Configurations
+## Setting Serial Channel Configurations
 
 This tutorial shows you how to configure the **Serial Channel** tab to acquire multiple images from multiple camera sensors.
 
@@ -272,16 +272,16 @@ This tutorial shows you how to configure the **Serial Channel** tab to acquire m
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Control                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                                                                          |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Control                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
-## Displaying Acquired Images From Multiple Cameras
+### Displaying Acquired Images From Multiple Cameras
 
 1.  Select the **Serial Channel** tab and make the following modifications.
 
@@ -306,7 +306,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to acquire m
    - Select the **First Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI0.
    - Select the **Second Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI1.
 
-## Running the Pattern Generation Script for an FPD-Link Interface Device
+### Running the Pattern Generation Script for an FPD-Link Interface Device
 This section demonstrates running a script that has the camera sensor generate an RGB pattern instead of captured images. This functionality is only supported on the FPD-Link interface devices.
 
 1.  Select the **Serial Channel** tab and make the following modifications.
@@ -320,7 +320,7 @@ This section demonstrates running a script that has the camera sensor generate a
    - Select the **First Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI0 is displaying a ramp pattern.
    - Select the **Second Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI1 is displaying a ramp pattern.
 
-# Acquiring and Displaying I2C Timestamps
+## Acquiring and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module.
 
 > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
@@ -328,15 +328,15 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Setting                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
-    | Resource       | Display Acquired Images | Disabled                                                                                                                                                                                                           |
-    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                                                                            |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Setting                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **I2C** tab and make the following modifications.
 
@@ -353,7 +353,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
     ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
-# Manually Reading and Writing to GPIO
+## Manually Reading and Writing to GPIO
 
 This tutorial shows how to manually read and write to the GPIO banks on the PXIe-148X interface module and display the digital waveform of the GPIO lines. This tutorial modifies GPIO line values  while the acquisition is running and logs the GPIO timestamps to disk.
 
@@ -362,15 +362,15 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Setting                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
-    | Resource       | Display Acquired Images | Disabled                                                                                                                                                                                                           |
-    | Resource       | Log GPIO to Disk        | Enabled                                                                                                                                                                                                            |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Setting                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Log GPIO to Disk        | Enabled                                                                                                                                                             |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **GPIO** tab and make the following modifications.
     - Add a GPIO line to the **GPIO to Display** array with the **GPIO Bank** value set to **Des0 GPIO** and the **GPIO Number** set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for GPIO line 0 on the SI0 channel. Optionally add any additional GPIO lines to display.
@@ -380,9 +380,9 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
         | **Interface Module**     | **GPIO Bank**          |
         |--------------------------|------------------------|
         | PXIe-1486 (8 In)         | SI 0 SI 1 Deserializer |
-        | PXIe-1486 (4 In 4 Out) | SI 0 Deserializer      |
+        | PXIe-1486 (4 In 4 Out)   | SI 0 Deserializer      |
         | PXIe-1487 (8 In)         | SI 0 SI 1 Deserializer |
-        | PXIe-1487 (4 In 4 Out) | SI 0 Deserializer      |
+        | PXIe-1487 (4 In 4 Out)   | SI 0 Deserializer      |
     
         > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Read** and **GPIO Bank Write** controls during the acquisition. The **GPIO Bank Select** selection may be changed at runtime.
 
