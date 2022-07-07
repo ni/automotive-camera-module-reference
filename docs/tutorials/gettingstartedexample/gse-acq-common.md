@@ -15,14 +15,14 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-    | Tab            | Control                 | Value                                                                                                                                                                                                              |
-    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-148x-acquisition-bitfiles)        |
-    | Resource       | Display Acquired Images | Disabled                                                                                                                                                                                                           |
-    | Resource       | Log Packets to Disk     | Enabled                                                                                                                                                                                                            |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+    | Tab            | Control                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Log Packets to Disk     | Enabled                                                                                                                                                             |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **Acquisition** tab and make the following modifications.
 
