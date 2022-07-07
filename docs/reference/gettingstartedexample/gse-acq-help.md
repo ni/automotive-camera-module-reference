@@ -9,6 +9,7 @@ Refer to this document to understand the elements of the getting started example
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
 
     #### Table of PXIe-148X Acquisition Bitfiles
+    
     | **Interface Module**     | **Bitfile**                           |
     |--------------------------|---------------------------------------|
     | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
@@ -28,6 +29,7 @@ Refer to this document to understand the elements of the getting started example
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
     #### Table of PXIe-148X Acquisition Scripts
+    
     | **Interface Module**               | **Configuration Script**                                                   |
     |------------------------------------|----------------------------------------------------------------------------|
     | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
