@@ -1,14 +1,14 @@
-# # 148X Getting Started Example - Common Acquisition Tutorials
+# Overview
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-## Prerequisites
+# Prerequisites
 
 This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29560/148X-Getting-Started-Example-Basic-Acquisition-Tutorial) before attempting this tutorial.
 
 **Note:** The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
 
-## Acquiring and Filtering LLP Packets
+# Acquiring and Filtering LLP Packets
 
 This tutorial shows you how to acquire packets from a camera on a serial channel and demonstrates different options for filtering those packets.
 
@@ -46,7 +46,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
     > The values on the **Acquisition** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Acquisition](/.attachments/image010-cdc17567-7698-4f9f-940d-32fd718b965f.png)
+    ![Configuration Settings Acquisition](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-AcquisitionTab-AcqAndFilterLLPPackets.png)
 
 3. Run the VI.
 
@@ -65,7 +65,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
         > Note: The Getting Started Example utility *GettingStarted_Common_148X_Host.lvlib-\>TDMS File Viewer.vi* can be used for viewing packet data logged in an LLP Packets TDMS file.
 
-    ![image016.png](/.attachments/image016-cfdf93f5-f588-421f-9764-1a0dc85eff51.png)
+    ![image016.png](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-AcquiredPackets-AcqAndFilterLLPPackets.png)
 
 5. Select the **Acquisition** tab and disable **First and Last Packet Select**.
 
@@ -96,7 +96,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 13. Click on the **First Serial Channel Packets** tab to view information about the acquired data.
     > The Frame Start and RAW12 packets are filtered out, so the only packets displayed are Frame End packets. You can use the timestamps of these packets to verify the frame rate of the camera data.
 
-## Setting FPGA Display Parameters
+# Setting FPGA Display Parameters
 
 This tutorial shows you how to configure the **FPGA Display Parameters** to change the images being displayed from the camera.
 
@@ -113,7 +113,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
     | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
     | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
 
-### Displaying Acquired Images
+## Displaying Acquired Images
 
 1.  Select the **Serial Channel** tab and make the following modifications.
 
@@ -131,7 +131,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/.attachments/image008-03a36e34-b3a8-49b4-9ef0-0098460f7d29.png)
+    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
 2. Run the VI.
 
@@ -139,12 +139,12 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
     - Note the two FPS indicators. The **Source Rate (fps)** indicator displays the frame rate in frames per second at which the image data is being received. The **Update Rate (fps)** indicator displays the rate in frames per second at which the image display indicator is being updated.
 
-### Reducing System Bandwidth Usage
+## Reducing System Bandwidth Usage
 This section demonstrates useful techniques for reducing the system bandwidth needed to transfer data from the FPGA to the host.
 
 > Note: If the **Update Rate (fps)** indicator is significantly less than the **Source Rate (fps)** indicator, the system is struggling to display images at the rate it receives them. Reducing resolution or skipping frames are two techniques to help resolve this issue.
 
-#### Reducing Horizontal Resolution
+### Reducing Horizontal Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -161,7 +161,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
 
     - Select the **First Display Channel** tab and observe the change to the horizontal resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the **Word Count** (bytes) for each RAW 12 packet type is unchanged.
-#### Reducing Vertical Resolution
+### Reducing Vertical Resolution
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the resolution displayed under the image.
@@ -179,7 +179,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the vertical resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the number of packets per frame is unchanged.
 
-#### Reducing the Frame Rate
+### Reducing the Frame Rate
 
 1. Run the VI.
     - Select the **First Display Channel** tab and note the **Source Rate (fps)(1st Display)** indicator value.
@@ -198,23 +198,129 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
     - Select the **First Display Channel** tab and observe the change to the **Source Rate (fps)(1st Display)** indicator value.
     - Select the **First Serial Channel Packets** tab and observe the frame period is unchanged.
 
-## Setting RAW Display Parameters
-<span style="color:red">**[TODO: What would make a good intermediate level tutorial for these? The 490 works with the default settings. Bayer decoding is an advanced topic on its own]**</span>
+# Setting RAW Display Parameters
 
-    > Note: The RAW Display parameters only apply to packets with RAW data types and are intended to be used to match the camera Bayer decoding scheme so that the images can be decoded and displayed correctly.
+This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed from the camera that are being sent in RAW packets.
 
-<span style="color:red">**[TODO: Mention that a more advanced topic on Bayer Decoding exists in IMAQ documentation....somewhere? And maybe link to wikipedia?.]**</span>
+1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
-We do talk about RGB gain in the basic tutorial.
+    | Tab            | Control                 | Value                                                                                                                                                                                                              |
+    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                                                                          |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
 
-## Setting Serial Channel Configurations
-<span style="color:red">**[TODO: Write a descriptive 1-2 sentences for each of these topics describing what we intend to cover in each tutorial.]**</span>
-   - Acquire on multiple channels
-   - Scripts explained (maybe in help)
-   - Run with pat gen script (1486 only)
-   - Virtual Channel stuff?
+2.  Select the **Serial Channel** tab and make the following modifications.
 
-## Acquiring and Displaying I2C Timestamps
+    The **FPGA Display Parameters** determine what data is sent to the host for display, and the **RAW Display Parameters** determine how image data for RAW data types is decoded. Display parameters _only_ affect the image on the display channel, not any data logged to disk.
+
+    The **Channel Configurations** control is used to select active channels and configure display parameters if enabled.
+
+    Set the **Channel Configurations** array to contain one element with the following sub-settings.
+
+    - Set the **Serial Channel** control to <font face = "courier new">SI0</font>.
+    - Set the **payload data type** to **RAW 12**.
+
+    > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
+
+    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+	
+	Set the **RAW Display Parameters** to the following sub-settings.
+	
+	- Set the **Interpretation** control to <font face = "courier new">RGB</font>.
+	
+	> Note: The **Interpretation** , **Pattern** , and **Algorithm** must match the data encoding of LLP packets that contain the image data you want to display. If these do not match the data in the LLP packets, the image display looks distorted or incorrect.
+
+
+3. Run the VI.
+
+   - Select the **First Display Channel** tab and observe the image displayed is distorted.
+   
+4.  Select the **Serial Channel** tab and make the following modifications.
+
+    Set the **RAW Display Parameters** to the following sub-settings.
+	
+	- Set the **Interpretation** control to <font face = "courier new">Bayer</font>.
+	- Set the **Pattern** control to <font face = "courier new">GB</font>.
+	
+5. Run the VI.
+
+   - Select the **First Display Channel** tab and observe the image displayed is colorized incorrectly.
+   
+6.  Select the **Serial Channel** tab and make the following modifications.
+
+    Set the **RAW Display Parameters** to the following sub-settings.
+	
+	- Set the **Interpretation** control to <font face = "courier new">Bayer</font>.
+	- Set the **Pattern** control to <font face = "courier new">RG</font>.
+	
+7. Run the VI.
+
+   - Select the **First Display Channel** tab and observe the image displayed looks correct. The **RAW Display Parameters** now match the RAW 12 packet data from the Leopard Imaging IMX490 camera.
+
+
+# Setting Serial Channel Configurations
+
+This tutorial shows you how to configure the **Serial Channel** tab to acquire multiple images from multiple camera sensors.
+
+> **Note:** This tutorial requires the use of two Leopard Imaging IMX490 cameras connected to SI0 and SI1 of your interface module.
+
+1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab            | Control                 | Value                                                                                                                                                                                                              |
+    |----------------|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                                                                  |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-bitfiles)        |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                                                                          |
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                                                                           |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                                                                           |
+
+## Displaying Acquired Images From Multiple Cameras
+
+1.  Select the **Serial Channel** tab and make the following modifications.
+
+    The **Channel Configurations** control is used to select active channels and configure display parameters if enabled.
+
+    Set the **Channel Configurations** array to contain two elements. Configure the first element with the following sub-settings.
+
+    - Set the **Serial Channel** control to <font face = "courier new">SI0</font>.
+    - Set the **payload data type** to **RAW 12**.
+	
+	Configure the second element with the following sub-settings.
+	
+	- Set the **Serial Channel** control to <font face = "courier new">SI1</font>.
+    - Set the **payload data type** to **RAW 12**.
+
+    > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
+
+    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+
+2. Run the VI.
+
+   - Select the **First Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI0.
+   - Select the **Second Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI1.
+
+## Running the Pattern Generation Script for an FPD-Link Interface Device
+This section demonstrates running a script that has the camera sensor generate an RGB pattern instead of captured images. This functionality is only supported on the FPD-Link interface devices.
+
+1.  Select the **Serial Channel** tab and make the following modifications.
+
+    Set the **Configuration Script** to <font face = "courier new">/Host/Scripts/DS90UB954/Acq/953_1920x1080_RAW12_PatGen.py</font>
+	
+	> Note: This will configure any DS90UB953 serializer in pattern generation mode. In this setup we are configuring the two Leopard Imaging IMX490 cameras to generate patterns.
+
+2. Run the VI.
+
+   - Select the **First Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI0 is displaying a ramp pattern.
+   - Select the **Second Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI1 is displaying a ramp pattern.
+
+# Acquiring and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module.
 
 > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
@@ -237,7 +343,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
     - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
 
-    ![Configuration Settings I2C Tab](/.attachments/image018-da2e6ff0-53da-4c35-a2a1-8a410f151e60.png)
+    ![Configuration Settings I2C Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
 
 3.  Run the VI. 
 4.  Select the **I2C Timestamps** tab to view I2C timestamp data.
@@ -245,9 +351,9 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
         > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
 
-    ![I2C Timestamps Data](/.attachments/image020-84c67bbe-e98a-4d52-9950-ee27dffe8dfa.png)
+    ![I2C Timestamps Data](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
-## Manually Reading and Writing to GPIO
+# Manually Reading and Writing to GPIO
 
 This tutorial shows how to manually read and write to the GPIO banks on the PXIe-148X interface module and display the digital waveform of the GPIO lines. This tutorial modifies GPIO line values  while the acquisition is running and logs the GPIO timestamps to disk.
 
@@ -282,17 +388,17 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
     > The values on the GPIO tab will be similar to the figure below.
 
-    ![Configuration Settings GPIO Tab Initial Settings](/.attachments/image024-d6cabb7b-d492-4483-8c03-07740f3cf80c.png)
+    ![Configuration Settings GPIO Tab Initial Settings](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWriteSettings.png)
 
 3.  Run the VI.
 
 4.  Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button. This performs a manual write of the GPIO lines on the selected GPIO bank as indicated by the **GPIO Bank Write** control.
 
-    ![GPIO Bank Manual Read Write 1](/.attachments/image026-67f5b98b-a5ae-411e-b9ca-30e18e354f04.png)
+    ![GPIO Bank Manual Read Write 1](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWrite1.png)
 
 5.  View the **GPIO Bank Read** indicator, which reads back the GPIO line values that were manually written for the selected GPIO bank. The **GPIO Bank Read** indicator reads GPIO line values for the selected GPIO bank continuously while the acquisition is running.
 
-    ![GPIO Bank Manual Read Write 2](/.attachments/image028-9ff3b1e0-3715-4980-b85a-bc5e7e6b5c5c.png)
+    ![GPIO Bank Manual Read Write 2](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWrite2.png)
 
 6.  Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button.
 
@@ -302,7 +408,7 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The true/false value change on Des 0 GPIO 0 from this tutorial can be observed and should look similar to the figure below. Additionally, there may be another change in the GPIO line value from the initial SerDes reset.
 
-    ![GPIO Timestamps Waveform](/.attachments/image030-ce143742-def2-468d-a1a0-bb5e0cdd3be8.png)
+    ![GPIO Timestamps Waveform](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTimestamps-ManualReadWrite.png)
 
     > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
 

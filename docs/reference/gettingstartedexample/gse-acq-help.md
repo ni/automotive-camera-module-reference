@@ -1,10 +1,10 @@
-# 148X Getting Started Example - Acquisition Help
+# Overview
 
 Refer to this document to understand the elements of the getting started example for acquisition with variants of the PXIe-148X GMSL and FPD-Link interface modules. This document provides a description for all controls and indicators on the acquisition getting started example front panel. 
 > Note: Updates to controls when the VI is running will not take effect unless otherwise indicated.
 
-## Configuration Settings
-### Resource Tab
+# Configuration Settings
+## Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
 
@@ -24,7 +24,7 @@ Refer to this document to understand the elements of the getting started example
     > Note: Specifying a large number of packets to display may cause the VI to appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
 - **Log I2C to Disk** - Enable to log I2C timestamps to a TDMS file.
 - **Log GPIO to Disk** - Enable to log GPIO timestamps to a TDMS file.
-### Serial Channel Tab
+## Serial Channel Tab
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
     ### Table of PXIe-148X Acquisition Scripts
@@ -66,7 +66,7 @@ Refer to this document to understand the elements of the getting started example
             - **Red Gain** - The gain to be applied to the red pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
             - **Green Gain** - The gain to be applied to the green pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
             - **Blue Gain** - The gain to be applied to the blue pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
-### Acquisition Tab
+## Acquisition Tab
 - **Acquisition Duration (s)** - The acquisition duration in seconds. The duration specifies the time from the start of the acquisition to the assertion of a stop trigger.
     > Note: If continuous acquisition is enabled, the acquisition duration is ignored.
 
@@ -82,7 +82,7 @@ Refer to this document to understand the elements of the getting started example
 - **Invert Data Type Filter** - If enabled, packet data types included in the data type filter array are the only packets acquired and all other packets are ignored. If disabled, packet data types included in the data type filter array are ignored and all other packet data types are acquired.
 - **Virtual Channel Filter** - Specifies virtual channel packets to ignore (filter out) during the acquisition.
 - **Invert Virtual Channel Filter** - If enabled, packets with a virtual channel included in the virtual channel filter array are the only virtual channel packets acquired and all other virtual channel packets are ignored. If disabled, packets with a virtual channel included in the virtual channel filter array are ignored and all other virtual channel packets are acquired.
-### Board Tab
+## Board Tab
 - **Power Over Coax Source** - The source used to provide power over coax on active serial input channels.
     | Value     | Description                                                         |
     |-----------|---------------------------------------------------------------------|
@@ -93,10 +93,10 @@ Refer to this document to understand the elements of the getting started example
 
 - **Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the SerDes. GMSL SerDes do not support changing this from the default value of 25 MHz. However for FPD-Link SerDes, in certain modes of operation, you may need to adjust this value and should consult the datasheet of your SerDes for more information about supported reference clock frequencies and clocking modes.
 
-### I2C Tab
+## I2C Tab
 - **timestamp filter** - Specifies I2C timestamp IDs to display after the acquisition completes.  I2C timestamps with IDs not matching an ID included in the timestamp filter array are logged, but not displayed.
     > User24 represents the I2C traffic on serial channel 0 (SI0), User25 represents the I2C traffic on serial channel 1 (SI1), and so on.
-### GPIO Tab
+## GPIO Tab
 - **GPIO to Display** - Specifies GPIO timestamp identifiers to display on the _GPIO Timestamps Waveform_ after the acquisition completes.  Timestamps for GPIO lines not included in the _GPIO to Display_ array are logged, but not displayed.
 - **GPIO Bank Select** - Specifies the GPIO bank used for the **GPIO Bank Read** and **GPIO Bank Write** controls during the acquisition.
     > This control may be modified while the VI is running.
@@ -107,8 +107,8 @@ Refer to this document to understand the elements of the getting started example
 - **GPIO Bank Read** - Displays GPIO line values read from the selected GPIO bank.
     > **GPIO Bank Read** line values are updated continuously throughout the acquisition.
 
-## Data Output
-### Display Channel Tab (First or Second)
+# Data Output
+## Display Channel Tab (First or Second)
 > By default, the getting started example allows displaying images for two serial input channels, which can be viewed by clicking on the First Display Channel and Second Display Channel tabs while the acquisition is running.
 - **Image Display** - Displays the most recently acquired frame of the corresponding display channel. Interactive pan and zoom capabilities are provided by the buttons in the upper left corner of the image display. The text field below the image shows the image size, zoom factor, image type, pixel value and coordinate information.
 - **Serial Channel** - Selects the serial channel number for the image data to be displayed if more than two serial input channels are active.
@@ -117,7 +117,7 @@ Refer to this document to understand the elements of the getting started example
 - **Source Rate (fps)** - Displays the frame rate in frames per second at which the image data is being received.
 - **Update Rate (fps)** - Displays the rate in frames per second at which the image display indicator is being updated.
     > Note: If multiple frames have arrived since the last update, only the most recent frame is displayed and the others are skipped in an attempt to keep up with the acquisition.
-### Serial Channel Packets Tab (First or Second)
+## Serial Channel Packets Tab (First or Second)
 > The getting started example displays packet data for the first two channels specified in the Channel Configurations array at the completion of the acquisition. If other packet data is desired, either re-order the active channels in the configuration array on the Serial Channel tab or use the TDMS File Viewer utility.
 - **Acquired Packets** - Displays the LLP packet information for the number of packets specified in the **Logged Packets to Display** control starting at the first logged packet.
     > Note: If displaying a large number of packets, the VI may appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
@@ -125,17 +125,17 @@ Refer to this document to understand the elements of the getting started example
     > The **Bytes Acquired** indicator updates during the acquisition.
 - **Packets Logged** - Displays the total number of LLP packets logged during the acquisition.
     > The **Packets Logged** indicator updates after the acquisition completes.
-### I2C Timestamps Tab
+## I2C Timestamps Tab
 > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled on the Resource tab and desired timestamp IDs must be added to the **timestamp filter** array on the I2C tab. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the **timestamp filter** array.
 - **I2C Timestamps** - Displays I2C timestamp information for all I2C IDs in the **timestamp filter** array on the I2C tab. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as I2C traffic from the configuration script.
     > The **I2C Timestamps** display is updated after the acquisition completes.
-### GPIO Timestamps Tab
+## GPIO Timestamps Tab
 > Note: To display GPIO digital waveforms, **Log GPIO to Disk** must be enabled on the Resource tab and desired GPIO lines must be added to the **GPIO to Display** array on the GPIO tab. The GPIO timestamp data displayed is read from the GPIO_Timestamps.tdms file and filtered to display only GPIO lines included in the **GPIO to Display** array.
 - **GPIO Timestamps Waveform** - Displays a digital waveform for each GPIO line included in the **GPIO to Display** array on the GPIO tab. GPIO timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as toggles created from a reset.
     > The **GPIO Timestamps Waveform** display is updated after the acquisition completes.
 - **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the "Build GPIO Waveform.vi" SubVI.
 
-## General
+# General
 - **Stop Acquisition** - Creates a manual stop trigger for the acquisition. Clicking this button will cause all processing loops (Display, I2C, GPIO, monitoring, and LLP acquisition) to stop and the VI to stop running.
     > This control may be set while the VI is running.
 
