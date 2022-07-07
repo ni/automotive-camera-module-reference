@@ -7,7 +7,7 @@ Refer to this document to understand the elements of the getting started example
 ## Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
-https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29577/148X-Getting-Started-Example-Acquisition-Help?anchor=table-of-pxie-148x-acquisition-bitfiles
+
     ### Table of PXIe-148X Acquisition Bitfiles
     | **Interface Module**     | **Bitfile**                           |
     |--------------------------|---------------------------------------|
