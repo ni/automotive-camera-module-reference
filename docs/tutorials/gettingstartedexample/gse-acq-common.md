@@ -46,7 +46,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
     > The values on the **Acquisition** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Acquisition](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-AcquisitionTab-AcqAndFilterLLPPackets.png)
+    ![Configuration Settings Acquisition](../../images/PXIe-148X-Acq-AcquisitionTab-AcqAndFilterLLPPackets.png)
 
 3. Run the VI.
 
@@ -65,7 +65,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
         > Note: The Getting Started Example utility *GettingStarted_Common_148X_Host.lvlib-\>TDMS File Viewer.vi* can be used for viewing packet data logged in an LLP Packets TDMS file.
 
-    ![image016.png](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-AcquiredPackets-AcqAndFilterLLPPackets.png)
+    ![image016.png](../../images/PXIe-148X-Acq-AcquiredPackets-AcqAndFilterLLPPackets.png)
 
 5. Select the **Acquisition** tab and disable **First and Last Packet Select**.
 
@@ -131,7 +131,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+    ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
 2. Run the VI.
 
@@ -227,7 +227,7 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+    ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 	
 	Set the **RAW Display Parameters** to the following sub-settings.
 	
@@ -299,7 +299,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to acquire m
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+    ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
 2. Run the VI.
 
@@ -343,7 +343,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
     - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
 
-    ![Configuration Settings I2C Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
+    ![Configuration Settings I2C Tab](../../images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
 
 3.  Run the VI. 
 4.  Select the **I2C Timestamps** tab to view I2C timestamp data.
@@ -351,7 +351,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
         > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
 
-    ![I2C Timestamps Data](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
+    ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
 # Manually Reading and Writing to GPIO
 
@@ -388,17 +388,17 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
     > The values on the GPIO tab will be similar to the figure below.
 
-    ![Configuration Settings GPIO Tab Initial Settings](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWriteSettings.png)
+    ![Configuration Settings GPIO Tab Initial Settings](../../images/PXIe-148X-Acq-GPIOTab-ManualReadWriteSettings.png)
 
 3.  Run the VI.
 
 4.  Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button. This performs a manual write of the GPIO lines on the selected GPIO bank as indicated by the **GPIO Bank Write** control.
 
-    ![GPIO Bank Manual Read Write 1](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWrite1.png)
+    ![GPIO Bank Manual Read Write 1](../../images/PXIe-148X-Acq-GPIOTab-ManualReadWrite1.png)
 
 5.  View the **GPIO Bank Read** indicator, which reads back the GPIO line values that were manually written for the selected GPIO bank. The **GPIO Bank Read** indicator reads GPIO line values for the selected GPIO bank continuously while the acquisition is running.
 
-    ![GPIO Bank Manual Read Write 2](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-ManualReadWrite2.png)
+    ![GPIO Bank Manual Read Write 2](../../images/PXIe-148X-Acq-GPIOTab-ManualReadWrite2.png)
 
 6.  Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button.
 
@@ -408,7 +408,7 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The true/false value change on Des 0 GPIO 0 from this tutorial can be observed and should look similar to the figure below. Additionally, there may be another change in the GPIO line value from the initial SerDes reset.
 
-    ![GPIO Timestamps Waveform](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTimestamps-ManualReadWrite.png)
+    ![GPIO Timestamps Waveform](../../images/PXIe-148X-Acq-GPIOTimestamps-ManualReadWrite.png)
 
     > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
 

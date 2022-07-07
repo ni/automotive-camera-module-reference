@@ -27,19 +27,19 @@ A supported interface module and camera on a PXI system running Windows.
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
     - Open LabVIEW and click **Help -> Find Examples...**
-    ![Open NI Example Finder](/.attachments/pxie-148x-docs-images/LabVIEW-Help-FindExamples.png)
+    ![Open NI Example Finder](../../images/LabVIEW-Help-FindExamples.png)
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
-    ![NI Example Finder](/.attachments/pxie-148x-docs-images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
+    ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
-    ![FlexRIO with Integrated IO Project Creator](/.attachments/pxie-148x-docs-images/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
+    ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
 
 3.  Double click the Acquisition Example VI in the LabVIEW project.
 
-    ![Open Acquisition Example VI](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-Project.png)
+    ![Open Acquisition Example VI](../../images/PXIe-148X-AcqGSE-Project.png)
 
     > The opened front panel of the Getting Started Example is similar to the figure below.
 
-    ![Acquisition CSE Front Panel](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-FrontPanel.png)
+    ![Acquisition CSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
 
 # Performing a Simple Continuous Acquisition
 
@@ -58,7 +58,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Resource Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ResourceTab-BasicContinuous.png)
+    ![Configuration Settings Resource Tab](../../images/PXIe-148X-AcqGSE-ResourceTab-BasicContinuous.png)
 
 2.  Select the **Serial Channel** tab and make the following modifications.
     - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
@@ -72,24 +72,24 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Serial Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-SerialChannelTab-BasicContinuous.png)
+    ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-SerialChannelTab-BasicContinuous.png)
 
 3.  Select the **Board** tab and make the following modifications.
     - In the **Power Over Coax Source** drop down menu, select **Internal** to power the attached camera from the interface module's internal 12V supply.
 
     > The values on the **Board** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Board Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-BoardTab-BasicContinuous.png)
+    ![Configuration Settings Board Tab](../../images/PXIe-148X-AcqGSE-BoardTab-BasicContinuous.png)
 
 4.  Run the VI to start a continuous acquisition. Images captured from the camera display automatically in the **First Display Channel** tab.
 5.  While the VI is running, use the displayed image to focus the camera.
 
-    ![First Display Channel Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-FirstDisplayChannel-BasicContinuous.png)
+    ![First Display Channel Tab](../../images/PXIe-148X-AcqGSE-FirstDisplayChannel-BasicContinuous.png)
 
 6.  Click the **Stop Acquisition** button to stop the acquisition and stop the VI.
 7.  (Optional) Update the **Red Gain**, **Green Gain**, and **Blue Gain** display parameters on the **Serial Channel** tab -> **Channel Configurations** control to better match the acquired image to the actual color of the object.
 
-    ![Channel Configurations Control](/.attachments/pxie-148x-docs-images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+    ![Channel Configurations Control](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
 8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
     > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
@@ -106,26 +106,26 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
     
-    ![Configuration Settings Resource Tab Log to Disk](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
+    ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
 
 2.  Select the **Acquisition** tab and disable **Continuous Acquisition**.
 
     > The values on the **Acquisition** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Acquisition Tab Finite](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-AquisitionTab-FiniteAcq.png)
+    ![Configuration Settings Acquisition Tab Finite](../../images/PXIe-148X-Acq-AquisitionTab-FiniteAcq.png)
 
 3.  Select the **I2C** tab and add **User24** to the **timestamp filter** array to enable I2C timestamp logging on the SI0 channel.
 
     > The values on the **I2C** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings I2C Tab with User24](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
+    ![Configuration Settings I2C Tab with User24](../../images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
 
 4.  Select the **GPIO** tab and make the following modifications.
     - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Des0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SI0 channel connected to the camera.
 
     > The values on the **GPIO** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings GPIO Tab with Des0 GPIO0](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTab-DisplayDes0GPIO0.png)
+    ![Configuration Settings GPIO Tab with Des0 GPIO0](../../images/PXIe-148X-Acq-GPIOTab-DisplayDes0GPIO0.png)
 
 5.  Run the VI to start the acquisition and wait for the acquisition to complete. The default acquisition duration of 1 second is run and results are displayed on the various tabs in the **Data Output** indicator.
 
@@ -133,15 +133,15 @@ A supported interface module and camera on a PXI system running Windows.
     - The **Bytes Acquired (1st Channel)** indicator updates as the acquisition is occurring.
     - The **Packets Logged (1st Channel)** indicator updates after acquisition completes.
 
-    ![First Serial Channel Packets Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-FirstSerialChannelPackets-FiniteAcq.png)
+    ![First Serial Channel Packets Tab](../../images/PXIe-148X-Acq-FirstSerialChannelPackets-FiniteAcq.png)
 
     > I2C timestamp data is displayed in the **I2C Timestamps** tab.
 
-    ![I2C Timestamps Tab](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
+    ![I2C Timestamps Tab](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
 8.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
 
-    ![GPIO Timestamps](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-GPIOTimestamps-FiniteAcq.png)
+    ![GPIO Timestamps](../../images/PXIe-148X-Acq-GPIOTimestamps-FiniteAcq.png)
 
     > Note: The camera does not toggle GPIOs by default. The change shown in the figure above reflects GPIO level reset when the example VI is first run.
 
@@ -151,15 +151,15 @@ A supported interface module and camera on a PXI system running Windows.
 
 TDMS files containing acquired data from the camera were saved to the \"TDMS Files\" subfolder in the previous tutorial. The GPIO timestamps, user timestamps, and data acquired from the camera are stored in individual TDMS files. You can use the file viewer utility to review the acquired packet data.
 
-![TDMS Files](/.attachments/pxie-148x-docs-images/PXIe-148X-Acq-TDMSFileList.png)
+![TDMS Files](../../images/PXIe-148X-Acq-TDMSFileList.png)
 
 1.  Double click the TDMS File Viewer VI in the LabVIEW project.
   
-    ![Open TDMS File Viewer VI](/.attachments/pxie-148x-docs-images/PXIe-148X-GSE-TDMSFileViewer.png)
+    ![Open TDMS File Viewer VI](../../images/PXIe-148X-GSE-TDMSFileViewer.png)
 
     > The opened front panel of the File Viewer will be similar to the figure below.
 
-    ![TDMS File Viewer VI Front Panel](/.attachments/pxie-148x-docs-images/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
+    ![TDMS File Viewer VI Front Panel](../../images/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
 
 2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\TDMS Files</font>.
 
@@ -167,7 +167,7 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 
 3.  Run the VI to load the TDMS file and view the packet data.
 
-    ![TDMS File Viewer VI Front Panel With Data](/.attachments/pxie-148x-docs-images/PXIe-148X-GSE-TDMSFileViewer-FrontPanelWithData.png)
+    ![TDMS File Viewer VI Front Panel With Data](../../images/PXIe-148X-GSE-TDMSFileViewer-FrontPanelWithData.png)
 
     > Note: The **Update TDMS File Packet Offset Data** control is enabled by default. Enabling this option results in re-saving a TDMS file with additional packet indexing information the first time the TDMS file is loaded. This indexing information can reduce the future load time of the file, particularly when reading only a subset of the packet data.
 
