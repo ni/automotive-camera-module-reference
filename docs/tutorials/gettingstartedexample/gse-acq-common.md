@@ -4,7 +4,7 @@ This document covers a range of common scenarios using the PXIe-148X Acquisition
 
 # Prerequisites
 
-This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](https://dev.azure.com/ni/DevCentral/_wiki/wikis/AppCentral.wiki/29560/148X-Getting-Started-Example-Basic-Acquisition-Tutorial) before attempting this tutorial.
+This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](gse-acq-basic.md) before attempting this tutorial.
 
 **Note:** The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
 
