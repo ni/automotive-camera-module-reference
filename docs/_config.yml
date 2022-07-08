@@ -1,4 +1,4 @@
-theme: jekyll-theme-dinky
+remote_theme: just-the-docs/just-the-docs
 title: NI Automotive Camera Module
 
 url: 'https://ni.github.io/'
