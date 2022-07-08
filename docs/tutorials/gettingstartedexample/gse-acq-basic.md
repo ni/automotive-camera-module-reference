@@ -2,6 +2,8 @@
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
 
+**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+
 ## Prerequisites
 
 Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
@@ -27,6 +29,7 @@ A supported interface module and camera on a PXI system running Windows.
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific interface module.
     - Open LabVIEW and click **Help -> Find Examples...**
+    
     ![Open NI Example Finder](../../images/LabVIEW-Help-FindExamples.png)
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
     ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
@@ -172,3 +175,12 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
     > Note: The **Update TDMS File Packet Offset Data** control is enabled by default. Enabling this option results in re-saving a TDMS file with additional packet indexing information the first time the TDMS file is loaded. This indexing information can reduce the future load time of the file, particularly when reading only a subset of the packet data.
 
 4. (Optional) Update the **Packet Display Start Index** and **Packets to Display** controls to review a specific packet range of interest from the TDMS file and rerun the VI.
+
+## Related Documents
+- [PXIe-148X Getting Started Example - Common Acquisition Tutorials](./gse-acq-common.md)
+- [PXIe-148X Getting Started Example - Acquisition Help](../../reference/gettingstartedexample/gse-acq-help.md)
+- [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
+- [PXIe-148X Getting Started Example - Basic Tap Tutorial](./gse-tap-basic.md)
+
+
+    
