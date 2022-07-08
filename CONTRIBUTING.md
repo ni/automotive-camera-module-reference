@@ -19,14 +19,6 @@ this repository.
 
 See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/) for more details.
 
-# Getting Started
-
-- TODO: include build steps here.
-
-# Testing
-
-- TODO: include testing steps here.
-
 # Developer Certificate of Origin (DCO)
 
    Developer's Certificate of Origin 1.1
