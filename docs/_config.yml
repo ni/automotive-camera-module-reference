@@ -1,4 +1,5 @@
 remote_theme: ni/just-the-docs
+color_scheme: ni
 title: NI Automotive Camera Module
 
 url: 'https://ni.github.io/'
