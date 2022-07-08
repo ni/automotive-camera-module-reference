@@ -7,15 +7,14 @@ Refer to this document to understand the elements of the getting started example
 ### Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
-
-    #### Table of PXIe-148X Acquisition Bitfiles
+#### Table of PXIe-148X Acquisition Bitfiles
     
-    | **Interface Module**     | **Bitfile**                           |
-    |--------------------------|---------------------------------------|
-    | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
-    | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
-    | PXIe-1487 (8 In)         | PXIe_1487_8\_In.lvbitx                |
-    | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | **Interface Module**     | **Bitfile**                           |
+  |--------------------------|---------------------------------------|
+  | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
+  | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | PXIe-1487 (8 In)         | PXIe_1487_8\_In.lvbitx                |
+  | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
 - **TDMS File Directory** - Path to the directory used to store TDMS data files. 
     > If left blank the TDMS File Directory will be automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet acquisition, I2C timestamps, and GPIO timestamps.
 - **Display Acquired Images** - Enable to display acquired images.
@@ -28,16 +27,16 @@ Refer to this document to understand the elements of the getting started example
 ### Serial Channel Tab
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
-    #### Table of PXIe-148X Acquisition Scripts
+  #### Table of PXIe-148X Acquisition Scripts
     
-    | **Interface Module**               | **Configuration Script**                                                   |
-    |------------------------------------|----------------------------------------------------------------------------|
-    | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-    | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-    | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
-    | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
-    | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
-    | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+  | **Interface Module**               | **Configuration Script**                                                   |
+  |------------------------------------|----------------------------------------------------------------------------|
+  | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+  | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+  | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
+  | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+  | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
+  | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
 - **Channel Configurations** - Array of active serial channels and display parameters for each channel.
     - **Serial Channel** - String representing the active serial channel in the format "SI" for Serial Input or "SO" for Serial Output followed by the channel number (i.e. "SI0")
     - **FPGA Display Parameters** - Parameters that determine what packet data the FPGA will send to the host for display.
