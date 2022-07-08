@@ -412,3 +412,8 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
     > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
 
+## Related Documents
+- [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](./gse-acq-basic.md)
+- [PXIe-148X Getting Started Example - Acquisition Help](../../reference/gettingstartedexample/gse-acq-help.md)
+- [PXIe-148X Getting Started Example - Common Generation Tutorials](./gse-gen-common.md)
+- [PXIe-148X Getting Started Example - Common Tap Tutorials](./gse-tap-common.md)
