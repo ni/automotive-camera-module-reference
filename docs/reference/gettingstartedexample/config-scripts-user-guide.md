@@ -1,6 +1,9 @@
 # PXIe-148X Configuration Scripts User Guide
 
 Learn how to use the included configuration scripts with the FlexRIO integrated I/O getting started examples for each hardware configuration of your FlexRIO PXIe-148X GMSL or FPD-Link interface module to acquire images or, for serializer-deserializer variants, to tap the data flow between the source and destination for image data.
+
+**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+
 ## Acquisition Scripts
 
 Channels are straightforward to configure with scripts for most PXIe-148X variants because each channel corresponds to a single physical SerDes on the module.

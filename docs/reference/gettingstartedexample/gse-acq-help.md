@@ -3,6 +3,8 @@
 Refer to this document to understand the elements of the getting started example for acquisition with variants of the PXIe-148X GMSL and FPD-Link interface modules. This document provides a description for all controls and indicators on the acquisition getting started example front panel. 
 > Note: Updates to controls when the VI is running will not take effect unless otherwise indicated.
 
+**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+
 ## Configuration Settings
 ### Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
@@ -147,3 +149,9 @@ Refer to this document to understand the elements of the getting started example
 - **Power Over Coax Voltage (V)** - Displays the power over coax voltage level in volts for all active serial input channels.
 - **Power Over Coax Source In Range** - Indicates if the power over coax voltage level is in range for all active serial input channels.
 - **Error Out** - Displays any error that occurred during the acquisition.
+
+## Related Documents
+- [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](../../tutorials/gettingstartedexample/gse-acq-basic.md)
+- [PXIe-148X Getting Started Example - Common Acquisition Tutorials](../../tutorials/gettingstartedexample/gse-acq-common.md)
+- [PXIe-148X Getting Started Example - Generation Help](./gse-gen-help.md)
+- [PXIe-148X Getting Started Example - Tap Help](./gse-tap-help.md)
