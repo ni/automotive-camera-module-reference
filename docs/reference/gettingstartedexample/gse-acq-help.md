@@ -87,12 +87,12 @@ Refer to this document to understand the elements of the getting started example
 - **Invert Virtual Channel Filter** - If enabled, packets with a virtual channel included in the virtual channel filter array are the only virtual channel packets acquired and all other virtual channel packets are ignored. If disabled, packets with a virtual channel included in the virtual channel filter array are ignored and all other virtual channel packets are acquired.
 ### Board Tab
 - **Power Over Coax Source** - The source used to provide power over coax on active serial input channels.
-    | Value     | Description                                                         |
-    |-----------|---------------------------------------------------------------------|
-    | None      | No power over coax provided.                                        |
-    | Internal  | Use internal power source to provide power over coax.               |
-    | Auxiliary | User power from the AUX POWER connector to provide power over coax. |
-
+    
+  | Value     | Description                                                         |
+  |-----------|---------------------------------------------------------------------|
+  | None      | No power over coax provided.                                        |
+  | Internal  | Use internal power source to provide power over coax.               |
+  | Auxiliary | User power from the AUX POWER connector to provide power over coax. |
 
 - **Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the SerDes. GMSL SerDes do not support changing this from the default value of 25 MHz. However for FPD-Link SerDes, in certain modes of operation, you may need to adjust this value and should consult the datasheet of your SerDes for more information about supported reference clock frequencies and clocking modes.
 
