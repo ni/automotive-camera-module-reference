@@ -1,4 +1,4 @@
-# PXIe-148X Getting Started Example - Acquisition Help
+# PXIe-148X Getting Started Example - Acquisition Help Test
 
 Refer to this document to understand the elements of the getting started example for acquisition with variants of the PXIe-148X GMSL and FPD-Link interface modules. This document provides a description for all controls and indicators on the acquisition getting started example front panel. 
 > Note: Updates to controls when the VI is running will not take effect unless otherwise indicated.
