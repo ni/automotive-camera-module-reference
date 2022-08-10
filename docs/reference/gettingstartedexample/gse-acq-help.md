@@ -6,6 +6,7 @@ Refer to this document to understand the elements of the getting started example
 > Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
 
 ## Configuration Settings
+
 ### Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
@@ -26,23 +27,26 @@ Refer to this document to understand the elements of the getting started example
     > Note: Specifying a large number of packets to display may cause the VI to appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
 - **Log I2C to Disk** - Enable to log I2C timestamps to a TDMS file.
 - **Log GPIO to Disk** - Enable to log GPIO timestamps to a TDMS file.
+
 ### Serial Channel Tab
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
-  #### Table of PXIe-148X Acquisition Scripts
+
+    #### Table of PXIe-148X Acquisition Scripts
     
-  | **Interface Module**               | **Configuration Script**                                                   |
-  |------------------------------------|----------------------------------------------------------------------------|
-  | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-  | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-  | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
-  | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
-  | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
-  | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+    | **Interface Module**               | **Configuration Script**                                                   |
+    |------------------------------------|----------------------------------------------------------------------------|
+    | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+    | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+    | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
+    | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+    | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
+    | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
 - **Channel Configurations** - Array of active serial channels and display parameters for each channel.
     - **Serial Channel** - String representing the active serial channel in the format "SI" for Serial Input or "SO" for Serial Output followed by the channel number (i.e. "SI0")
     - **FPGA Display Parameters** - Parameters that determine what packet data the FPGA will send to the host for display.
-            > Note: Display parameters only affect the image on the display channel, not any data logged to disk.
+        > Note: Display parameters only affect the image on the display channel, not any data logged to disk.
+        
         - **virtual channel** - Number representing a Virtual Channel Identifier.
             > Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path.
         - **payload data type** - Data type of the LLP packet payload for long packets.
@@ -69,6 +73,7 @@ Refer to this document to understand the elements of the getting started example
             - **Red Gain** - The gain to be applied to the red pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
             - **Green Gain** - The gain to be applied to the green pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
             - **Blue Gain** - The gain to be applied to the blue pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
+
 ### Acquisition Tab
 - **Acquisition Duration (s)** - The acquisition duration in seconds. The duration specifies the time from the start of the acquisition to the assertion of a stop trigger.
     > Note: If continuous acquisition is enabled, the acquisition duration is ignored.
@@ -85,6 +90,7 @@ Refer to this document to understand the elements of the getting started example
 - **Invert Data Type Filter** - If enabled, packet data types included in the data type filter array are the only packets acquired and all other packets are ignored. If disabled, packet data types included in the data type filter array are ignored and all other packet data types are acquired.
 - **Virtual Channel Filter** - Specifies virtual channel packets to ignore (filter out) during the acquisition.
 - **Invert Virtual Channel Filter** - If enabled, packets with a virtual channel included in the virtual channel filter array are the only virtual channel packets acquired and all other virtual channel packets are ignored. If disabled, packets with a virtual channel included in the virtual channel filter array are ignored and all other virtual channel packets are acquired.
+
 ### Board Tab
 - **Power Over Coax Source** - The source used to provide power over coax on active serial input channels.
     
@@ -111,6 +117,7 @@ Refer to this document to understand the elements of the getting started example
     > **GPIO Bank Read** line values are updated continuously throughout the acquisition.
 
 ## Data Output
+
 ### Display Channel Tab (First or Second)
 > By default, the getting started example allows displaying images for two serial input channels, which can be viewed by clicking on the First Display Channel and Second Display Channel tabs while the acquisition is running.
 - **Image Display** - Displays the most recently acquired frame of the corresponding display channel. Interactive pan and zoom capabilities are provided by the buttons in the upper left corner of the image display. The text field below the image shows the image size, zoom factor, image type, pixel value and coordinate information.
@@ -120,32 +127,37 @@ Refer to this document to understand the elements of the getting started example
 - **Source Rate (fps)** - Displays the frame rate in frames per second at which the image data is being received.
 - **Update Rate (fps)** - Displays the rate in frames per second at which the image display indicator is being updated.
     > Note: If multiple frames have arrived since the last update, only the most recent frame is displayed and the others are skipped in an attempt to keep up with the acquisition.
+
 ### Serial Channel Packets Tab (First or Second)
 > The getting started example displays packet data for the first two channels specified in the Channel Configurations array at the completion of the acquisition. If other packet data is desired, either re-order the active channels in the configuration array on the Serial Channel tab or use the TDMS File Viewer utility.
 - **Acquired Packets** - Displays the LLP packet information for the number of packets specified in the **Logged Packets to Display** control starting at the first logged packet.
     > Note: If displaying a large number of packets, the VI may appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
-    
-   | Column | Description |
-   | ------ | ----------- |
-   | Index | The order packets were received. |
-   | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
-   | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
-   | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
-   | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
-   | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
-   | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
-   | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
-   | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
-   | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
+  
+    #### Table of Descriptions for Acquired Packets Columns
+
+    | Column | Description |
+    | ------ | ----------- |
+    | Index | The order packets were received. |
+    | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
+    | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
+    | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
+    | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
+    | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
+    | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
+    | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
+    | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
+    | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
 
 - **Bytes Acquired** - Displays the total number of bytes of LLP packet data acquired during the acquisition.
     > The **Bytes Acquired** indicator updates during the acquisition.
 - **Packets Logged** - Displays the total number of LLP packets logged during the acquisition.
     > The **Packets Logged** indicator updates after the acquisition completes.
+
 ### I2C Timestamps Tab
 > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled on the Resource tab and desired timestamp IDs must be added to the **timestamp filter** array on the I2C tab. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the **timestamp filter** array.
 - **I2C Timestamps** - Displays I2C timestamp information for all I2C IDs in the **timestamp filter** array on the I2C tab. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as I2C traffic from the configuration script.
     > The **I2C Timestamps** display is updated after the acquisition completes.
+
 ### GPIO Timestamps Tab
 > Note: To display GPIO digital waveforms, **Log GPIO to Disk** must be enabled on the Resource tab and desired GPIO lines must be added to the **GPIO to Display** array on the GPIO tab. The GPIO timestamp data displayed is read from the GPIO_Timestamps.tdms file and filtered to display only GPIO lines included in the **GPIO to Display** array.
 - **GPIO Timestamps Waveform** - Displays a digital waveform for each GPIO line included in the **GPIO to Display** array on the GPIO tab. GPIO timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as toggles created from a reset.
