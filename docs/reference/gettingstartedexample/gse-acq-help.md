@@ -11,7 +11,6 @@ Refer to this document to understand the elements of the getting started example
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
   #### Table of PXIe-148X Acquisition Bitfiles
-
   | **Interface Module**     | **Bitfile**                           |
   |--------------------------|---------------------------------------|
   | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
@@ -33,7 +32,6 @@ Refer to this document to understand the elements of the getting started example
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
   #### Table of PXIe-148X Acquisition Scripts
-
   | **Interface Module**               | **Configuration Script**                                                   |
   |------------------------------------|----------------------------------------------------------------------------|
   | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
@@ -106,6 +104,7 @@ Refer to this document to understand the elements of the getting started example
 ### I2C Tab
 - **timestamp filter** - Specifies I2C timestamp IDs to display after the acquisition completes.  I2C timestamps with IDs not matching an ID included in the timestamp filter array are logged, but not displayed.
     > User24 represents the I2C traffic on serial channel 0 (SI0), User25 represents the I2C traffic on serial channel 1 (SI1), and so on.
+
 ### GPIO Tab
 - **GPIO to Display** - Specifies GPIO timestamp identifiers to display on the _GPIO Timestamps Waveform_ after the acquisition completes.  Timestamps for GPIO lines not included in the _GPIO to Display_ array are logged, but not displayed.
 - **GPIO Bank Select** - Specifies the GPIO bank used for the **GPIO Bank Read** and **GPIO Bank Write** controls during the acquisition.
@@ -134,7 +133,6 @@ Refer to this document to understand the elements of the getting started example
 - **Acquired Packets** - Displays the LLP packet information for the number of packets specified in the **Logged Packets to Display** control starting at the first logged packet.
     > Note: If displaying a large number of packets, the VI may appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
   #### Table of Descriptions for Acquired Packets Columns
-
   | Column | Description |
   | ------ | ----------- |
   | Index | The order packets were received. |
