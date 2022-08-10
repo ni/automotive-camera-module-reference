@@ -44,7 +44,7 @@ Refer to this document to understand the elements of the getting started example
     - **FPGA Display Parameters** - Parameters that determine what packet data the FPGA will send to the host for display.
             > Note: Display parameters only affect the image on the display channel, not any data logged to disk.
         - **virtual channel** - Number representing a Virtual Channel Identifier.
-            > Virtual channels identifiers designate separate logical channels for data flows interleaved in the data path.
+            > Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path.
         - **payload data type** - Data type of the LLP packet payload for long packets.
             > Supported Options: YUV420 8-bit, YUV420 10-bit, Legacy YUV420 8-bit, YUV420 8-bit Chroma Shifted, YUV420 10-bit Chroma Shifted, YUV422 8-bit, YUV422 10-bit, RGB565, RGB666, RGB888, RAW 8, RAW 10, RAW 12, RAW 14, RAW 16.
         - **frame skip count** - Number of frames to skip between displayed frames.
@@ -124,6 +124,20 @@ Refer to this document to understand the elements of the getting started example
 > The getting started example displays packet data for the first two channels specified in the Channel Configurations array at the completion of the acquisition. If other packet data is desired, either re-order the active channels in the configuration array on the Serial Channel tab or use the TDMS File Viewer utility.
 - **Acquired Packets** - Displays the LLP packet information for the number of packets specified in the **Logged Packets to Display** control starting at the first logged packet.
     > Note: If displaying a large number of packets, the VI may appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
+    
+   | Column | Description |
+   | ------ | ----------- |
+   | Index | The order packets were received. |
+   | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
+   | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
+   | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
+   | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
+   | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
+   | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
+   | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
+   | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
+   | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
+
 - **Bytes Acquired** - Displays the total number of bytes of LLP packet data acquired during the acquisition.
     > The **Bytes Acquired** indicator updates during the acquisition.
 - **Packets Logged** - Displays the total number of LLP packets logged during the acquisition.

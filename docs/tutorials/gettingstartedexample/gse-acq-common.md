@@ -60,7 +60,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
         > Note: Specifying a large number of packets to display may cause the VI to appear unresponsive for a period of time after the acquisition completes while the packet data is processed. A negative **Logged Packets to Display** value displays all logged packets.
         
-        > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
+        > See [PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-descriptions-for-acquired-packets-columns) for **Acquired Packets (1st Channel)** column details.
 
     - The **Bytes Acquired (1st Channel)** indicator updates during the acquisition.
     - The **Packets Logged (1st Channel)** indicator updates after the acquisition completes.

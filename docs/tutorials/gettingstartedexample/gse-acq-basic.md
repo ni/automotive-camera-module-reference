@@ -135,6 +135,7 @@ A supported interface module and camera on a PXI system running Windows.
     > Packet Data is displayed in the **First Serial Channel Packets** tab.
     - The **Bytes Acquired (1st Channel)** indicator updates as the acquisition is occurring.
     - The **Packets Logged (1st Channel)** indicator updates after acquisition completes.
+    > See [PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-descriptions-for-acquired-packets-columns) for **Acquired Packets (1st Channel)** column details.
 
     ![First Serial Channel Packets Tab](../../images/PXIe-148X-Acq-FirstSerialChannelPackets-FiniteAcq.png)
 
