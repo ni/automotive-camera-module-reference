@@ -10,13 +10,14 @@ Refer to this document to understand the elements of the getting started example
 ### Resource Tab
 - **RIO Device** - Resource name of the PXIe-148X device to be used.
 - **Bitfile Path** - Full path to an FPGA bitfile (.lvbitx) to be downloaded and run on the FPGA of the PXIe-148X. Depending on your PXIe-148X module, use the following bitfiles.
-    #### Table of PXIe-148X Acquisition Bitfiles
-    | **Interface Module**     | **Bitfile**                           |
-    |--------------------------|---------------------------------------|
-    | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
-    | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
-    | PXIe-1487 (8 In)         | PXIe_1487_8\_In.lvbitx                |
-    | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+  #### Table of PXIe-148X Acquisition Bitfiles
+
+  | **Interface Module**     | **Bitfile**                           |
+  |--------------------------|---------------------------------------|
+  | PXIe-1486 (8 In)         | PXIe_1486_8\_In.lvbitx                |
+  | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | PXIe-1487 (8 In)         | PXIe_1487_8\_In.lvbitx                |
+  | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
 
 - **TDMS File Directory** - Path to the directory used to store TDMS data files. 
     > If left blank the TDMS File Directory will be automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet acquisition, I2C timestamps, and GPIO timestamps.
@@ -31,15 +32,16 @@ Refer to this document to understand the elements of the getting started example
 ### Serial Channel Tab
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
-    #### Table of PXIe-148X Acquisition Scripts
-    | **Interface Module**               | **Configuration Script**                                                   |
-    |------------------------------------|----------------------------------------------------------------------------|
-    | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-    | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
-    | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
-    | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
-    | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
-    | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+  #### Table of PXIe-148X Acquisition Scripts
+
+  | **Interface Module**               | **Configuration Script**                                                   |
+  |------------------------------------|----------------------------------------------------------------------------|
+  | PXIe-1486 (8 In)                   | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+  | PXIe-1486 (4 In 4 Out)             | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py               |
+  | PXIe-1487 (8 In) Even Channels     | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp         |
+  | PXIe-1487 (8 In) Odd Channels      | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
+  | PXIe-1487 (8 In) Adjacent Channels | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID01_RevSplit.cpp |
+  | PXIe-1487 (4 In 4 Out)             | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_B.cpp         |
 
 - **Channel Configurations** - Array of active serial channels and display parameters for each channel.
     - **Serial Channel** - String representing the active serial channel in the format "SI" for Serial Input or "SO" for Serial Output followed by the channel number (i.e. "SI0")
@@ -131,19 +133,20 @@ Refer to this document to understand the elements of the getting started example
 > The getting started example displays packet data for the first two channels specified in the Channel Configurations array at the completion of the acquisition. If other packet data is desired, either re-order the active channels in the configuration array on the Serial Channel tab or use the TDMS File Viewer utility.
 - **Acquired Packets** - Displays the LLP packet information for the number of packets specified in the **Logged Packets to Display** control starting at the first logged packet.
     > Note: If displaying a large number of packets, the VI may appear unresponsive for a period of time after the acquisition completes while the packet data is processed.
-    #### Table of Descriptions for Acquired Packets Columns
-    | Column | Description |
-    | ------ | ----------- |
-    | Index | The order packets were received. |
-    | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
-    | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
-    | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
-    | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
-    | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
-    | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
-    | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
-    | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
-    | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
+  #### Table of Descriptions for Acquired Packets Columns
+
+  | Column | Description |
+  | ------ | ----------- |
+  | Index | The order packets were received. |
+  | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
+  | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
+  | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
+  | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
+  | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
+  | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
+  | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
+  | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
+  | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
 
 - **Bytes Acquired** - Displays the total number of bytes of LLP packet data acquired during the acquisition.
     > The **Bytes Acquired** indicator updates during the acquisition.
