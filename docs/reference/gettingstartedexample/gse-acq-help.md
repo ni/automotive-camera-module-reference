@@ -122,10 +122,10 @@ Refer to this document to understand the elements of the getting started example
 
 ### Display Channel Tab (First or Second)
 > By default, the getting started example allows displaying images for two serial input channels, which can be viewed by clicking on the First Display Channel and Second Display Channel tabs while the acquisition is running.
+
 - **Image Display** - Displays the most recently acquired frame of the corresponding display channel. Interactive pan and zoom capabilities are provided by the buttons in the upper left corner of the image display. The text field below the image shows the image size, zoom factor, image type, pixel value and coordinate information.
 - **Serial Channel** - Selects the serial channel number for the image data to be displayed if more than two serial input channels are active.
     > This control may be modified while the VI is running.
-
 - **Source Rate (fps)** - Displays the frame rate in frames per second at which the image data is being received.
 - **Update Rate (fps)** - Displays the rate in frames per second at which the image display indicator is being updated.
     > Note: If multiple frames have arrived since the last update, only the most recent frame is displayed and the others are skipped in an attempt to keep up with the acquisition.
@@ -158,11 +158,13 @@ Refer to this document to understand the elements of the getting started example
 
 ### I2C Timestamps Tab
 > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled on the Resource tab and desired timestamp IDs must be added to the **timestamp filter** array on the I2C tab. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the **timestamp filter** array.
+
 - **I2C Timestamps** - Displays I2C timestamp information for all I2C IDs in the **timestamp filter** array on the I2C tab. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as I2C traffic from the configuration script.
     > The **I2C Timestamps** display is updated after the acquisition completes.
 
 ### GPIO Timestamps Tab
 > Note: To display GPIO digital waveforms, **Log GPIO to Disk** must be enabled on the Resource tab and desired GPIO lines must be added to the **GPIO to Display** array on the GPIO tab. The GPIO timestamp data displayed is read from the GPIO_Timestamps.tdms file and filtered to display only GPIO lines included in the **GPIO to Display** array.
+
 - **GPIO Timestamps Waveform** - Displays a digital waveform for each GPIO line included in the **GPIO to Display** array on the GPIO tab. GPIO timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as toggles created from a reset.
     > The **GPIO Timestamps Waveform** display is updated after the acquisition completes.
 - **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the "Build GPIO Waveform.vi" SubVI.
@@ -170,7 +172,6 @@ Refer to this document to understand the elements of the getting started example
 ## General
 - **Stop Acquisition** - Creates a manual stop trigger for the acquisition. Clicking this button will cause all processing loops (Display, I2C, GPIO, monitoring, and LLP acquisition) to stop and the VI to stop running.
     > This control may be set while the VI is running.
-
 - **Acquisition In Progress** - Indicates that the configuration is complete and the acquisition has started.
 - **Acquisition Duration (s)** - Displays the duration in seconds between the start of the acquisition and the time a stop trigger is received.
     > Note: **Acquisition Duration (s)** does not include configuration time or post processing time.
