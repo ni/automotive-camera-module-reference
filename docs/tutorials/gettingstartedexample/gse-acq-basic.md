@@ -2,7 +2,7 @@
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
 
-**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ A supported interface module and camera on a PXI system running Windows.
 
 ## Performing a Simple Continuous Acquisition
 
-> **Note:** For the purposes of this tutorial, all input control values not specified should be left as the default value.
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
 1.  Select the **Resource** tab and make the following modifications.
     - Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
@@ -96,6 +96,7 @@ A supported interface module and camera on a PXI system running Windows.
 
 8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
     > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
+
 ## Performing a Finite Acquisition with Data Logging
 
 > Note: The Finite Acquisition with Data Logging tutorial assumes that all input parameters are still configured as specified in the Simple Continuous Acquisition tutorial.
@@ -135,6 +136,7 @@ A supported interface module and camera on a PXI system running Windows.
     > Packet Data is displayed in the **First Serial Channel Packets** tab.
     - The **Bytes Acquired (1st Channel)** indicator updates as the acquisition is occurring.
     - The **Packets Logged (1st Channel)** indicator updates after acquisition completes.
+    > See [PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-descriptions-for-acquired-packets-columns) for **Acquired Packets (1st Channel)** column details.
 
     ![First Serial Channel Packets Tab](../../images/PXIe-148X-Acq-FirstSerialChannelPackets-FiniteAcq.png)
 

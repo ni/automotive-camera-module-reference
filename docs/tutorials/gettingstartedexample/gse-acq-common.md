@@ -2,13 +2,13 @@
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example (GSE) to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
 
 ## Prerequisites
 
 This tutorial is written for users who understand how to perform a basic acquisition with a PXIe-148X GMSL or FPD-Link interface module. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](gse-acq-basic.md) before attempting this tutorial.
 
-**Note:** The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
+> Note: The tutorials in this document assume the use of a Leopard Imaging IMX490 camera connected to SI0 of your interface module (see PXIe-148X Getting Started Example - Basic Acquisition Tutorial for specific setup if needed).
 
 ## Acquiring and Filtering LLP Packets
 
@@ -60,7 +60,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
 
         > Note: Specifying a large number of packets to display may cause the VI to appear unresponsive for a period of time after the acquisition completes while the packet data is processed. A negative **Logged Packets to Display** value displays all logged packets.
         
-        > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
+        > See [PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-descriptions-for-acquired-packets-columns) for **Acquired Packets (1st Channel)** column details.
 
     - The **Bytes Acquired (1st Channel)** indicator updates during the acquisition.
     - The **Packets Logged (1st Channel)** indicator updates after the acquisition completes.
@@ -163,6 +163,7 @@ This section demonstrates useful techniques for reducing the system bandwidth ne
 
     - Select the **First Display Channel** tab and observe the change to the horizontal resolution for the image.
     - Select the **First Serial Channel Packets** tab and observe the **Word Count** (bytes) for each RAW 12 packet type is unchanged.
+
 #### Reducing Vertical Resolution
 
 1. Run the VI.
@@ -264,12 +265,11 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
 
    - Select the **First Display Channel** tab and observe the image displayed looks correct. The **RAW Display Parameters** now match the RAW 12 packet data from the Leopard Imaging IMX490 camera.
 
-
 ## Setting Serial Channel Configurations
 
 This tutorial shows you how to configure the **Serial Channel** tab to acquire multiple images from multiple camera sensors.
 
-> **Note:** This tutorial requires the use of two Leopard Imaging IMX490 cameras connected to SI0 and SI1 of your interface module.
+> Note: This tutorial requires the use of two Leopard Imaging IMX490 cameras connected to SI0 and SI1 of your interface module.
 
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
