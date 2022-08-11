@@ -143,12 +143,12 @@ Refer to this document to understand the elements of the getting started example
   | Index | The order packets were received. |
   | Timestamp (s) | The time in seconds when the packet was received. Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts. |
   | Source | The unique timestamp identifier that indicates the source serial channel for the LLP packet. |
-  | Data Type | The type of data contained in the LLP packet (i.e. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
+  | Data Type | The type of data contained in the LLP packet (e.g. Frame Start, Frame End, RAW types, YUV types, RGB types, etc.). |
   | Virtual Channel | A number representing a virtual channel identifier. Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path. |
   | ECC | The Error Correction Code (ECC) detects bit errors in the header. |
   | Word Count | The number of bytes in a long packet (i.e. payload size or bytes per line) and does not include the header or footer bytes. |
-  | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets, which are optional. |
-  | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, which are mandatory, but there are no requirements on what the value is set to. |
+  | Line Count | The Line Count value comes from the Word Count field in Line Start and Line End packets. |
+  | Frame Count | The Frame Count value comes from the Word Count field in Frame Start and Frame End packets, but there are no requirements on what the value is set to. |
   | CRC | The Cyclic Redundancy Check (CRC) comes from the footer of every long packet and is used to determine the validity of the long packet payload data. |
 
 - **Bytes Acquired** - Displays the total number of bytes of LLP packet data acquired during the acquisition.
