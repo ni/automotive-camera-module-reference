@@ -176,7 +176,10 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 
     > Note: The **Update TDMS File Packet Offset Data** control is enabled by default. Enabling this option results in re-saving a TDMS file with additional packet indexing information the first time the TDMS file is loaded. This indexing information can reduce the future load time of the file, particularly when reading only a subset of the packet data.
 
-4. (Optional) Update the **Packet Display Start Index** and **Packets to Display** controls to review a specific packet range of interest from the TDMS file and rerun the VI.
+4. (Optional) Update the **Packet Display Start Index** and **Packets to Display** controls to review a specific packet range of interest from the TDMS file and rerun the VI. 
+    > Using an LI-IMX490-GMSL2 camera with a vertical resolution of 1280, each frame contains a Frame Start packet followed by 1280 RAW 12 packets and a Frame End packet. To display 10 frames of data starting at the second frame, set **Packet Display Start Index** to <font face = "courier new">1282</font> and **Packets to Display** to <font face = "courier new">12820</font>.
+
+    > Note: Setting **Packets to Display** to <font face = "courier new">-1</font> displays packets from **Packet Display Start Index** to the end of the file.
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Common Acquisition Tutorials](./gse-acq-common.md)
