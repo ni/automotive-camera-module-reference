@@ -137,9 +137,25 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
 
 2. Run the VI.
 
-3. Select the **First Display Channel** tab. Images from the camera are displayed on this tab. 
+3. Select the **First Display Channel** tab and verify that images from the camera are displayed on this tab. 
 
     - Note the two FPS indicators. The **Source Rate (fps)** indicator displays the frame rate in frames per second at which the image data is being received. The **Update Rate (fps)** indicator displays the rate in frames per second at which the image display indicator is being updated.
+
+4. Select the **Serial Channel** tab and make the following modifications.
+    - Set the **virtual channel** to <font face = "courier new">1</font>.
+
+5. Run the VI and verify that no images are displayed on the **First Display Channel** tab since the **virtual channel** value does not match the value in the packets received from the camera. 
+
+6. Select the **Serial Channel** tab and make the following modifications.
+    - Set the **virtual channel** to <font face = "courier new">0</font>.
+    - Set the **payload data type** to **RAW 10**.
+
+7. Run the VI and verify that no images are displayed on the **First Display Channel** tab since the **payload data type** value does not match the value in the packets received from the camera.
+
+8. Select the **Serial Channel** tab and make the following modifications.
+    - Set the **payload data type** to **RAW 12**.
+
+9. Run the VI and verify that images are once again displayed on the **First Display Channel** tab since the **virtual channel** and **payload data type** values now match the values in the packets received from the camera.
 
 ### Reducing System Bandwidth Usage
 This section demonstrates useful techniques for reducing the system bandwidth needed to transfer data from the FPGA to the host.
