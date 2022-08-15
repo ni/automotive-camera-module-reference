@@ -5,8 +5,8 @@ This document covers a range of common scenarios using the PXIe-148X Acquisition
 
 > Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
 
-## Table of contents
-{: .no_toc  }
+### Table of contents
+{: .no_toc }
 
 1. TOC
 {:toc}
