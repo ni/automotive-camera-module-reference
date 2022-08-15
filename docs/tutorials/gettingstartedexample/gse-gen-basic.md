@@ -31,7 +31,7 @@ A supported interface module on a PXI system running Windows.
 ## Initial Hardware Setup
 
 1. Complete installation of hardware as described in the Getting Started Guide linked above.
-2. No connections to other modules or devices are required to complete the basic tutorial.
+2. No physical connections to other modules or devices are required to complete the basic tutorial.
 
 ## Initial Software Setup
 
@@ -56,9 +56,9 @@ A supported interface module on a PXI system running Windows.
 
     ![Open Create CSI-2 Packet TDMS Files Front Panel](../../images/PXIe-148X-CreateTDMS-FrontPanel.png)
 
-2.  Review the instructions on the VI front panel. For this tutorial the default settings will be used to generate a TDMS file for channel SIO0 containing 10 frames at 1920x1080 and 30fps .
+2.  Review the instructions on the VI front panel. For this tutorial the default settings will be used to generate a TDMS file for channel SO0 containing 10 frames at 1920x1080 and 30fps .
 
-> Note: During the first run of the VI, the **TDMS File Directory** control will be automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
+    > Note: During the first run of the VI, the **TDMS File Directory** control will be automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
 
 3.  Run the VI to generate the TDMS file.
 
@@ -66,7 +66,7 @@ A supported interface module on a PXI system running Windows.
 
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)
 
-5. The newly created TDMS file will be used in the following tutorial for performing a simple generation.
+5. The newly created TDMS file will be used in the following tutorial to perform a simple generation.
 
 ## Performing a Simple Generation
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
@@ -80,7 +80,7 @@ A supported interface module on a PXI system running Windows.
     ![Generation GSE Front Panel](../../images/PXIe-148X-GenGSE-FrontPanel.png)
 
 
-1.  Select the **Resource** tab and make the following modifications.
+2.  Select the **Resource** tab and make the following modifications.
     - Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
     - Set the **Bitfile Path** to the bitfile that corresponds to your interface module. The default shipping bitfile is in the 'FPGA Bitfiles' subfolder located in the project folder (created at the Project Root location specified in Project Creator):
 
@@ -95,13 +95,13 @@ A supported interface module on a PXI system running Windows.
 
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-ResourceTab-BasicSimpleGen.png)
 
-4.  Run the VI to perform a generation using the TDMS file created in the previous tutorial.
+3.  Run the VI to perform a generation using the TDMS file created in the previous tutorial.
 
-5.  The generation GSE example will first load the bitfile and then buffer available data from disk to onboard DRAM. After buffering, the **Waiting for Serializer Setup** indicator will enable to indicate the module is ready for generation.
+4.  The generation GSE example will first load the bitfile and then buffer available data from disk to onboard DRAM. After buffering, the **Waiting for Serializer Setup** indicator will enable to indicate the module is ready for generation.
 
     ![Generation GSE Front Panel Waiting for Serializer Setup](../../images/PXIe-148X-GenGSE-FrontPanel-Waiting.png)
 
-6.  Click the Serializer Setup Complete button to start generation. Generated images display automatically in the First Display Channel tab.
+5.  Click the **Serializer Setup Complete** control button to start generation. Generated images display automatically in the First Display Channel tab.
 
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-FirstDisplayChannel-BasicSimpleGen.png)
 
@@ -109,56 +109,31 @@ A supported interface module on a PXI system running Windows.
 
 ## Performing a Simple Generation with GPIO Logging
 
-> Note: The Finite Acquisition with Data Logging tutorial assumes that all input parameters are still configured as specified in the Simple Continuous Acquisition tutorial.
+> Note: The Performing a Simple Generation with GPIO Logging tutorial assumes that all input parameters are still configured as specified in the Performing a Simple Generation tutorial.
 
 1.  Select the **Resource** tab and make the following modifications.
-    - Enable **Log Packets to Disk**.
-    - Enable **Log I2C to Disk**.
     - Enable **Log GPIO to Disk**.
 
-    > Note: During the first run of the VI in the Simple Continuous Acquisition tutorial, the **TDMS File Directory** control was automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder was automatically created within the project folder to store any generated TDMS files.
+    > Note: During the first run of the VI in the Performing a Simple Generation tutorial, the **TDMS File Directory** control was automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder was automatically created within the project folder to load any existing TDMS files.
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
     
-    ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
+    ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-GenGSE-ResourceTab-LogGPIOToDisk.png)
 
-2.  Select the **Acquisition** tab and disable **Continuous Acquisition**.
-
-    > The values on the **Acquisition** tab of **Configuration Settings** are now similar to the figure below.
-
-    ![Configuration Settings Acquisition Tab Finite](../../images/PXIe-148X-Acq-AquisitionTab-FiniteAcq.png)
-
-3.  Select the **I2C** tab and add **User24** to the **timestamp filter** array to enable I2C timestamp logging on the SI0 channel.
-
-    > The values on the **I2C** tab of **Configuration Settings** are now similar to the figure below.
-
-    ![Configuration Settings I2C Tab with User24](../../images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
-
-4.  Select the **GPIO** tab and make the following modifications.
-    - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Des0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SI0 channel connected to the camera.
+2.  Select the **GPIO** tab and make the following modifications.
+    - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Ser0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SI0 channel connected to the camera.
 
     > The values on the **GPIO** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings GPIO Tab with Des0 GPIO0](../../images/PXIe-148X-Acq-GPIOTab-DisplayDes0GPIO0.png)
+    ![Configuration Settings GPIO Tab with Des0 GPIO0](../../images/PXIe-148X-Gen-GPIOTab-DisplaySer0GPIO0.png)
 
-5.  Run the VI to start the acquisition and wait for the acquisition to complete. The default acquisition duration of 1 second is run and results are displayed on the various tabs in the **Data Output** indicator.
+3.  Run the VI, wait for the **Waiting for Serializer Setup** indicator to enable, and  click the **Serializer Setup Complete** control button to start the generation. Results are displayed on the various tabs in the **Data Output** indicator.
 
-    > Packet Data is displayed in the **First Serial Channel Packets** tab.
-    - The **Bytes Acquired (1st Channel)** indicator updates as the acquisition is occurring.
-    - The **Packets Logged (1st Channel)** indicator updates after acquisition completes.
-    > See [PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-descriptions-for-acquired-packets-columns) for **Acquired Packets (1st Channel)** column details.
+4.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
 
-    ![First Serial Channel Packets Tab](../../images/PXIe-148X-Acq-FirstSerialChannelPackets-FiniteAcq.png)
+    ![GPIO Timestamps](../../images/PXIe-148X-Gen-GPIOTimestamps-BasicSimpleGen.png)
 
-    > I2C timestamp data is displayed in the **I2C Timestamps** tab.
-
-    ![I2C Timestamps Tab](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
-
-8.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
-
-    ![GPIO Timestamps](../../images/PXIe-148X-Acq-GPIOTimestamps-FiniteAcq.png)
-
-    > Note: The camera does not toggle GPIOs by default. The change shown in the figure above reflects GPIO level reset when the example VI is first run.
+    > Note: The module interface does not toggle GPIOs by default. Any change shown in the figure above reflects GPIO level reset when the example VI is first run.
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Common Generation Tutorials](./gse-gen-common.md)
