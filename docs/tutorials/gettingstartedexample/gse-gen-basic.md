@@ -87,26 +87,25 @@ A supported interface module on a PXI system running Windows.
     | **Interface Module**   | **Bitfile**                                          |
     |------------------------|------------------------------------------------------|
     | PXIe-1486 (8 Out)       | FPGA Bitfiles\\PXIe_1486_8\_Out.lvbitx              |
-    | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
+    | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Gen.lvbitx |
     | PXIe-1487 (8 Out)       | FPGA Bitfiles\\PXIe_1487_8\_Out.lvbitx              |
-    | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+    | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Gen.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-ResourceTab-BasicSimpleGen.png)
 
-4.  Run the VI to perform a generation using the . Images captured from the camera display automatically in the **First Display Channel** tab.
-5.  While the VI is running, use the displayed image to focus the camera.
+4.  Run the VI to perform a generation using the TDMS file created in the previous tutorial.
 
-    ![First Display Channel Tab](../../images/PXIe-148X-AcqGSE-FirstDisplayChannel-BasicContinuous.png)
+5.  The generation GSE example will first load the bitfile and then buffer available data from disk to onboard DRAM. After buffering, the **Waiting for Serializer Setup** indicator will enable to indicate the module is ready for generation.
 
-6.  Click the **Stop Acquisition** button to stop the acquisition and stop the VI.
-7.  (Optional) Update the **Red Gain**, **Green Gain**, and **Blue Gain** display parameters on the **Serial Channel** tab -> **Channel Configurations** control to better match the acquired image to the actual color of the object.
+    ![Generation GSE Front Panel Waiting for Serializer Setup](../../images/PXIe-148X-GenGSE-FrontPanel-Waiting.png)
 
-    ![Channel Configurations Control](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
+6.  Click the Serializer Setup Complete button to start generation. Generated images display automatically in the First Display Channel tab.
 
-8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
-    > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
+    ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-FirstDisplayChannel-BasicSimpleGen.png)
+
+6.  The VI will stop automatically when all data from the TDMS file has been generated.
 
 ## Performing a Simple Generation with GPIO Logging
 
