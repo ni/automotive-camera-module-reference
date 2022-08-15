@@ -21,4 +21,4 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 - [PXIe-148X Configuration Scripts User Guide](reference/gettingstartedexample/config-scripts-user-guide.md)
 
 ### Hardware
-- [Automotive Camera Module Hardware Variants - Quick Reference Table](reference/hardware/automotive-camera-module-variants.md)
+- [Automotive Camera Module Variants - Quick Reference](reference/hardware/automotive-camera-module-variants.md)
