@@ -1,6 +1,15 @@
 # PXIe-148X Getting Started Example - Basic Generation Tutorial
+{: .no_toc }
 
 ** IN WORK - DOCUMENTATION IS INCOMPLETE AND IN ACTIVE DEVELOPMENT **
+
+### Table of contents
+{: .no_toc }
+
+1. TOC
+{:toc}
+
+---
 
 ## Prerequisites
 
