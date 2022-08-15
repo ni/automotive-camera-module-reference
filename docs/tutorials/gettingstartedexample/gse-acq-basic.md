@@ -51,7 +51,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The opened front panel of the Getting Started Example is similar to the figure below.
 
-    ![Acquisition CSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
+    ![Acquisition GSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
 
 ## Performing a Simple Continuous Acquisition
 
