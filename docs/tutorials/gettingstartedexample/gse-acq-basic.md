@@ -6,7 +6,7 @@ This tutorial will teach you the steps needed to configure an acquisition using 
 > Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ## Table of contents
-{: .no_toc .text-delta }
+{: .no_toc }
 
 1. TOC
 {:toc}
