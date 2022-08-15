@@ -19,19 +19,19 @@ Review and complete all setup from the [PXIe-1486 Getting Started Guide](https:/
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
-A supported interface module and camera on a PXI system running Windows.
+A supported interface module on a PXI system running Windows.
 
-| **Interface Module**   | **Camera**                                                                                                                            |
-|------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| PXIe-1486 (8 In)       | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1486 (4 In 4 Out) | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1487 (8 In)       | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
-| PXIe-1487 (4 In 4 Out) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| **Interface Module**   |
+|------------------------|
+| PXIe-1486 (8 Out)      |
+| PXIe-1486 (4 In 4 Out) |
+| PXIe-1487 (8 Out)      |
+| PXIe-1487 (4 In 4 Out) |
 
 ## Initial Hardware Setup
 
-1.  First complete installation of hardware as described in the Getting Started Guide linked above.
-2.  Connect the camera to serial input channel 0 (SI0) on the interface module with a FAKRA cable
+1. Complete installation of hardware as described in the Getting Started Guide linked above.
+2. No connections to other modules or devices are required to complete the basic tutorial.
 
 ## Initial Software Setup
 
@@ -43,20 +43,42 @@ A supported interface module and camera on a PXI system running Windows.
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
     ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
-    ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
-
-3.  Double click the Acquisition Example VI in the LabVIEW project.
-
-    ![Open Acquisition Example VI](../../images/PXIe-148X-AcqGSE-Project.png)
-
-    > The opened front panel of the Getting Started Example is similar to the figure below.
-
-    ![Acquisition CSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
+    ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-1486-PXIe-148XTutorial.png)
 
 ## Create TDMS Files for Generation
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+
+1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
+
+    ![Open Create CSI-2 Packet TDMS Files VI](../../images/PXIe-148X-CreateTDMS-Project.png)
+
+    > The opened front panel of the Generation Getting Started Example is similar to the figure below.
+
+    ![Open Create CSI-2 Packet TDMS Files Front Panel](../../images/PXIe-148X-CreateTDMS-FrontPanel.png)
+
+2.  Review the instructions on the VI front panel. For this tutorial the default settings will be used to generate a TDMS file for channel SIO0 containing 10 frames at 1920x1080 and 30fps .
+
+> Note: During the first run of the VI, the **TDMS File Directory** control will be automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
+
+3.  Run the VI to generate the TDMS file.
+
+4.  Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE the TDMS file will actually be associated with serial output channel 'SO0'.
+
+    ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)
+
+5. The newly created TDMS file will be used in the following tutorial for performing a simple generation.
 
 ## Performing a Simple Generation
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+
+1. Double click the Generation Example VI in the LabVIEW project.
+
+    ![Open Create CSI-2 Packet TDMS Files VI](../../images/PXIe-148X-GenGSE-Project.png)
+
+    > The opened front panel of the Generation Getting Started Example is similar to the figure below.
+
+    ![Generation GSE Front Panel](../../images/PXIe-148X-GenGSE-FrontPanel.png)
+
 
 1.  Select the **Resource** tab and make the following modifications.
     - Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
@@ -64,37 +86,16 @@ A supported interface module and camera on a PXI system running Windows.
 
     | **Interface Module**   | **Bitfile**                                          |
     |------------------------|------------------------------------------------------|
-    | PXIe-1486 (8 In)       | FPGA Bitfiles\\PXIe_1486_8\_In.lvbitx                |
+    | PXIe-1486 (8 Out)       | FPGA Bitfiles\\PXIe_1486_8\_Out.lvbitx              |
     | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
-    | PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
+    | PXIe-1487 (8 Out)       | FPGA Bitfiles\\PXIe_1487_8\_Out.lvbitx              |
     | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
-    ![Configuration Settings Resource Tab](../../images/PXIe-148X-AcqGSE-ResourceTab-BasicContinuous.png)
+    ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-ResourceTab-BasicSimpleGen.png)
 
-2.  Select the **Serial Channel** tab and make the following modifications.
-    - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
-
-        | **Interface Module**   | **Configuration Script**                                           |
-        |------------------------|--------------------------------------------------------------------|
-        | PXIe-1486 (8 In)       | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
-        | PXIe-1486 (4 In 4 Out) | Host\\Scripts\\DS90UB954\\Acq\\LI\\IMX490_2880x1280_RAW12.py       |
-        | PXIe-1487 (8 In)       | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
-        | PXIe-1487 (4 In 4 Out) | Host\\Scripts\\MAX9296A\\Acq\\LI\\IMX490_2880x1280_RAW12_ID1_A.cpp |
-
-    > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
-
-    ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-SerialChannelTab-BasicContinuous.png)
-
-3.  Select the **Board** tab and make the following modifications.
-    - In the **Power Over Coax Source** drop down menu, select **Internal** to power the attached camera from the interface module's internal 12V supply.
-
-    > The values on the **Board** tab of **Configuration Settings** are now similar to the figure below.
-
-    ![Configuration Settings Board Tab](../../images/PXIe-148X-AcqGSE-BoardTab-BasicContinuous.png)
-
-4.  Run the VI to start a continuous acquisition. Images captured from the camera display automatically in the **First Display Channel** tab.
+4.  Run the VI to perform a generation using the . Images captured from the camera display automatically in the **First Display Channel** tab.
 5.  While the VI is running, use the displayed image to focus the camera.
 
     ![First Display Channel Tab](../../images/PXIe-148X-AcqGSE-FirstDisplayChannel-BasicContinuous.png)
