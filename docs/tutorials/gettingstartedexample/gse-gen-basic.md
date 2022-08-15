@@ -3,7 +3,7 @@
 
 ** IN WORK - DOCUMENTATION IS INCOMPLETE AND IN ACTIVE DEVELOPMENT **
 
-This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
+This tutorial will teach you the steps needed to configure a generation using a PXIe-148X module and familiarize you with the basic functionality provided by the Generation Getting Started Example and Create CSI-2 Packet TDMS Files VI.
 
 ### Table of contents
 {: .no_toc }
