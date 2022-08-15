@@ -24,14 +24,14 @@ The list below gives some basic style guidelines with the intent of maintaining 
 
 - Use present tense rather than future tense in all cases.  For example, use "is" instead of "will be" or "causes" instead of "will cause".
 - Use a verb in "ing" form in the title of any section that is a process - a series of steps for the user to follow.
-- Numeric steps in a tutorials must have a specific action to perform. If updating multiple controls in single numeric step, al bulleted list is used.
+- Numeric steps in tutorials must have a specific action to perform. If updating multiple controls in single numeric step, al bulleted list is used.
 - Informative text in a tutorial without a specific action is displayed as a blockquote.
     > \> blockquote test
 - Use **bold text** for controls, indicators and enums.
     > \*\*bold text\*\*
-- Use <font face = "courier new">monospace font</font> for text is entered in a control.
+- Use <font face = "courier new">monospace font</font> for text that is entered in a control.
     > \<font face = "courier new"\>monospace text\</font\>
-- User four spaces for all indentations.
+- Use four spaces for all indentations.
 - Include a blank line before all headings to prevent unexpected indentation in github.io.
 
 # Developer Certificate of Origin (DCO)
