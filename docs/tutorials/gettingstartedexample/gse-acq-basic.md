@@ -51,7 +51,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     > The opened front panel of the Getting Started Example is similar to the figure below.
 
-    ![Acquisition CSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
+    ![Acquisition GSE Front Panel](../../images/PXIe-148X-AcqGSE-FrontPanel.png)
 
 ## Performing a Simple Continuous Acquisition
 
@@ -175,7 +175,7 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 
     ![TDMS File Viewer VI Front Panel](../../images/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
 
-2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\TDMS Files</font>.
+2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Acq\\TDMS Files</font>.
 
     > Note: The directory browse window will not show the TDMS files located in the "TDMS Files" directory.
 
