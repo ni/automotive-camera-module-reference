@@ -1,7 +1,7 @@
 # PXIe-148X Getting Started Example - Basic Generation Tutorial
 {: .no_toc }
 
-This tutorial will teach you the steps needed to configure a generation using a PXIe-148X module and familiarize you with the basic functionality provided by the Generation Getting Started Example and Create CSI-2 Packet TDMS Files VI.
+This tutorial teaches you the steps needed to configure a generation using a PXIe-148X module and familiarize you with the basic functionality provided by the Generation Getting Started Example and Create CSI-2 Packet TDMS Files VI.
 
 ### Table of contents
 {: .no_toc }
@@ -50,21 +50,21 @@ A supported interface module on a PXI system running Windows.
 
     ![Open Create CSI-2 Packet TDMS Files VI](../../images/PXIe-148X-CreateTDMS-Project.png)
 
-    > The opened front panel of the Generation Getting Started Example is similar to the figure below.
+    > The opened front panel of the Create CSI-2 Packet TDMS Files Utility is similar to the figure below.
 
     ![Open Create CSI-2 Packet TDMS Files Front Panel](../../images/PXIe-148X-CreateTDMS-FrontPanel.png)
 
-2.  Review the instructions on the VI front panel. For this tutorial the default settings will be used to generate a TDMS file for channel SO0 containing 10 frames at 1920x1080 and 30fps .
+2.  Review the instructions on the VI front panel. For this tutorial the default settings is used to generate a TDMS file for channel SO0 containing 10 frames at 1920x1080 and 30fps .
 
-    > Note: During the first run of the VI, the **TDMS File Directory** control will be automatically populated with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
+    > Note: During the first run of the VI, the **TDMS File Directory** control automatically populates with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
 
 3.  Run the VI to generate the TDMS file.
 
-4.  Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE the TDMS file will actually be associated with serial output channel 'SO0'.
+4.  Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE, the TDMS file actually associates with serial output channel 'SO0'.
 
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)
 
-5. The newly created TDMS file will be used in the following tutorial to perform a simple generation.
+5. The newly created TDMS file is used in the following tutorial to perform a simple generation.
 
 ## Performing a Simple Generation
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
@@ -95,7 +95,7 @@ A supported interface module on a PXI system running Windows.
 
 3.  Run the VI to perform a generation using the TDMS file created in the previous tutorial.
 
-4.  The generation GSE example will first load the bitfile and then buffer available data from disk to onboard DRAM. After buffering, the **Waiting for Serializer Setup** indicator will enable to indicate the module is ready for generation.
+4.  The generation GSE example loads the bitfile and then buffers available data from disk to onboard DRAM. After buffering, the **Waiting for Serializer Setup** indicator illuminates to indicate the module is ready for generation.
 
     ![Generation GSE Front Panel Waiting for Serializer Setup](../../images/PXIe-148X-GenGSE-FrontPanel-Waiting.png)
 
@@ -103,7 +103,7 @@ A supported interface module on a PXI system running Windows.
 
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-GenGSE-FirstDisplayChannel-BasicSimpleGen.png)
 
-6.  The VI will stop automatically when all data from the TDMS file has been generated.
+6.  The VI stops automatically after all data from the TDMS file is generated.
 
 ## Performing a Simple Generation with GPIO Logging
 
@@ -119,19 +119,19 @@ A supported interface module on a PXI system running Windows.
     ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-GenGSE-ResourceTab-LogGPIOToDisk.png)
 
 2.  Select the **GPIO** tab and make the following modifications.
-    - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Ser0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SI0 channel connected to the camera.
+    - Add a GPIO line to the **GPIO to Display** array with the GPIO Bank value set to **Ser0 GPIO** and the GPIO Number set to <font face = "courier new">0</font>. Setting these values enables display of GPIO traffic for the GPIO 0 line on the SO0 channel.
 
     > The values on the **GPIO** tab of **Configuration Settings** are now similar to the figure below.
 
     ![Configuration Settings GPIO Tab with Des0 GPIO0](../../images/PXIe-148X-Gen-GPIOTab-DisplaySer0GPIO0.png)
 
-3.  Run the VI, wait for the **Waiting for Serializer Setup** indicator to enable, and  click the **Serializer Setup Complete** control button to start the generation. Results are displayed on the various tabs in the **Data Output** indicator.
+3.  Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. Results are displayed on the various tabs in the **Data Output** indicator.
 
-4.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
+4.  Click the **GPIO Timestamps** tab to view GPIO timestamp data for the GPIO lines included in the **GPIO to Display** array in Step 2.
 
     ![GPIO Timestamps](../../images/PXIe-148X-Gen-GPIOTimestamps-BasicSimpleGen.png)
 
-    > Note: The module interface does not toggle GPIOs by default. Any change shown in the figure above reflects GPIO level reset when the example VI is first run.
+    > Note: The module interface does not toggle GPIOs by default. Any change shown in the figure above reflects GPIO level reset when the example VI is first run and may vary by device.
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Common Generation Tutorials](./gse-gen-common.md)
