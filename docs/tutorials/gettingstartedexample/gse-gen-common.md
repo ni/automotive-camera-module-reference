@@ -240,11 +240,16 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
         - Set **Serial Channel** to <font face = "courier new">0</font>.
         - Select **GPIO 0** in the **Source** control.
         - Select **GPIO 3** in the **Destination** control.
+
+    ![GPIO Routes - Index 0 Settings](../../images/PXIe-148X-Gen-RouteGPIO-Route0.png)
+
     - Add a GPIO route at index 1 of the **GPIO Routes** array with the following settings.
         - Select **SI to SO** in the **Direction** control.
         - Set **Serial Channel** to <font face = "courier new">0</font>.
         - Select **GPIO 1** in the **Source** control.
         - Select **GPIO 0** in the **Destination** control.
+
+    ![GPIO Routes - Index 1 Settings](../../images/PXIe-148X-Gen-RouteGPIO-Route1.png)
 
     > These settings define the GPIO routes shown below.
     >
@@ -253,7 +258,6 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
     > | SI 0 Deserializer Line 0 | SO 0 Serializer Line 3|
     > | SI 0 Deserializer Line 1 | SO 0 Serializer Line 0 |
 
-2. Select the **GPIO** tab and make the following modifications.
     - Update the **GPIO to Display** array with the following settings.
         - At index 0 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
         - At index 1 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">1</font>.
@@ -263,6 +267,10 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
     - Select **SI 0 Deserializer** from the **GPIO Bank Select** drop down menu.
 
     - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** and **GPIO 1** controls.
+
+   > The settings on the **GPIO** tab are now similar to the image below.
+   
+   ![Routing GPIO Lines - GPIO Tab Settings](../../images/PXIe-148X-Gen-RouteGPIO-GPIOTabSettings.png)
 
 3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
 
@@ -279,6 +287,8 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
 9. Once the VI stops running, click on the **GPIO Timestamps** tab to view a digital waveform of the selected GPIO lines.
 
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The waveforms observed are for the sources and the destinations of the defined GPIO routes. Notice that the values written to the source GPIO lines match the values read on the destination GPIO lines.
+
+    ![Routing GPIO Lines - GPIO Timestamps Tab](../../images/PXIe-148X-Gen-RouteGPIO-GPIOTimestampsTab.png)
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
