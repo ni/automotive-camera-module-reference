@@ -91,10 +91,14 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 2. Run the VI with all default settings to generate a TDMS file for channel SI0 containing 10 frames at 1920x1080 resolution.
 
 3. Make the following modifications on the Create CSI-2 Packet TDMS Files utility front panel.
-    - Set the value at index zero of the **Serial Input Channels** array to <font face = "courier new">SI1</font>.
+    - Set the value at index 0 of the **Serial Input Channels** array to <font face = "courier new">SI1</font>.
     - Make the following modifications to the **Frame Data Configuration** control.
         - Set the **horizontal resolution** control value to <font face = "courier new">2880</font>.
         - Set the **vertical resolution** control value to <font face = "courier new">1280</font>.
+    
+    > The Create TDMS Files utility settings are now similar to the image below.
+
+    ![Create TDMS Files Settings for Multiple Images - SI1](../../images/PXIe-148X-CreateTDMS-GenMultipleImages.png)
 
 4.  Run the VI to generate a TDMS file for channel SI1 containing 10 frames at 2880x1280 resolution.
 
@@ -114,17 +118,31 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
     - Select index <font face = "courier new">1</font> of the **Channel Configurations** array and make the following modifications.
         - Set the **Serial Channel** control value to <font face = "courier new">SO1</font>.
         - Select **Grayscale** on the **Interpretation** control in the **RAW Display Parameters** cluster.
+   
+   > The settings on the **Serial Channel** tab are now similar to the image below.
+   
+   ![Generating and Displaying Multiple Images Channel Configurations](../../images/PXIe-148X-Gen-MultipleImages-ChannelConfigurations.png)
 
 3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
     > Once the generation completes, notice the **Number of Generated Packets** indicator array shows a value of <font face = "courier new">10820</font> at index 0 and <font face = "courier new">12820</font> at index 1, which equals the number of packets per frame (vertical resolution) times the number of frames generated for each channel. The indices in the **Number of Generated Packets** array correspond to the indices in the **Channel Configurations** array.
 
+    ![Generating and Displaying Multiple Images Generated Packets Indicator](../../images/PXIe-148X-Gen-MultipleImages-GeneratedPacketsIndicator.png)
+
 4. Click the **First Display Channel** tab to view the last frame displayed for SO0.
     > Note that the image resolution matches the 1920x1080 resolution of the TDMS file created for SI0.
+
+    ![Generating and Displaying Multiple Images First Display Channel](../../images/PXIe-148X-Gen-MultipleImages-FirstDisplayChannel.png)
 
 5. Click the **Second Display Channel** tab to view the last frame displayed for SO1.
     > Note that the image resolution matches the 2880x1280 resolution of the TDMS file created for SI1.
 
+    ![Generating and Displaying Multiple Images Second Display Channel](../../images/PXIe-148X-Gen-MultipleImages-SecondDisplayChannel.png)
+
 6. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
+   
+   > The settings on the **Serial Channel** tab are now similar to the image below.
+   
+   ![Generating and Displaying Multiple Images Start Trigger Delay](../../images/PXIe-148X-Gen-MultipleImages-StartTriggerDelay.png)
 
 7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. 
     > Notice that there is now a 2 second delay before images are generated after clicking the **Serializer Setup Complete** button.
@@ -155,6 +173,10 @@ This tutorial shows you how to configure routing of GPIO lines between GPIO bank
         - Set the **horizontal resolution** control value to <font face = "courier new">640</font>.
         - Set the **vertical resolution** control value to <font face = "courier new">480</font>.
     - In the **Frame Timing Configuration** cluster, set the **desired frame rate (fps)** control to <font face = "courier new">1</font>.
+    
+    > The Create TDMS Files utility settings are now similar to the image below.
+
+    ![Create TDMS Files Settings for the GPIO Turtorial](../../images/PXIe-148X-CreateTDMS-GenGPIO.png)
 
 3. Run the VI to generate a TDMS file for channel SI0 containing 60 frames at 640x480 resolution.
     > The frame rate of 1 frame per second will cause the generation to run for 1 minute, which will allow enough time to manually read and write to GPIO during the generation.
@@ -176,8 +198,12 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
     
         > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Output**, **GPIO Bank Output Enable** and **GPIO Bank Read** controls during the generation. The **GPIO Bank Select** selection may be changed at runtime.
 
-    - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** controls.
+    - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** control.
         > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case we are choosing to write to line 0 of the GPIO selected on the **GPIO Bank Select** control and leave all other lines in the bank unchanged.
+
+   > The settings on the **GPIO** tab are now similar to the image below.
+   
+   ![Manually Reading and Writing to GPIO - GPIO Tab Settings](../../images/PXIe-148X-Gen-GPIO-GPIOTabSettings.png)
 
 2. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
 
@@ -197,6 +223,8 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The pattern observed matches the sequence of manual writes that were performed on GPIO line 0 during the tutorial.
     
     > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
+
+    ![Manually Reading and Writing to GPIO - GPIO Timestamps Tab](../../images/PXIe-148X-Gen-GPIO-GPIOTimestampsTab.png)
 
 ### Routing GPIO Lines
 
