@@ -210,10 +210,10 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
 3. Click **Update GPIO Output** to write a false value to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is not illuminated (false).
 
-4. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SO 0 Serializer GPIO bank.
+4. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is illuminated (true).
 
-5. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to line 0 on the SO 0 Serializer GPIO bank.
+5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
 
 6. Click the **Stop Generation** button.
@@ -276,11 +276,11 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
 
 4. Click **Update GPIO Output** to write false values to the lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
-5. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
+5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
 
-6. Set the **GPIO 1** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
+6. Set the **GPIO 1** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
 
-7. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
+7. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Output** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
 8. Click the **Stop Generation** button.
 
