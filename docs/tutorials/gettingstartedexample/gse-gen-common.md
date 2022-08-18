@@ -42,26 +42,26 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
     
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
-    > Use the default **TDMS File Directory** value if generating from a [TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings](gse-gen-basic.md#create-tdms-files-for-generation).
+    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
 ### Displaying Generated Images
+The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
 
-1. Follow the procedure defined in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#displaying-acquired-images) with the following modifications.
+1. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#displaying-acquired-images) with the following differences.
     - Replace all references to <font face = "courier new">SI0</font> with <font face = "courier new">SO0</font>.
     - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
 
-    > The logic for FPGA display parameters is shared for all PXIe-148X getting started examples.
-
 ### Reducing System Bandwidth Usage
+The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
 
-1. Follow the procedure defined in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#reducing-system-bandwidth-usage) with the following modifications.
+1. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#reducing-system-bandwidth-usage) with the following differences.
     - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
-
-    > The logic for FPGA display parameters is shared for all PXIe-148X getting started examples.
 
 ## Setting RAW Display Parameters
 
-This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed during generation.
+This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed during generation. The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
+
+> Note: If using a TDMS file created with the Create CSI-2 Packet TDMS Files utility, the impact of the RAW display parameter settings will differ from a TDMS file containing image data acquired from a camera.
 
 1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
@@ -74,19 +74,17 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
 
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
-    > Use the default **TDMS File Directory** value if generating from a [TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings](gse-gen-basic.md#create-tdms-files-for-generation).
+    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
-2. Follow the procedure defined in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#setting-raw-display-parameters) with the following modifications.
+2. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#setting-raw-display-parameters) with the following differences.
     - Replace all references to <font face = "courier new">SI0</font> with <font face = "courier new">SO0</font>.
     - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
-
-    > Note: The logic for setting RAW display parameters is shared for all PXIe-148X getting started examples, but results will not match the procedure descriptions exactly if using a TDMS file created with the Create CSI-2 Packet TDMS Files utility.
 
 ## Setting Serial Channel Configurations
 
 This tutorial shows you how to configure the **Serial Channel** tab to generate and display images on multiple serial output channels.
 
-### Creating TDMS Files to Generate
+### Creating TDMS Files to Generate Multiple Images
 
 1. Open the Create CSI-2 Packet TDMS Files utility in the LabVIEW project.
 
@@ -118,7 +116,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
         - Select **Grayscale** on the **Interpretation** control in the **RAW Display Parameters** cluster.
 
 3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
-    > Once the generation completes, notice the **Number of Generated Packets** indicator array shows a value of <font face = "courier new">10820</font> at index zero and <font face = "courier new">12820</font> at index one, which equals the number of packets per frame (vertical resolution) times the number of frames generated for each channel. The indices in the **Number of Generated Packets** array correspond to the indices in the **Channel Configurations** array.
+    > Once the generation completes, notice the **Number of Generated Packets** indicator array shows a value of <font face = "courier new">10820</font> at index 0 and <font face = "courier new">12820</font> at index 1, which equals the number of packets per frame (vertical resolution) times the number of frames generated for each channel. The indices in the **Number of Generated Packets** array correspond to the indices in the **Channel Configurations** array.
 
 4. Click the **First Display Channel** tab to view the last frame displayed for SO0.
     > Note that the image resolution matches the 1920x1080 resolution of the TDMS file created for SI0.
@@ -128,7 +126,8 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
 6. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
 
-7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. Notice that there is now a 2 second delay before images are generated after clicking the **Serializer Setup Complete** button.
+7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. 
+    > Notice that there is now a 2 second delay before images are generated after clicking the **Serializer Setup Complete** button.
 
 ## Using the General Purpose Input/Output (GPIO) Lines
 
@@ -136,7 +135,7 @@ This tutorial shows you how to configure routing of GPIO lines between GPIO bank
 
 > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the generation. This allows capturing I2C and GPIO timestamps during configuration before the generation starts.
 
-1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
+1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Setting | Value |
@@ -162,15 +161,14 @@ This tutorial shows you how to configure routing of GPIO lines between GPIO bank
 
 ### Manually Reading and Writing to GPIO
 
-This tutorial section shows you how to perform manual reads and writes to GPIO during generation and display digital waveforms for the resulting GPIO timestamp data.
+This tutorial shows you how to perform manual reads and writes to GPIO during generation and display digital waveforms for the resulting GPIO timestamp data.
 > Note: The [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section should be run prior to running the steps in this tutorial.
 
 1. Select the **GPIO** tab and make the following modifications.
     - Update the **GPIO to Display** array with the following settings.
         - At index 0 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
-        - At index 1 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">3</font>.
 
-        > Setting these values enables display of GPIO traffic for GPIO line 0 and line 3 on the SO0 channel.
+        > Setting these values enables display of GPIO traffic for GPIO line 0 on the SO0 channel. Optionally add any additional GPIO lines to display.
         >
         > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the acquisition completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged, but not displayed.
 
@@ -178,37 +176,35 @@ This tutorial section shows you how to perform manual reads and writes to GPIO d
     
         > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Output**, **GPIO Bank Output Enable** and **GPIO Bank Read** controls during the generation. The **GPIO Bank Select** selection may be changed at runtime.
 
-    - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** and **GPIO 3** controls.
-        > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case we are choosing to write to lines 0 and 3 of the GPIO selected on the **GPIO Bank Select** control and leave all other lines in the bank unchanged.
+    - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** controls.
+        > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case we are choosing to write to line 0 of the GPIO selected on the **GPIO Bank Select** control and leave all other lines in the bank unchanged.
 
 2. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
 
-3. Click **Write GPIO** to write false values to the lines 0 and 3 on the SO 0 Serializer GPIO bank.
-    > Notice that the **GPIO 0** and **GPIO 3** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
+3. Click **Write GPIO** to write a false value to line 0 on the SO 0 Serializer GPIO bank.
+    > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is not illuminated (false).
 
 4. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 0 on the SO 0 Serializer GPIO bank.
-    > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is now illuminated (true).
+    > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is illuminated (true).
 
-5. Set the **GPIO 3** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 3 on the SO 0 Serializer GPIO bank.
-    > Notice that the **GPIO 3** Boolean indicator in the **GPIO Bank Read** cluster is now illuminated (true).
+5. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button to write a false values to line 0 on the SO 0 Serializer GPIO bank.
+    > Notice that the **GPIO 0** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
 
-6. Set the **GPIO 0** and **GPIO 3** buttons in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button to write a false values to lines 0 and 3 on the SO 0 Serializer GPIO bank.
-    > Notice that the **GPIO 0** and **GPIO 3** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
+6. Click the **Stop Generation** button.
 
-7. Click the **Stop Generation** button.
+7. Once the VI stops running, click on the **GPIO Timestamps** tab to view a digital waveform of the selected GPIO line(s).
 
-8. Once the VI stops running, click on the **GPIO Timestamps** tab to view a digital waveform of the selected GPIO line(s).
-
-    > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The pattern observed matches the sequence of manual writes that were performed on GPIO lines 0 and 3 during the tutorial.
+    > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The pattern observed matches the sequence of manual writes that were performed on GPIO line 0 during the tutorial.
     
     > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
 
 ### Routing GPIO Lines
 
-This tutorial section shows you how to define GPIO line routes between GPIO banks on Serial Input/Output channel pairs.
-> Note: This tutorial section applies to interface modules with serial input channels and serial output channels only.
-
-> Note: The [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section should be run prior to running the steps in this tutorial.
+This tutorial shows you how to define GPIO line routes between GPIO banks on Serial Input/Output channel pairs. Routing GPIO lines means that the values read from the source GPIO lines are written to the destination GPIO lines on the FPGA. Manual GPIO writes performed from the host override the GPIO routes. 
+> Notes: 
+> - This tutorial only applies to interface modules with serial input _and_ serial output channels since GPIO routing is done between pairs of input and output channels.
+> - The [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section should be run prior to running the steps in this tutorial.
+> - The focus of this tutorial is on configuring GPIO routes, not manually reading and writing to GPIO or displaying digital waveforms of GPIO timestamps. For more detailed descriptions of those topics, see [Manually Reading and Writing to GPIO](#manually-reading-and-writing-to-gpio).
 
 1. Select the **GPIO** tab and make the following modifications.
     - Add a GPIO route at index 0 of the **GPIO Routes** array with the following settings.
@@ -231,42 +227,30 @@ This tutorial section shows you how to define GPIO line routes between GPIO bank
 
 2. Select the **GPIO** tab and make the following modifications.
     - Update the **GPIO to Display** array with the following settings.
-        - At index 0 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
-        - At index 1 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">3</font>.
-
-        > Setting these values enables display of GPIO traffic for GPIO line 0 and line 3 on the SO0 channel.
-        >
-        > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the acquisition completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged, but not displayed.
+        - At index 0 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
+        - At index 1 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">1</font>.
+        - At index 2 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
+        - At index 3 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">3</font>.
 
     - Select **SI 0 Deserializer** from the **GPIO Bank Select** drop down menu.
 
-        > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Output**, **GPIO Bank Output Enable** and **GPIO Bank Read** controls during the generation. The **GPIO Bank Select** selection may be changed at runtime.
-
     - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** and **GPIO 1** controls.
 
-        > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case we are choosing to write to lines 0 and 3 of the GPIO selected on the **GPIO Bank Select** control and leave all other lines in the bank unchanged.
+3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
 
-2. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
+4. Click **Write GPIO** to write false values to the lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
-3. Click **Write GPIO** to write false values to the lines 0 and 1 on the SI 0 Deserializer GPIO bank.
-    > Notice that the **GPIO 0** and **GPIO 1** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
+5. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
 
-4. Set the **GPIO 0** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
-    > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is now illuminated (true).
+6. Set the **GPIO 1** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
 
-5. Set the **GPIO 1** button in the **GPIO Bank Write** control to <font face = "courier new">true</font> then click the **Write GPIO** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
-    > Notice that the **GPIO 1** Boolean indicator in the **GPIO Bank Read** cluster is now illuminated (true).
+7. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button to write a false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
-6. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Write** control to <font face = "courier new">false</font> then click the **Write GPIO** button to write a false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
-    > Notice that the **GPIO 0** and **GPIO 1** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
+8. Click the **Stop Generation** button.
 
-7. Click the **Stop Generation** button.
+9. Once the VI stops running, click on the **GPIO Timestamps** tab to view a digital waveform of the selected GPIO lines.
 
-8. Once the VI stops running, click on the **GPIO Timestamps** tab to view a digital waveform of the selected GPIO line(s).
-
-    > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The waveforms observed are for the destinations of the GPIO routing. Notice that the rising edge transition on SO 0 Serializer Line 3, which was caused by the manual write to SI 0 Deserializer Line 0, occurs before the rising edge transition on SO 0 Serializer Line 0.
-
-    > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
+    > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The waveforms observed are for the sources and the destinations of the defined GPIO routes. Notice that the values written to the source GPIO lines match the values read on the destination GPIO lines.
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
