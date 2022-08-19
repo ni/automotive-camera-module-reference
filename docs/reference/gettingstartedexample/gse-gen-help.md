@@ -118,7 +118,7 @@ Refer to this document to understand the elements of the getting started example
 - **Image Display** - Displays the most recently generated frame of the corresponding display channel. Interactive pan and zoom capabilities are provided by the buttons in the upper left corner of the image display. The text field below the image shows the image size, zoom factor, image type, pixel value and coordinate information.
 - **Serial Channel** - Selects the serial channel number for the image data to be displayed if more than two serial input channels are active.
     > This control may be modified while the VI is running.
-- **Source Rate (fps)** - Displays the frame rate in frames per second at which the image data is being received.
+- **Source Rate (fps)** - Displays the frame rate in frames per second at which the image data is being transmitted.
 - **Update Rate (fps)** - Displays the rate in frames per second at which the image display indicator is being updated.
     > Note: If multiple frames have been generated since the last update, only the most recent frame is displayed, and the others are skipped in an attempt to keep up with the generation.
 
