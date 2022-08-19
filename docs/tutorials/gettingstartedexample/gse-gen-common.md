@@ -60,7 +60,9 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
 
 8. After the Acquisition Example VI indicates acquisition has started, click Serializer Setup Complete on the Generation VI before the Acquisition VI stops.
 
-9. Select the **First Display Channel** tab on the Acquisition Example and verify that images from the generated TDMS file are displayed on this tab. 
+9. Select the **First Display Channel** tab on the Acquisition Example and on the Generation Example and verify that images from the generated TDMS file are displayed on these tabs. The images should look identical.
+
+[TODO: IMAGE comparing both displays]
 
 ### Generating and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module. The Generation Example VI will be used to run a script to create I2C traffic.
