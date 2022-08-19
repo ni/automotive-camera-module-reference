@@ -38,7 +38,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
     |---|---|---|
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path containing a file named <font face = "courier new">SI0_LLP_Packets.tdms</font> |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. SI0_LLP_Packets.tdms) |
     
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
@@ -70,7 +70,7 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
     |---|---|---|
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path containing a file named <font face = "courier new">SI0_LLP_Packets.tdms</font> |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. SI0_LLP_Packets.tdms) |
 
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
@@ -82,7 +82,7 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
 
 ## Setting Serial Channel Configurations
 
-This tutorial shows you how to configure the **Serial Channel** tab to generate and display images on multiple serial output channels.
+This tutorial shows you how to configure the **Serial Channel** tab to generate and display images on multiple serial output channels and set a start trigger delay.
 
 ### Creating TDMS Files to Generate Multiple Images
 
@@ -90,7 +90,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
 2. Run the VI with all default settings to generate a TDMS file for channel SI0 containing 10 frames at 1920x1080 resolution.
 
-3. Make the following modifications on the Create CSI-2 Packet TDMS Files utility front panel.
+3. Make the following modifications on the Create CSI-2 Packet TDMS Files utility front panel to generate a second TDMS file with image data differing from the first TDMS file created in the previous step.
     - Set the value at index 0 of the **Serial Input Channels** array to <font face = "courier new">SI1</font>.
     - Make the following modifications to the **Frame Data Configuration** control.
         - Set the **horizontal resolution** control value to <font face = "courier new">2880</font>.
@@ -104,7 +104,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
 ### Generating and Displaying Multiple Images
 
-1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
+5. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Control | Value |
@@ -112,7 +112,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
 
-2. Select the **Serial Channel** tab and make the following modifications.
+6. Select the **Serial Channel** tab and make the following modifications.
     - Select index <font face = "courier new">0</font> of the **Channel Configurations** array and make the following modifications.
         - Select **Grayscale** on the **Interpretation** control in the **RAW Display Parameters** cluster.
     - Select index <font face = "courier new">1</font> of the **Channel Configurations** array and make the following modifications.
@@ -123,29 +123,33 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
    
    ![Generating and Displaying Multiple Images Channel Configurations](../../images/PXIe-148X-Gen-MultipleImages-ChannelConfigurations.png)
 
-3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
+7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
     > Once the generation completes, notice the **Number of Generated Packets** indicator array shows a value of <font face = "courier new">10820</font> at index 0 and <font face = "courier new">12820</font> at index 1, which equals the number of packets per frame (vertical resolution) times the number of frames generated for each channel. The indices in the **Number of Generated Packets** array correspond to the indices in the **Channel Configurations** array.
 
     ![Generating and Displaying Multiple Images Generated Packets Indicator](../../images/PXIe-148X-Gen-MultipleImages-GeneratedPacketsIndicator.png)
 
-4. Click the **First Display Channel** tab to view the last frame displayed for SO0.
+8. Click the **First Display Channel** tab to view the last frame displayed for SO0.
     > Note that the image resolution matches the 1920x1080 resolution of the TDMS file created for SI0.
 
     ![Generating and Displaying Multiple Images First Display Channel](../../images/PXIe-148X-Gen-MultipleImages-FirstDisplayChannel.png)
 
-5. Click the **Second Display Channel** tab to view the last frame displayed for SO1.
+9. Click the **Second Display Channel** tab to view the last frame displayed for SO1.
     > Note that the image resolution matches the 2880x1280 resolution of the TDMS file created for SI1.
 
     ![Generating and Displaying Multiple Images Second Display Channel](../../images/PXIe-148X-Gen-MultipleImages-SecondDisplayChannel.png)
 
-6. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
+### Setting a Start Trigger Delay
+
+This section of the tutorial shows you how to delay the generation start. Image data acquired using the PXIe-148X Acquisition getting started example often has several seconds of delay before the first packet is acquired while the camera is configured. The PXIe-148X Generation getting started example sets a packet timing offset value to the negative of the first packet timestamp in the TDMS file to prevent any unwanted delay in the start of generation. If a delay is desired the **Start Trigger Delay (s)** control is used. Refer to the **Start Trigger Delay (s)** description in the [PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#serial-channel-tab) for additional details.
+
+10. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
    
    > The settings on the **Serial Channel** tab are now similar to the image below.
    
    ![Generating and Displaying Multiple Images Start Trigger Delay](../../images/PXIe-148X-Gen-MultipleImages-StartTriggerDelay.png)
 
-7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. 
-    > Notice that there is now a 2 second delay before images are generated after clicking the **Serializer Setup Complete** button.
+11. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. 
+    > The start of packet transmission is delayed and thus the image display is also delayed. Notice that there is now a 2 second delay before images are generated and displayed after clicking the **Serializer Setup Complete** button. 
 
 ## Using the General Purpose Input/Output (GPIO) Lines
 
@@ -192,7 +196,7 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
 
         > Setting these values enables display of GPIO traffic for GPIO line 0 on the SO0 channel. Optionally add any additional GPIO lines to display.
         >
-        > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the acquisition completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged, but not displayed.
+        > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the generation completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged, but not displayed.
 
     - Select **SO0 Serializer** from the **GPIO Bank Select** drop down menu.
     
@@ -222,7 +226,7 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
 
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The pattern observed matches the sequence of manual writes that were performed on GPIO line 0 during the tutorial.
     
-    > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the acquisitions completes.
+    > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the generation completes.
 
     ![Manually Reading and Writing to GPIO - GPIO Timestamps Tab](../../images/PXIe-148X-Gen-GPIO-GPIOTimestampsTab.png)
 
