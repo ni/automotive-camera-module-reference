@@ -18,7 +18,7 @@ This tutorial is written for users who understand how to perform a basic generat
 > Note: The tutorials in this document assume the use of a PXIe-148X GMSL or FPD-Link Generation Interface module and an Acquisition Interface module connected to SI0 and SO0 of the respective modules. A Leopard Imaging IMX490 camera is also used to acquire packet data and replay it through a generation interface module. See PXIe-148X Getting Started Example - Basic Acquisition Tutorial and Basic Generation Tutorial for specific setup if needed.
 
 ## Generation and Acquisition Topics
-This tutorial expects that SO0 of a generation card and SI0 of an acquisition card are cabled together. This tutorial will use one generation LabVIEW project and one acquisition LabVIEW project to demonstrate the generation capabilities of the 148x generation interface devices.
+This tutorial expects that SO0 of a generation module and SI0 of an acquisition module are cabled together. This tutorial will use one generation LabVIEW project and one acquisition LabVIEW project to demonstrate the generation capabilities of the generation module.
 
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
@@ -53,13 +53,14 @@ This tutorial expects that SO0 of a generation card and SI0 of an acquisition ca
     | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
     | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
-    | Board          | Power Over Coax Source  | Internal   
 
-6. Run the Acquisition Example VI.
+6. Run the Generation Example VI and wait for the Waiting for Serializer Setup indicator to illuminate
 
-7. Run the Generation Example VI.
+7. Run the Acquisition Example VI.
 
-8. Select the **First Display Channel** tab on the Acquisition Example and verify that images from the generated TDMS file are displayed on this tab. 
+8. After the Acquisition Example VI indicates acquisition has started, click Serializer Setup Complete on the Generation VI before the Acquisition VI stops.
+
+9. Select the **First Display Channel** tab on the Acquisition Example and verify that images from the generated TDMS file are displayed on this tab. 
 
 ### Generating and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module. The Generation Example VI will be used to run a script to create I2C traffic.
@@ -75,7 +76,6 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
     | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
     | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **I2C** tab and make the following modifications.
 
@@ -91,12 +91,10 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
-    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Display Generated Images | Disabled                                                                                                                                                            |
     | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
-	| Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
     
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
-    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 4.  Select the **I2C** tab and make the following modifications.
 
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
@@ -112,6 +110,8 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
 
         > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
+   
+8. Select the **I2C Timestamps** tab on the Acquisition VI to view I2C timestamp data.
 
     ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
