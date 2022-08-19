@@ -38,7 +38,7 @@ This tutorial shows you how to configure the **FPGA Display Parameters** to chan
     |---|---|---|
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. SI0_LLP_Packets.tdms) |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
     
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
@@ -70,7 +70,7 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
     |---|---|---|
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. SI0_LLP_Packets.tdms) |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
 
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
