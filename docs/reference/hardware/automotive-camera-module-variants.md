@@ -16,15 +16,15 @@ This document includes reference information on various properties of PXIe-148x 
 | Heading | Definition |
 |-|-|
 | Model Number             | Generic model name associated with a family of products. Often used in shipping example code and help documentation. |
-| Channels                 | Number and type of serial channels |
-| Protocol                 | Supported CSI-2 protocol and generation |
-| Serializer               | Specific serializer of the module, if applicable |
-| Deserializer             | Specific deserializer of the module, if applicable |
-| Slot Count               | The number of physical slots required in a PXIe chassis for a given module |
-| Front Panel Overlay      | Name printed on the front panel of the physical module |
-| NI MAX Name              | The name of a module shown in NI Max |
-| LabVIEW FPGA Target Name | The name of an FPGA Target for a module shown in a LabVIEW Project |
-| FlexRIO First Supported  | The first NI-FlexRIO driver version to support a given module |
+| Channels                 | Number and type of serial channels. |
+| Protocol                 | Supported CSI-2 protocol and generation. |
+| Serializer               | Specific serializer of the module, if applicable. |
+| Deserializer             | Specific deserializer of the module, if applicable. |
+| Slot Count               | The number of physical slots required in a PXIe chassis for a given module. |
+| Front Panel Overlay      | Name printed on the front panel of the physical module. |
+| NI MAX Name              | The name of a module shown in NI Max. |
+| LabVIEW FPGA Target Name | The name of an FPGA Target for a module shown in a LabVIEW Project. |
+| FlexRIO First Supported  | The first NI-FlexRIO driver version to support a given module. |
 | Product ID               | FlexRIO driver product ID. Occasionally referenced in example code or help text. |
 | Variant ID               | FlexRIO driver variant ID used to distinguish similar modules. Occasionally referenced in example code or help text. |
 
