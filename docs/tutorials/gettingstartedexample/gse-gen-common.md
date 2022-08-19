@@ -1,14 +1,9 @@
 # PXIe-148X Getting Started Example - Common Generation Tutorials
 {: .no_toc }
 
-** IN WORK - DOCUMENTATION IS INCOMPLETE AND IN ACTIVE DEVELOPMENT **
-
 This document covers a range of common scenarios using the PXIe-148X Generation Getting Started Example (GSE) to help you understand LLP generation, I2C and GPIO timestamping, and common configuration options.
 
 > Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
-
-### Table of contents
-{: .no_toc }
 
 1. TOC
 {:toc}
@@ -16,16 +11,136 @@ This document covers a range of common scenarios using the PXIe-148X Generation 
 ---
 
 ## Prerequisites
+This tutorial is written for users who understand how to perform a basic generation and a basic acquisition with PXIe-148X GMSL or FPD-Link interface modules. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](gse-acq-basic.md) and [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md) before attempting this tutorial.
+
+> Note: The tutorials in this document assume the use of a PXIe-148X GMSL or FPD-Link Generation Interface module and an Acquisition Interface module connected to SI0 and SO0 of the respective modules. A Leopard Imaging IMX490 camera is also used to acquire packet data and replay it through a generation interface module. See PXIe-148X Getting Started Example - Basic Acquisition Tutorial and Basic Generation Tutorial for specific setup if needed.
 
 ## Generation and Acquisition Topics
+This tutorial expects that SO0 of a generation card and SI0 of an acquisition card are cabled together. This tutorial will use one generation LabVIEW project and one acquisition LabVIEW project to demonstrate the generation capabilities of the 148x generation interface devices.
+
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+
 
 ### Performing a Simple Generation and Acquisition
+1. Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default.
+
+> Note: Refer to the Basic Generation Tutorial to create a TDMS file for Serial Output channel 0.
+
+2. Double click the Generation Example VI in the LabVIEW project.
+
+3. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab | Control | Value |
+    |---|---|---|
+    | Resource | RIO Device | [System Specific] |
+    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
+    
+    > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
+    >
+    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
+
+4. Double click the Acquisition Example VI in the acquisition LabVIEW project.
+
+5. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab            | Control                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Log Packets to Disk     | Enabled                                                                                                                                                             |
+    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
+    | Acquisition    | Continuous Acquisition  | Enabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal   
+
+6. Run the Acquisition Example VI.
+
+7. Run the Generation Example VI.
+
+8. Select the **First Display Channel** tab on the Acquisition Example and verify that images from the generated TDMS file are displayed on this tab. 
 
 ### Generating and Displaying I2C Timestamps
+This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module. The Generation Example VI will be used to run a script to create I2C traffic.
+
+> Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
+
+1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab            | Setting                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
+    
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
+
+2.  Select the **I2C** tab and make the following modifications.
+
+    > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
+    - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
+
+    ![Configuration Settings I2C Tab](../../images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
+	
+3. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab            | Setting                 | Value                                                                                                                                                               |
+    |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
+    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
+	| Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    
+    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
+    | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
+4.  Select the **I2C** tab and make the following modifications.
+
+    > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
+    - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
+
+    ![Configuration Settings I2C Tab](../../images/PXIe-148X-Acq-I2CTab-FiniteAcq.png)
+
+5.  Run the Acquisition VI. 
+
+6.  Run the Generation VI.
+
+7.  Select the **I2C Timestamps** tab to view I2C timestamp data.
+    - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
+
+        > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
+
+    ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
 ## Generating and Filtering LLP Packets
+(There is no filtering on the generation side, and the acq tutorial already covers filtering)
 
 ## Playing Back Previously Acquired Data
+1. Refer to the Commmon Acquisition Tutorial section Acquiring and Filtering LLP Packets (TODO LINK) to acquire LLP packets from a camera.
+ 
+2. Double click the Generation Example VI in the generation LabVIEW project.
+
+3. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
+    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
+
+    | Tab | Control | Value |
+    |---|---|---|
+    | Resource | RIO Device | [System Specific] |
+    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
+    
+    > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
+    >
+
+4. Run the Generation Example VI.
+
+5. Select the **First Display Channel** tab on the Generation Example and verify that images from the previously acquired data are displayed on this tab. 
 
 ## Setting FPGA Display Parameters
 
