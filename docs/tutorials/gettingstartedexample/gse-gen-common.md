@@ -26,7 +26,7 @@ This tutorial expects that SO0 of a generation card and SI0 of an acquisition ca
 ### Performing a Simple Generation and Acquisition
 1. Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default.
 
-> Note: Refer to the Basic Generation Tutorial to create a TDMS file for Serial Output channel 0.
+> Note: Refer to the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md) to create a TDMS file for Serial Output channel 0.
 
 2. Double click the Generation Example VI in the LabVIEW project.
 
@@ -43,7 +43,7 @@ This tutorial expects that SO0 of a generation card and SI0 of an acquisition ca
     >
     > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
-4. Double click the Acquisition Example VI in the acquisition LabVIEW project.
+4. Double click the Acquisition Example VI in the Acquisition LabVIEW project.
 
 5. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
@@ -52,10 +52,7 @@ This tutorial expects that SO0 of a generation card and SI0 of an acquisition ca
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
-    | Resource       | Log Packets to Disk     | Enabled                                                                                                                                                             |
     | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
-    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
-    | Acquisition    | Continuous Acquisition  | Enabled                                                                                                                                                            |
     | Board          | Power Over Coax Source  | Internal   
 
 6. Run the Acquisition Example VI.
@@ -78,8 +75,6 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
     | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
     | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
-    
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
     | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **I2C** tab and make the following modifications.
@@ -113,7 +108,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
 6.  Run the Generation VI.
 
-7.  Select the **I2C Timestamps** tab to view I2C timestamp data.
+7.  Select the **I2C Timestamps** tab on the Generation VI to view I2C timestamp data.
     - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
 
         > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
@@ -121,7 +116,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
 ## Playing Back Previously Acquired Data
-1. Refer to the Commmon Acquisition Tutorial section Acquiring and Filtering LLP Packets (TODO LINK) to acquire LLP packets from a camera.
+1. Refer to the [PXIe-148X Getting Started Example - Common Acquisition Tutorial](gse-acq-common.md#acquiring-and-filtering-llp-packets)to acquire LLP packets from a camera and store them in a TDMS file.
  
 2. Double click the Generation Example VI in the generation LabVIEW project.
 
