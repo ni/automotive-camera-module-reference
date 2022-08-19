@@ -118,9 +118,6 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
     ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
-## Generating and Filtering LLP Packets
-(There is no filtering on the generation side, and the acq tutorial already covers filtering)
-
 ## Playing Back Previously Acquired Data
 1. Refer to the Commmon Acquisition Tutorial section Acquiring and Filtering LLP Packets (TODO LINK) to acquire LLP packets from a camera.
  
