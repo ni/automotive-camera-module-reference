@@ -90,12 +90,12 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | Tab            | Setting                 | Value                                                                                                                                                               |
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles)        |
     | Resource       | Display Generated Images | Disabled                                                                                                                                                            |
     | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
     | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
     
-4.  Select the **I2C** tab and make the following modifications.
+4.  Select the **I2C** tab on the Generation VI and make the following modifications.
 
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
     - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
