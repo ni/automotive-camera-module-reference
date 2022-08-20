@@ -24,9 +24,11 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
 
 
 ### Performing a Simple Generation and Acquisition
-1. Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default.
+1. Create a TDMS file for generation. There are two options for creating a TDMS file.
 
-> Note: Refer to the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md) to create a TDMS file for Serial Output channel 0.
+| Option A: Create a TDMS File | Option B: Acquire Data from a Camera |
+|-|-|
+| Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default. | Acquire data from a camera.<br />If the data was acquired from a camera attached to a serial input channel other than SI0, rename the TDMS file on disk to have SI0 in the name to generate on SI0.<br />Copy the acquired TDMS file to the default TDMS folder for generation. |
 
 2. Double click the Generation Example VI in the LabVIEW project.
 
@@ -37,11 +39,6 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
     |---|---|---|
     | Resource | RIO Device | [System Specific] |
     | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
-    
-    > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
-    >
-    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
 4. Double click the Acquisition Example VI in the Acquisition LabVIEW project.
 
@@ -54,11 +51,11 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
     | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
 
-6. Run the Generation Example VI and wait for the Waiting for Serializer Setup indicator to illuminate
+6. Run the Generation Example VI and wait for the **Waiting for Serializer Setup** indicator to illuminate.
 
 7. Run the Acquisition Example VI.
 
-8. After the Acquisition Example VI indicates acquisition has started, click Serializer Setup Complete on the Generation VI before the Acquisition VI stops.
+8. After the Acquisition Example VI indicates acquisition has started, click **Serializer Setup Complete** on the Generation VI before the Acquisition VI stops.
 
 9. Select the **First Display Channel** tab on the Acquisition Example and on the Generation Example and verify that images from the generated TDMS file are displayed on these tabs. The images should look identical.
 
@@ -95,7 +92,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles)        |
     | Resource       | Display Generated Images | Disabled                                                                                                                                                            |
     | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | Serial Channel | Serializer (Output) Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
     
 4.  Select the **I2C** tab on the Generation VI and make the following modifications.
 
@@ -108,6 +105,8 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
 6.  Run the Generation VI.
 
+    > Note: Because a script was defined in the **Serializer (Output) Configuration Script** control, the generation begins immediately without pausing while illuminating **Waiting for Serializer Setup** as seen in previous sections of this tutorial.  In this scenario, the Acquisition VI must be started before the Generation VI.
+
 7.  Select the **I2C Timestamps** tab on the Generation VI to view I2C timestamp data.
     - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
 
@@ -116,27 +115,6 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 8. Select the **I2C Timestamps** tab on the Acquisition VI to view I2C timestamp data.
 
     ![I2C Timestamps Data](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
-
-## Playing Back Previously Acquired Data
-1. Refer to the [PXIe-148X Getting Started Example - Common Acquisition Tutorial](gse-acq-common.md#acquiring-and-filtering-llp-packets)to acquire LLP packets from a camera and store them in a TDMS file.
- 
-2. Double click the Generation Example VI in the generation LabVIEW project.
-
-3. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
-    > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
-
-    | Tab | Control | Value |
-    |---|---|---|
-    | Resource | RIO Device | [System Specific] |
-    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
-    
-    > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
-    >
-
-4. Run the Generation Example VI.
-
-5. Select the **First Display Channel** tab on the Generation Example and verify that images from the previously acquired data are displayed on this tab. 
 
 ## Setting FPGA Display Parameters
 
@@ -215,6 +193,8 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
 ### Generating and Displaying Multiple Images
 
+> Note: This is a continuation from the previous section.
+
 5. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
@@ -230,9 +210,9 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
         - Set the **Serial Channel** control value to <font face = "courier new">SO1</font>.
         - Select **Grayscale** on the **Interpretation** control in the **RAW Display Parameters** cluster.
    
-   > The settings on the **Serial Channel** tab are now similar to the image below.
+    > The settings on the **Serial Channel** tab are now similar to the image below.
    
-   ![Generating and Displaying Multiple Images Channel Configurations](../../images/PXIe-148X-Gen-MultipleImages-ChannelConfigurations.png)
+    ![Generating and Displaying Multiple Images Channel Configurations](../../images/PXIe-148X-Gen-MultipleImages-ChannelConfigurations.png)
 
 7. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
     > Once the generation completes, notice the **Number of Generated Packets** indicator array shows a value of <font face = "courier new">10820</font> at index 0 and <font face = "courier new">12820</font> at index 1, which equals the number of packets per frame (vertical resolution) times the number of frames generated for each channel. The indices in the **Number of Generated Packets** array correspond to the indices in the **Channel Configurations** array.
@@ -250,6 +230,8 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
     ![Generating and Displaying Multiple Images Second Display Channel](../../images/PXIe-148X-Gen-MultipleImages-SecondDisplayChannel.png)
 
 ### Setting a Start Trigger Delay
+
+> Note: This is a continuation from the previous section.
 
 This section of the tutorial shows you how to delay the generation start. Image data acquired using the PXIe-148X Acquisition getting started example often has several seconds of delay before the first packet is acquired while the camera is configured. The PXIe-148X Generation getting started example sets a packet timing offset value to the negative of the first packet timestamp in the TDMS file to prevent any unwanted delay in the start of generation. If a delay is desired the **Start Trigger Delay (s)** control is used. Refer to the **Start Trigger Delay (s)** description in the [PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#serial-channel-tab) for additional details.
 
