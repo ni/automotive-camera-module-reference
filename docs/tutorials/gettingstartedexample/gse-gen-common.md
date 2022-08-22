@@ -2,7 +2,7 @@
 
 This document covers a range of common scenarios using the PXIe-148X Generation Getting Started Example (GSE) to help you understand LLP generation, I2C and GPIO timestamping, and common configuration options.
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -237,9 +237,9 @@ This section of the tutorial shows you how to delay the generation start. Image 
 
 10. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
    
-   > The settings on the **Serial Channel** tab are now similar to the image below.
-   
-   ![Generating and Displaying Multiple Images Start Trigger Delay](../../images/PXIe-148X-Gen-MultipleImages-StartTriggerDelay.png)
+    > The settings on the **Serial Channel** tab are now similar to the image below.
+    
+    ![Generating and Displaying Multiple Images Start Trigger Delay](../../images/PXIe-148X-Gen-MultipleImages-StartTriggerDelay.png)
 
 11. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation. 
     > The start of packet transmission is delayed and thus the image display is also delayed. Notice that there is now a 2 second delay before images are generated and displayed after clicking the **Serializer Setup Complete** button. 
