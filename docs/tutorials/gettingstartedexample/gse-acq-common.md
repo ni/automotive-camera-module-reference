@@ -3,7 +3,7 @@
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example (GSE) to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
