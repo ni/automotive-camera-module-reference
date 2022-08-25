@@ -26,7 +26,7 @@ This document includes reference information on various properties of PXIe-148x 
 | LabVIEW FPGA Target Name | The name of an FPGA Target for a module shown in a LabVIEW Project. |
 | FlexRIO First Supported  | The first NI-FlexRIO driver version to support a given module. |
 | Product ID               | FlexRIO driver product ID. Occasionally referenced in example code or help text. |
-| Variant ID               | FlexRIO driver variant ID used to distinguish similar modules. Occasionally referenced in example code or help text. |
+| Model Alias              | Conditional disable symbol MODEL_ALIAS used in FPGA VIs. Can be shared between similar models. |
 
 ---
 
@@ -42,11 +42,11 @@ This document includes reference information on various properties of PXIe-148x 
 
 ### Software Details
 
-| Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Variant ID |
-|------------------------|----------------------------------------------------|-----------------------------------|-------------------------|------------|------------|
-| PXIe-1486 Deserializer | NI PXIe-1486 (8 In - 954 Deserializer - KU11P)     | NI PXIe-1486 (8 In - KU11P)       | [20.6](#compat-note)    | 0x7A82     | 0x01       |
-| PXIe-1486 Serializer   | NI PXIe-1486 (8 Out - 953 Serializer - KU11P)      | NI PXIe-1486 (8 Out - KU11P)      | [20.7](#compat-note)    | 0x7A83     | 0x02       |
-| PXIe-1486 SerDes       | NI PXIe-1486 (4 In 4 Out - 953/954 SerDes - KU11P) | NI PXIe-1486 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A84     | 0x03       |
+| Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Model Alias |
+|------------------------|----------------------------------------------------|-----------------------------------|-------------------------|------------|-------------|
+| PXIe-1486 Deserializer | NI PXIe-1486 (8 In - 954 Deserializer - KU11P)     | NI PXIe-1486 (8 In - KU11P)       | [20.6](#compat-note)    | 0x7A82     | 1486_8I     |
+| PXIe-1486 Serializer   | NI PXIe-1486 (8 Out - 953 Serializer - KU11P)      | NI PXIe-1486 (8 Out - KU11P)      | [20.7](#compat-note)    | 0x7A83     | 1486_8O     |
+| PXIe-1486 SerDes       | NI PXIe-1486 (4 In 4 Out - 953/954 SerDes - KU11P) | NI PXIe-1486 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A84     | 1486_4I_4O  |
 
 ---
 
@@ -62,11 +62,11 @@ This document includes reference information on various properties of PXIe-148x 
 
 ### Software Details
 
-| Model Number           | NI MAX Name                                            | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Variant ID |
-|------------------------|--------------------------------------------------------|-----------------------------------|-------------------------|------------|------------|
-| PXIe-1487 Deserializer | NI PXIe-1487 (8 In - 9296A Deserializer - KU11P)       | NI PXIe-1487 (8 In - KU11P)       | [20.6](#compat-note)    | 0x7A85     | 0x01       |
-| PXIe-1487 Serializer   | NI PXIe-1487 (8 Out - 9295A Serializer - KU11P)        | NI PXIe-1487 (8 Out - KU11P)      | [20.7](#compat-note)    | 0x7A86     | 0x02       |
-| PXIe-1487 SerDes       | NI PXIe-1487 (4 In/4 Out - 9295A/9296A SerDes - KU11P) | NI PXIe-1487 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A87     | 0x03       |
+| Model Number           | NI MAX Name                                            | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Model Alias |
+|------------------------|--------------------------------------------------------|-----------------------------------|-------------------------|------------|-------------|
+| PXIe-1487 Deserializer | NI PXIe-1487 (8 In - 9296A Deserializer - KU11P)       | NI PXIe-1487 (8 In - KU11P)       | [20.6](#compat-note)    | 0x7A85     | 1487_8I     |
+| PXIe-1487 Serializer   | NI PXIe-1487 (8 Out - 9295A Serializer - KU11P)        | NI PXIe-1487 (8 Out - KU11P)      | [20.7](#compat-note)    | 0x7A86     | 1487_8O     |
+| PXIe-1487 SerDes       | NI PXIe-1487 (4 In/4 Out - 9295A/9296A SerDes - KU11P) | NI PXIe-1487 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A87     | 1487_4I_4O  |
 
 <a id="compat-note"></a>
 > (\*) Full details on hardware and OS compatibility can be found [here on ni.com](https://www.ni.com/en-us/support/documentation/compatibility/21/ni-hardware-and-operating-system-compatibility.html)
