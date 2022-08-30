@@ -14,22 +14,10 @@ This tutorial provides greater detail on how to generate TDMS files using the Cr
 ## Prerequisites 
 This tutorial is written for users who understand how to perform a basic generation and a basic acquisition with PXIe-148X GMSL or FPD-Link interface modules. It is recommended to complete the [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](gse-acq-basic.md) and [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md) before attempting this tutorial.
 
-## Initial Software Setup
-
-1.  First complete installation of software specified in the Getting Started Guide linked above.
-2.  Use the NI Example Finder to create a default project for your specific interface module.
-    - Open LabVIEW and click **Help -> Find Examples...**
-    
-    ![Open NI Example Finder](../../images/LabVIEW-Help-FindExamples.png)
-    - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
-    ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
-    - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
-    ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-1486-PXIe-148XTutorial.png)
-
 ## Create TDMS Files for Generation
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
-1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
+1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project you created in the Basic Generation tutorial.
 
     ![Open Create CSI-2 Packet TDMS Files VI](../../images/PXIe-148X-CreateTDMS-Project.png)
 
@@ -48,7 +36,38 @@ This tutorial is written for users who understand how to perform a basic generat
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)
 
 5. The newly created TDMS file is used in the following tutorial to perform a simple generation.
+    
 
+## Conceptual overview
+    
+    
+## What's some realistic numbers I can use for 1486, 1487, 1 channel? 8 channels?
+    
+## What's the most data I can saturate the link with?
+
+
+## I want to simulate camera X
+
+
+## What's the max frame rate I can do for my frame size
+
+## Using line sync packets
+    
+### I want to control timing with line start/end packets
+    
+### I want to control timing without line start/end packets
+
+## I want to try and evenly space my lines to fill the entire time window for a frame
+
+
+## What are the gotchas that I need to watch up for?
+
+
+## Accidentally creating impossible configs (leads to packet timing errors)Generating overly large file
+    
+
+## Create CSI-2 Packet TDMS Files VI Help
+Frame Data Configuration
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
