@@ -38,36 +38,46 @@ This tutorial is written for users who understand how to perform a basic generat
 5. The newly created TDMS file is used in the following tutorial to perform a simple generation.
     
 
-## Conceptual overview
-    
-    
-## What's some realistic numbers I can use for 1486, 1487, 1 channel? 8 channels?
-    
-## What's the most data I can saturate the link with?
-
-
-## I want to simulate camera X
-
+## Conceptual Overview
+TODO: Give description of what the LLP packet data looks like (and show diagram). Give explanation of how the various controls can affect the timing relationship of the generated data.
 
 ## What's the max frame rate I can do for my frame size
 
 ## Using line sync packets
+### Controlling timing with line start/end packets
+### Controlling timing without line start/end packets
+
+## Evenly spacing long packets to fill the entire time window for a frame
+
+## Other Considerations and Tips
+### Accidentally creating impossible configurations (packet timing errors)
+### Generating overly large files
     
-### I want to control timing with line start/end packets
+## TBD - DO WE NEED THESE?
+### What's some realistic numbers I can use for 1486, 1487, 1 channel? 8 channels?
+### What's the most data I can saturate the link with?
     
-### I want to control timing without line start/end packets
-
-## I want to try and evenly space my lines to fill the entire time window for a frame
-
-
-## What are the gotchas that I need to watch up for?
-
-
-## Accidentally creating impossible configs (leads to packet timing errors)Generating overly large file
-    
-
 ## Create CSI-2 Packet TDMS Files VI Help
-Frame Data Configuration
+### General
+- **Serial Input Channels** - TODO
+- **TDMS File Directory** - Path to the directory used to load TDMS data files. 
+    > If left blank the TDMS File Directory is automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet data, I2C timestamps, and GPIO timestamps.
+- **Number of Frames** - TODO
+- **Actual Frame Rate (fps)** - TODO
+- **Error Out** - Displays any error that occurred when running the VI.
+    
+### Frame Data Configuration
+- **pixel data type** - TODO
+- **horizontal resolution** - TODO
+- **vertical resolution** - TODO
+- **virtual channel** - TODO
+- **include line sync packets** - TODO
+
+### Frame Timing Configuration
+- **desired frame rate (fps)** - TODO
+- **actual link data rate (B/s)** - TODO
+- **minimum delay between packets (cycles)** - TODO
+- **line blanking (cycles)** - TODO
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
