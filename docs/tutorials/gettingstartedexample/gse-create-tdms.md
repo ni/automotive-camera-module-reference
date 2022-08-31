@@ -29,12 +29,18 @@ This tutorial is written for users who understand how to perform a basic generat
 
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)    
 
-## Conceptual Overview
-TODO: Give description of what the LLP packet data looks like (and show diagram). Give explanation of how the various controls can affect the timing relationship of the generated data.
-  
-   ![No Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-NoLineSyncPackets-Diagram.png)
+## Conceptual Overview    
+The TDMS file creator generates LLP packet data for use with the Generation Example VI in the getting started labview project. In order to achieve a desired image size and frame rate, the TDMS file creator will read the front panel control values and format ramp pattern pixel data into CSI-2 LLP packets. 
+    
+The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generator Frame Start, Frame End, and Long Packets. In order to achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
 
-   ![Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-LineSyncPackets-Diagram.png)
+To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
+To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
+To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
+    
+If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
+  
+
     
 
 The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
@@ -59,6 +65,16 @@ The rules above can be summarized to:
 | Long Packet | Long Packet | Max Delay |
 | Long Packet | Line End | Min Delay |
 | Long Packet | Frame End | Min Delay |
+    
+    
+The figure below shows what the timing of the generated LLP packets will look like with **include line sync packets** set to false.
+   ![No Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-NoLineSyncPackets-Diagram.png)
+
+The figure below shows what the timing of the generated LLP packets will look like with **include line sync packets** set to true.
+   ![Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-LineSyncPackets-Diagram.png)
+    
+    
+The following scenarios will illustrate the above concepts in more detail.
         
 ## Determining the maximum frame rate for a given frame size
 TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS.
