@@ -109,6 +109,7 @@ TODO: Talk about the practical implications of the conceptual overview. I.E. set
     |-|-|-|
     | DS90UB953 | 400MB/s | 385 MB/s |
     | MAX9295A  | 750MB/s | 600 MB/s |
+    
     > The practical maxes were empirically determined. You may find for your application the values can vary higher or lower.
     > Refer to [Automotive Camera Module Variants Table](reference/hardware/automotive-camera-module-variants.md) to associate a serializer with a specific interface device module.
 - **minimum delay between packets (cycles)** - The minimum number of cycles of delay between LLP packets. Refer to the [Conceptual Overview](#conceptual-overview) for additional detail.
