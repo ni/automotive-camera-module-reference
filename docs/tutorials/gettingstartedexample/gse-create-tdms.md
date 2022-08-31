@@ -33,35 +33,33 @@ This tutorial is written for users who understand how to perform a basic generat
 TODO: Give description of what the LLP packet data looks like (and show diagram). Give explanation of how the various controls can affect the timing relationship of the generated data.
   
    ![No Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-NoLineSyncPackets-Diagram.png)
-    
-    
-   ![Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-LineSyncPackets-Diagram.png)  
 
+   ![Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-LineSyncPackets-Diagram.png)
+    
 
-    > The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
-    - Min Delay = **minimum delay between packets (cycles)**		
-    - Max Delay = the greater of **minimum delay between packets (cycles)** and **line blanking (cycles)**		
-    - Long Packet following a Long Packet has Max Delay
-    - Line End or Frame End following a long packet has Min Delay
-    - Any packet following a Frame Start, Frame End, or Line Start has the Min Delay
-    - Line Start following a Line End has Max Delay
-    - Frame End following Line End has Min Delay
+The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
+- Min Delay = **minimum delay between packets (cycles)**		
+- Max Delay = the greater of **minimum delay between packets (cycles)** and **line blanking (cycles)**		
+- Long Packet following a Long Packet has Max Delay
+- Line End or Frame End following a long packet has Min Delay
+- Any packet following a Frame Start, Frame End, or Line Start has the Min Delay
+- Line Start following a Line End has Max Delay
+- Frame End following Line End has Min Delay
     
-    > The rules above can be summarized to:
+The rules above can be summarized to:
 
-    | Current Packet | Next Packet | Delay (cycles) between end of Current and start of Next Packet |
-    |-|-|-|
-    | Frame Start | Line Start | Min Delay |
-    | Frame Start | Long Packet | Min Delay |
-    | Frame End | Frame Start | Determined by desired frame rate, but must at least equal Min Delay |
-    | Line Start | Long Packet | Min Delay |
-    | Line End | Line Start | Max Delay |
-    | Line End | Frame End | Min Delay |
-    | Long Packet | Long Packet | Max Delay |
-    | Long Packet | Line End | Min Delay |
-    | Long Packet | Frame End | Min Delay |
-    
-    
+| Current Packet | Next Packet | Delay (cycles) between end of Current and start of Next Packet |
+|-|-|-|
+| Frame Start | Line Start | Min Delay |
+| Frame Start | Long Packet | Min Delay |
+| Frame End | Frame Start | Determined by desired frame rate, but must at least equal Min Delay |
+| Line Start | Long Packet | Min Delay |
+| Line End | Line Start | Max Delay |
+| Line End | Frame End | Min Delay |
+| Long Packet | Long Packet | Max Delay |
+| Long Packet | Line End | Min Delay |
+| Long Packet | Frame End | Min Delay |
+        
 ## Determining the maximum frame rate for a given frame size
 TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS.
 
