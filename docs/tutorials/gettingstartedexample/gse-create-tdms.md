@@ -61,24 +61,33 @@ TODO: Talk about the practical implications of the conceptual overview. I.E. set
     
     
 ### General
-- **Serial Input Channels** - TODO
+- **Serial Input Channels** - Array of strings representing the channels you will generate TDMS files for. Generated TDMS files have the prefix “SIx_” to indicate it is associated with a channel ‘SOx’. Although the prefix contains ‘SI’ suggesting ‘serial input’, when used with the Generation GSE, the TDMS file actually associates a specific serial output channel e.g. ‘SO0’.
 - **TDMS File Directory** - Path to the directory used to load TDMS data files. 
     > If left blank the TDMS File Directory is automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet data, I2C timestamps, and GPIO timestamps.
-- **Number of Frames** - TODO
-- **Actual Frame Rate (fps)** - TODO
+- **Number of Frames** - The number of frames to generate.
+- **Actual Frame Rate (fps)** - The calculated frame rate based on **Frame Data Configuration** and **Frame Timing Configuration** control values. This value may differ from the **desired frame rate (fps)** depending on other control values.
 - **Error Out** - Displays any error that occurred when running the VI.
     
 ### Frame Data Configuration
-- **pixel data type** - TODO
-- **horizontal resolution** - TODO
-- **vertical resolution** - TODO
-- **virtual channel** - TODO
-- **include line sync packets** - TODO
+- **pixel data type** - Data type of the LLP packet payload for long packets.
+    > Supported Options: YUV420 8-bit, YUV420 10-bit, Legacy YUV420 8-bit, YUV420 8-bit Chroma Shifted, YUV420 10-bit Chroma Shifted, YUV422 8-bit, YUV422 10-bit, RGB565, RGB666, RGB888, RAW 8, RAW 10, RAW 12, RAW 14, RAW 16.
+- **horizontal resolution** - The number of pixels from left to right of a generated frame. Each long packet generated will have a payload containing the number of pixels defined by this value.
+- **vertical resolution** - The number of pixels from top to bottom of a generated frame. Each frame generated will have a number of long packets equal to this value.
+- **virtual channel** - Number representing a Virtual Channel Identifier.
+    > Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path.
+- **include line sync packets** - Determines whether each generated Long Packet will be proceded by a Line Start Packet and followed by a Line End packet.
 
 ### Frame Timing Configuration
-- **desired frame rate (fps)** - TODO
-- **actual link data rate (B/s)** - TODO
-- **minimum delay between packets (cycles)** - TODO
+- **desired frame rate (fps)** - Target frame rate for generated TDMS data.
+- **actual link data rate (B/s)** - The maximum link rate of the serializer. Refer to the table below.
+    
+    | Serializer | Theoretical Max | Practical Max |
+    |-|-|-|
+    | DS90UB953 | 400MB/s | 385 MB/s |
+    | MAX9295A  | 750MB/s | 600 MB/s |
+    > The practical maxes were empirically determined. You may find for your application the values can vary higher or lower.
+    > Refer to [Automotive Camera Module Variants Table](reference/hardware/automotive-camera-module-variants.md) to associate a serializer with a specific interface device module.
+- **minimum delay between packets (cycles)** - The number of cycles added to the timestamps of LLP packets that follow any short packets such as Frame Start, Frame End, Line Start, and Line End. When **include line sync packets** is set to true the same number of cycles will also be added to LLP packets following long packets.
 - **line blanking (cycles)** - TODO
 
 ## Related Documents
