@@ -75,10 +75,9 @@ The figure below shows what the timing of the generated LLP packets will look li
 The following scenarios will illustrate the above concepts in more detail.
         
 ## Determining the maximum frame rate for a given frame size
-TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS.
+TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS. Set all the controls to something reasonable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
     
-Rough outline of this part:
-1. Set all the controls to something reasonable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
+Tutorial starts here:
     
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
