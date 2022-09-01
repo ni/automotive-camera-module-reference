@@ -79,7 +79,21 @@ TODO: Talk about the practical implications of the conceptual overview. I.E. set
     
 Rough outline of this part:
 1. Set all the controls to something reasonable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
+    
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+    
+1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
 
+2.  Set the **Number of Frames** control to 1. Setting this to 1 will let you quickly iterate over configuration settings and getting feedback with the **Actual Frame Rate (fps)** indicator.
+    
+3. Set the **desired frame rate (fps)** to 1000. This will make the frame period much smaller than the interpacket delay and LLP packet duration.
+    
+4. Run the VI and look at the **Actual Frame Rate (fps)** indicator. This tells you for a given **Frame Data Configuration** and **Frame Timing Configuration** what the maximum achieveable FPS is.
+    
+5. Now the set the **desired frame rate (fps) to 40. This will make the frame period larger than the framme perod required for the interpacket delay and LLP packet duration.
+    
+6. Run the VI and look at the **Actual Frame Rate (fps)** indicator. It shows 40 fps.
+    
 ## Using line sync packets
 ### Controlling timing with line start/end packets
 ### Controlling timing without line start/end packets
