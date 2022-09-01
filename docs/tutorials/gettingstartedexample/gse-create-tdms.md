@@ -95,6 +95,22 @@ Tutorial starts here:
     
 ## Using line sync packets
 TODO: Toggle the link sync packets boolean from off to on and see that the maximum achievable framerate has decreased. This is because there are more LLP packets being sent. Refer back to the pictures. I don't think we need the scenario split into two.
+
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+    
+1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
+
+2. Set the **Number of Frames** control to 1.
+    
+3. Set the **desired frame rate (fps)** to 1000.
+    
+4. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed.
+
+5. Set the **include line sync packets** control to true.
+    
+6. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed is slightly lower than before. This is because there are more packets being sent and more minimum delays being added to each frame.
+
+TODO: Delete these subsections?
 ### Controlling timing with line start/end packets
 ### Controlling timing without line start/end packets
 
