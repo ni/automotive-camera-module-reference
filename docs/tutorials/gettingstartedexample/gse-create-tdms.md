@@ -32,12 +32,12 @@ This tutorial is written for users who understand how to perform a basic generat
 ## Conceptual Overview    
 The TDMS file creator generates LLP packet data for use with the Generation Example VI in the getting started labview project. In order to achieve a desired image size and frame rate, the TDMS file creator will read the front panel control values and format ramp pattern pixel data into CSI-2 LLP packets. 
     
-The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generator Frame Start, Frame End, and Long Packets. In order to achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
+The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generate Frame Start, Frame End, and Long Packets. In order to achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
 
 To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
 To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
 To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
-    > Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example.
+> Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example.
     
 If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
 
@@ -78,7 +78,7 @@ The following scenarios will illustrate the above concepts in more detail.
 TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS.
     
 Rough outline of this part:
-1. Set all the controls to something reasoable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
+1. Set all the controls to something reasonable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
 
 ## Using line sync packets
 ### Controlling timing with line start/end packets
