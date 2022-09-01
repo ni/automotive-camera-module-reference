@@ -43,7 +43,7 @@ If the interpacket delay and packet duration of the packets is greater than the 
 
 The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
 - Min Delay = **minimum delay between packets (cycles)**		
-- Max Delay = the greater of **minimum delay between packets (cycles)** and **line blanking (cycles)**		
+- Max Delay = the greater of **minimum delay between packets (cycles)** and **line blanking (cycles)**
 - Long Packet following a Long Packet has Max Delay
 - Line End or Frame End following a long packet has Min Delay
 - Any packet following a Frame Start, Frame End, or Line Start has the Min Delay
@@ -116,6 +116,30 @@ TODO: Delete these subsections?
 
 ## Evenly spacing long packets to fill the entire time window for a frame
 TODO: Show how after deciding on the framerate you can get very close to the framerate by increasing the line blanking cycles until the actual fps is very close to the desired frame rate while leaving the desired frame rate control at 1000. This will make the remaining frame period very small and evenly space out the line packets within the frame period.
+    
+This tutorial is going to show you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. We will use the TDMS file Viewer to look at the packets and see how we can adjust the timing to achieve a 30 FPS TDMS file.
+    
+> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+    
+1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
+
+2. Set the **Number of Frames** control to 2.
+    
+3. Set the **desired frame rate (fps)** to 1000.
+    
+4. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed.
+    
+5. Double click the TDMS File Viewer VI in the LabVIEW project.
+    
+6. Open the created generated TDMS file.
+    
+7. Look at the timestamps of the first Frame End and second Frame Start packets.
+
+8. Set the **line blanking (cycles)** to 5000.
+    
+9. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed has lowered significantly.
+    
+... continue steps?
 
 ## Other Considerations and Tips
 ### Accidentally creating impossible configurations (packet timing errors)
