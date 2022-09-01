@@ -37,11 +37,9 @@ The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, F
 To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
 To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
 To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
+    > Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example.
     
 If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
-  
-
-    
 
 The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
 - Min Delay = **minimum delay between packets (cycles)**		
@@ -78,6 +76,9 @@ The following scenarios will illustrate the above concepts in more detail.
         
 ## Determining the maximum frame rate for a given frame size
 TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS.
+    
+Rough outline of this part:
+1. Set all the controls to something reasoable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
 
 ## Using line sync packets
 ### Controlling timing with line start/end packets
