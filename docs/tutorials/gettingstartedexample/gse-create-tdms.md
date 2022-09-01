@@ -94,18 +94,24 @@ Tutorial starts here:
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator. It shows 40 fps.
     
 ## Using line sync packets
+TODO: Toggle the link sync packets boolean from off to on and see that the maximum achievable framerate has decreased. This is because there are more LLP packets being sent. Refer back to the pictures. I don't think we need the scenario split into two.
 ### Controlling timing with line start/end packets
 ### Controlling timing without line start/end packets
 
 ## Evenly spacing long packets to fill the entire time window for a frame
+TODO: Show how after deciding on the framerate you can get very close to the framerate by increasing the line blanking cycles until the actual fps is very close to the desired frame rate while leaving the desired frame rate control at 1000. This will make the remaining frame period very small and evenly space out the line packets within the frame period.
 
 ## Other Considerations and Tips
 ### Accidentally creating impossible configurations (packet timing errors)
+TODO: This generator will allow you to create impossible TDMS files. It does not account for serializer or data path implementations. Use the help section and the data sheets for the serializer you are using to determine the right interpacket delay.
 ### Generating overly large files
+TODO: If you set number of frames super high it will take a very long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
     
 ## TBD - DO WE NEED THESE?
 ### What's some realistic numbers I can use for 1486, 1487, 1 channel? 8 channels?
+TODO: I think this is addressed in the help section below.
 ### What's the most data I can saturate the link with?
+TODO: I think this is addressed in the help section below.
     
 ## Create CSI-2 Packet TDMS Files VI Help
     
