@@ -115,6 +115,15 @@ This tutorial will enable line sync packets in the generated data and use the TD
 5. Set the **include line sync packets** control to true.
     
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed is slightly lower than before. This is because there are more packets being sent and more minimum delays being added to each frame.
+    
+7. Double click the TDMS File Viewer VI in the LabVIEW project.
+    
+8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
+    
+9. Run the TDMS File Viewer VI and verify that all of the RAW12 Long Packets are surrounded by Line Start and Line End packets. The display should look like the image below.
+    
+    ![Open TDMS File Viewer VI](../../images/PXIe-148X-TDMSFileViewer-LineSyncPackets.png)
+    
 
 ## Evenly spacing long packets to fill the entire time window for a frame    
 This tutorial is going to show you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS file Viewer to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
