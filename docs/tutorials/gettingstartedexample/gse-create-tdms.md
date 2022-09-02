@@ -122,7 +122,7 @@ This tutorial will enable line sync packets in the generated data and use the TD
     
 9. Run the TDMS File Viewer VI and verify that all of the RAW12 Long Packets are surrounded by Line Start and Line End packets. The display should look like the image below.
     
-    ![Open TDMS File Viewer VI](../../images/PXIe-148X-TDMSFileViewer-LineSyncPackets.png)
+    ![Viewer Line Sync Packets](../../images/PXIe-148X-TDMSFileViewer-LineSyncPackets.png)
     
 
 ## Evenly spacing long packets to fill the entire time window for a frame    
@@ -134,21 +134,21 @@ This tutorial is going to show you how to adjust the interpacket delay to spread
 
 2. Set the **Number of Frames** control to 2.
     
-3. Set the **desired frame rate (fps)** to 1000.
+3. Set the **desired frame rate (fps)** to 30.
     
-4. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed.
+4. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed is 30.
     
 5. Double click the TDMS File Viewer VI in the LabVIEW project.
     
-6. Open the created generated TDMS file.
+6. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
     
-7. Look at the timestamps of the first Frame End and second Frame Start packets.
-
-8. Set the **line blanking (cycles)** to 5000.
+7. Run the TDMS File Viewer VI and look at the timestamps of the first Frame End and second Frame Start packets on packet indexes 1081 and 1082. Note that there is a remaining frame period of 20 milliseconds. We can adjust our interpacket delay so that there is more time between each line packet and still achieve 30 FPS. Note the image below.
     
-9. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed has lowered significantly.
+    ![Large Frame Period](../../images/PXIe-148X-TDMSFileViewer-LargeFramePeriod.png)
     
-... continue steps?
+8. Set the **line blanking (cycles)** to 4650 and regenerate the TDMS file. You should see that **Actual Frame Rate (fps)** is still 30 FPS.
+    
+9. Run the TDMS File Viewer VI and look at the Frame End and Frame Start packets on packet indexes 1081 and 1082. Now there should be a very small remaining frame period. We have successfully moved that delay in between each of the packets. Data sets with higher interpacket delays are easier for the Generation Example to run without packet timing errors.
     
 ## Create CSI-2 Packet TDMS Files VI Help
     
