@@ -74,11 +74,7 @@ The figure below shows what the timing of the generated LLP packets will look li
     
 The following scenarios will illustrate the above concepts in more detail.
         
-## Determining the maximum frame rate for a given frame size
-TODO: Talk about the practical implications of the conceptual overview. I.E. setting desired FPS really high or making other timing constraints loose to find the ideal configuration settings. The constraints work in different ways, they applied in a priority order but the strictest limitation will determine your actual FPS. Set all the controls to something reasonable but set the FPS really high and see what your maximum FPS could be, then change the FPS to the lower desired level. This lets you know how much margin you have for what you are trying to achieve. Are you right on the edge?
-    
-Tutorial starts here:
-    
+## Determining the maximum frame rate for a given frame size    
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
@@ -93,9 +89,17 @@ Tutorial starts here:
     
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator. It shows 40 fps.
     
-## Using line sync packets
-TODO: Toggle the link sync packets boolean from off to on and see that the maximum achievable framerate has decreased. This is because there are more LLP packets being sent. Refer back to the pictures. I don't think we need the scenario split into two.
+7. Double click the TDMS File Viewer VI in the LabVIEW project.
+    
+    ![Open TDMS File Viewer VI](../../images/PXIe-148X-GSE-TDMSFileViewer.png)
 
+8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
+
+    > Note: The directory browse window will not show the TDMS files located in the "TDMS Files" directory.
+    
+9. Run the TDMS File Viewer VI and verify you have one frame of data. You should have a Frame Start packet, followed by 1080 RAW12 packets, followed by a Frame End packet.
+    
+## Using line sync packets
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
