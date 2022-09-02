@@ -37,7 +37,7 @@ The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, F
 To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
 To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
 To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
-> Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example.
+> Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example. If you set **number of frames** very high it will take a very long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
     
 If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
 
@@ -100,6 +100,8 @@ The following scenarios will illustrate the above concepts in more detail.
 9. Run the TDMS File Viewer VI and verify you have one frame of data. You should have a Frame Start packet, followed by 1080 RAW12 packets, followed by a Frame End packet.
     
 ## Using line sync packets
+This tutorial will enable line sync packets in the generated data and use the TDMS file viewer to verify that each RAW12 Long Packet is proceded by a Line Start packet and followed by a Line End packet.
+    
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
@@ -114,14 +116,8 @@ The following scenarios will illustrate the above concepts in more detail.
     
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed is slightly lower than before. This is because there are more packets being sent and more minimum delays being added to each frame.
 
-TODO: Delete these subsections?
-### Controlling timing with line start/end packets
-### Controlling timing without line start/end packets
-
-## Evenly spacing long packets to fill the entire time window for a frame
-TODO: Show how after deciding on the framerate you can get very close to the framerate by increasing the line blanking cycles until the actual fps is very close to the desired frame rate while leaving the desired frame rate control at 1000. This will make the remaining frame period very small and evenly space out the line packets within the frame period.
-    
-This tutorial is going to show you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. We will use the TDMS file Viewer to look at the packets and see how we can adjust the timing to achieve a 30 FPS TDMS file.
+## Evenly spacing long packets to fill the entire time window for a frame    
+This tutorial is going to show you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS file Viewer to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
     
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
@@ -144,18 +140,6 @@ This tutorial is going to show you how to adjust the interpacket delay to spread
 9. Run the VI and look at the **Actual Frame Rate (fps)** indicator and note the FPS displayed has lowered significantly.
     
 ... continue steps?
-
-## Other Considerations and Tips
-### Accidentally creating impossible configurations (packet timing errors)
-TODO: This generator will allow you to create impossible TDMS files. It does not account for serializer or data path implementations. Use the help section and the data sheets for the serializer you are using to determine the right interpacket delay.
-### Generating overly large files
-TODO: If you set number of frames super high it will take a very long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
-    
-## TBD - DO WE NEED THESE?
-### What's some realistic numbers I can use for 1486, 1487, 1 channel? 8 channels?
-TODO: I think this is addressed in the help section below.
-### What's the most data I can saturate the link with?
-TODO: I think this is addressed in the help section below.
     
 ## Create CSI-2 Packet TDMS Files VI Help
     
