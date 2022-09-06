@@ -48,7 +48,7 @@ The interpacket delay in a generated TDMS file is largely goverened by the value
 - Max Delay = the greater of **minimum delay between packets (cycles)** and **line blanking (cycles)**
 - Long Packet following a Long Packet has Max Delay
 - Line End or Frame End following a long packet has Min Delay
-- Any packet following a Frame Start, Frame End, or Line Start has the Min Delay
+- Any packet following a Frame Start, Frame End, or Line Start has Min Delay
 - Line Start following a Line End has Max Delay
 - Frame End following Line End has Min Delay
     
@@ -76,7 +76,9 @@ The figure below shows what the timing of the generated LLP packets look like wi
     
 The following scenarios illustrate the above concepts in more detail.
         
-## Determining the maximum frame rate for a given frame size    
+## Determining the Maximum Frame Rate for a Given Frame Size
+The Create CSI-2 Packet TDMS Files VI can be used to easily determine a maximum theoretical frame rate for a given frame size. The frame rate shown in the **Actual Frame Rate (fps)** indicator is influenced by the Frame Data Configuration and Frame Timing Configuration controls. This section walks through how to adjust specific controls to ensure that the returned value matches the theoretical maximum for a given frame size.
+    
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
@@ -87,7 +89,7 @@ The following scenarios illustrate the above concepts in more detail.
     
 4. Run the VI and look at the **Actual Frame Rate (fps)** indicator. This tells you for a given **Frame Data Configuration** and **Frame Timing Configuration** what the maximum achieveable FPS is.
     
-5. Now the set the **desired frame rate (fps) to 40. This makes the frame period larger than the framme perod required for the interpacket delay and LLP packet duration.
+5. Now the set the **desired frame rate (fps)** to 40. This makes the frame period larger than the frame perod required for the interpacket delay and LLP packet duration.
     
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator. It shows 40 fps.
     
@@ -100,6 +102,10 @@ The following scenarios illustrate the above concepts in more detail.
     > Note: The directory browse window will not show the TDMS files located in the "TDMS Files" directory.
     
 9. Run the TDMS File Viewer VI and verify you have one frame of data. You should have a Frame Start packet, followed by 1080 RAW12 packets, followed by a Frame End packet.
+    
+10. Repeat steps 3 and 4 with a **horizontal resolution** of 3840 and a **vertical resolution** of 2160 and observe that you should see an **Actual Frame Rate (fps)** of 23.1642. The achievable frame rate has decreased because the duration of the Long Packets and the number of Long Packets has increased.
+    
+11. Repeat steps 7 through 9 and you should see in the TDMS File Viewer that there is a Frame Start packet, followed by 2160 RAW12 packets, followed by a Frame End packet.
     
 ## Using line sync packets
 This tutorial enables line sync packets in the generated data and use the TDMS file viewer to verify that each RAW12 Long Packet is proceded by a Line Start packet and followed by a Line End packet.
