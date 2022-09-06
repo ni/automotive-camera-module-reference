@@ -37,7 +37,7 @@ The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, F
 - To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
 - To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
     
-> Note: You will have packet timing errors when using the generated data with the Generation Example if the interpacket delay is too low. Whether a delay is 'too low' is system specific because it depends on data path delays and serializer specifications.
+> Note: Packet timing errors occur when using the generated data with the Generation Example if the interpacket delay is too low. Whether a delay is 'too low' is system specific because it depends on data path delays and serializer specifications.
     
 > Note: If you set number of frames very high it can take a long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
     
@@ -67,27 +67,27 @@ The rules above can be summarized to:
 | Long Packet | Frame End | Min Delay |
     
     
-The figure below shows what the timing of the generated LLP packets will look like with **include line sync packets** set to false.
+The figure below shows what the timing of the generated LLP packets look like with **include line sync packets** set to false.
    ![No Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-NoLineSyncPackets-Diagram.png)
 
-The figure below shows what the timing of the generated LLP packets will look like with **include line sync packets** set to true.
+The figure below shows what the timing of the generated LLP packets look like with **include line sync packets** set to true.
    ![Line Sync Packets Diagram](../../images/PXIe-148X-CreateTDMS-LineSyncPackets-Diagram.png)
     
     
-The following scenarios will illustrate the above concepts in more detail.
+The following scenarios illustrate the above concepts in more detail.
         
 ## Determining the maximum frame rate for a given frame size    
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
 
-2.  Set the **Number of Frames** control to 1. Setting this to 1 will let you quickly iterate over configuration settings and get feedback with the **Actual Frame Rate (fps)** indicator.
+2.  Set the **Number of Frames** control to 1. Setting this to 1 lets you quickly iterate over configuration settings and get feedback with the **Actual Frame Rate (fps)** indicator.
     
-3. Set the **desired frame rate (fps)** to 1000. This will make the frame period much smaller than the interpacket delay and LLP packet duration.
+3. Set the **desired frame rate (fps)** to 1000. This makes the frame period much smaller than the interpacket delay and LLP packet duration.
     
 4. Run the VI and look at the **Actual Frame Rate (fps)** indicator. This tells you for a given **Frame Data Configuration** and **Frame Timing Configuration** what the maximum achieveable FPS is.
     
-5. Now the set the **desired frame rate (fps) to 40. This will make the frame period larger than the framme perod required for the interpacket delay and LLP packet duration.
+5. Now the set the **desired frame rate (fps) to 40. This makes the frame period larger than the framme perod required for the interpacket delay and LLP packet duration.
     
 6. Run the VI and look at the **Actual Frame Rate (fps)** indicator. It shows 40 fps.
     
@@ -102,7 +102,7 @@ The following scenarios will illustrate the above concepts in more detail.
 9. Run the TDMS File Viewer VI and verify you have one frame of data. You should have a Frame Start packet, followed by 1080 RAW12 packets, followed by a Frame End packet.
     
 ## Using line sync packets
-This tutorial will enable line sync packets in the generated data and use the TDMS file viewer to verify that each RAW12 Long Packet is proceded by a Line Start packet and followed by a Line End packet.
+This tutorial enables line sync packets in the generated data and use the TDMS file viewer to verify that each RAW12 Long Packet is proceded by a Line Start packet and followed by a Line End packet.
     
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
@@ -174,7 +174,7 @@ This tutorial shows you how to adjust the interpacket delay to spread the line p
 - **vertical resolution** - The number of pixels from top to bottom of a generated frame. Each frame generated will have a number of long packets equal to this value.
 - **virtual channel** - Number representing a Virtual Channel Identifier.
     > Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path.
-- **include line sync packets** - Determines whether each generated Long Packet will be preceded by a Line Start Packet and followed by a Line End packet.
+- **include line sync packets** - Determines whether each generated Long Packet is preceded by a Line Start Packet and followed by a Line End packet.
 
 ### Frame Timing Configuration
 - **desired frame rate (fps)** - Target frame rate for generated TDMS data.
