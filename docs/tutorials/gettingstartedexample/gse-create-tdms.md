@@ -136,7 +136,7 @@ This tutorial enables line sync packets in the generated data and use the TDMS f
 ## Creating a TDMS File with Evenly Spaced Line Packets    
 By default the Create CSI-2 Packet TDMS Files VI produces a TDMS file with all the packets in a frame tightly grouped together while still meeting the configuration requirements. This leaves the remaining time in the frame period empty. Many cameras stream data more evenly across the frame period, and the Create CSI-2 Packet TDMS Files VI can be configured to more closely approximate that behavior if desired.
 
-This tutorial shows you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS file Viewer to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
+This tutorial shows you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS File Viewer VI to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
     
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
