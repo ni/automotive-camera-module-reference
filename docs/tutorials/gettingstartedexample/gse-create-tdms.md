@@ -29,9 +29,9 @@ This tutorial is written for users who understand how to perform a basic generat
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)    
 
 ## Conceptual Overview    
-The TDMS file creator generates LLP packet data for use with the Generation Getting Started Example. To achieve a desired image size and frame rate, the TDMS file creator will read the front panel control values and format ramp pattern pixel data into CSI-2 LLP packets. 
+The TDMS file creator generates LLP packet data for use with the Generation Getting Started Example. To achieve a desired image size and frame rate, the TDMS file creator reads the front panel control values and formats ramp pattern pixel data into CSI-2 LLP packets. 
     
-The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generate Frame Start, Frame End, and Long Packets. To achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
+The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator generates only Frame Start, Frame End, and Long Packets. To achieve the desired frame rate the VI sets the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
 
 - To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
 - To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
@@ -41,7 +41,7 @@ The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, F
     
 > Note: If you set number of frames very high it can take a long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
     
-If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
+If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI updates the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
 
 The interpacket delay in a generated TDMS file is largely goverened by the value of **minimum delay between packets (cycles)** and **line blanking (cycles)** and the rules defined below:
 - Min Delay = **minimum delay between packets (cycles)**		
