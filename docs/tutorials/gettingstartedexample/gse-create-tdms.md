@@ -19,25 +19,27 @@ This tutorial is written for users who understand how to perform a basic generat
 
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project you created in the Basic Generation tutorial.
 
-2. For this scenario the default settings are used to generate a TDMS file for channel SO0 containing 10 frames at 1920x1080 and 30fps .
+2. Run the VI to generate the TDMS file using the default settings. This creates a TDMS file for channel SO0 containing 10 frames at 1920x1080 and 30fps.
 
-    > Note: During the first run of the VI, the **TDMS File Directory** control automatically populates with a value pointing to a subfolder (\"TDMS Files\"). This subfolder is automatically created within the project folder to store any generated TDMS files.
+    > Note: During the first run of the VI, the TDMS File Directory control automatically populates with a value pointing to a subfolder ("TDMS Files"). This subfolder is automatically created within the project folder to store any generated TDMS files.
 
-3.  Run the VI to generate the TDMS file.
 
-4.  Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE, the TDMS file actually associates with serial output channel 'SO0'.
+3. Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE, the TDMS file actually associates with serial output channel 'SO0'.
 
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)    
 
 ## Conceptual Overview    
-The TDMS file creator generates LLP packet data for use with the Generation Example VI in the getting started labview project. In order to achieve a desired image size and frame rate, the TDMS file creator will read the front panel control values and format ramp pattern pixel data into CSI-2 LLP packets. 
+The TDMS file creator generates LLP packet data for use with the Generation Getting Started Example. To achieve a desired image size and frame rate, the TDMS file creator will read the front panel control values and format ramp pattern pixel data into CSI-2 LLP packets. 
     
-The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generate Frame Start, Frame End, and Long Packets. In order to achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
+The TDMS file creator uses 5 LLP packet types to facilitate this: Frame Start, Frame End, Line Start, Line End, and Long Packet. If the **include line sync packets** control is false, the creator will only generate Frame Start, Frame End, and Long Packets. To achieve the desired frame rate the VI will set the timestamps of the LLP packets by calculating the duration of the LLP packet, desired frame period, and interpacket delay.
 
-To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
-To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
-To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
-> Note: If you set the interpacket delay too low (which is an arbitrary level based on data path delays and serializer specifications) you will run into packet timing errors when you try to run the data from the Generation Example. If you set **number of frames** very high it will take a very long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
+- To control the duration of an LLP packet, set the **pixel data type**, **horizontal resolution**, **vertical resolution**, and **actual link data rate (B/s)**.
+- To control the frame period, set the **desired frame rate (fps)** control. The frame period is 1/frame rate.
+- To control the interpacket delay set the **minimum delay between packets (cycles)** and **line blanking (cycles)**.
+    
+> Note: You will have packet timing errors when using the generated data with the Generation Example if the interpacket delay is too low. Whether a delay is 'too low' is system specific because it depends on data path delays and serializer specifications.
+    
+> Note: If you set number of frames very high it can take a long time to iterate on configuration settings. It does not calculate actual fps until after the TDMS files have been generated. If you create a massive file you can run out of disk space and not get a valid data set.
     
 If the interpacket delay and packet duration of the packets is greater than the desired frame period, the generated output files will not achieve the desired frame rate. The VI will update the **Actual Frame Rate (fps)** indicator after creating the TDMS files to let the user see the final frame rate achieved.
 
@@ -79,7 +81,7 @@ The following scenarios will illustrate the above concepts in more detail.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
 
-2.  Set the **Number of Frames** control to 1. Setting this to 1 will let you quickly iterate over configuration settings and getting feedback with the **Actual Frame Rate (fps)** indicator.
+2.  Set the **Number of Frames** control to 1. Setting this to 1 will let you quickly iterate over configuration settings and get feedback with the **Actual Frame Rate (fps)** indicator.
     
 3. Set the **desired frame rate (fps)** to 1000. This will make the frame period much smaller than the interpacket delay and LLP packet duration.
     
@@ -125,14 +127,16 @@ This tutorial will enable line sync packets in the generated data and use the TD
     ![Viewer Line Sync Packets](../../images/PXIe-148X-TDMSFileViewer-LineSyncPackets.png)
     
 
-## Evenly spacing long packets to fill the entire time window for a frame    
-This tutorial is going to show you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS file Viewer to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
+## Creating a TDMS File with Evenly Spaced Line Packets    
+By default the Create CSI-2 Packet TDMS Files VI produces a TDMS file with all the packets in a frame tightly grouped together while still meeting the configuration requirements. This leaves the remaining time in the frame period empty. Many cameras stream data more evenly across the frame period, and the Create CSI-2 Packet TDMS Files VI can be configured to more closely approximate that behavior if desired.
+
+This tutorial shows you how to adjust the interpacket delay to spread the line packets out evenly throughout the frame period. You will use the TDMS file Viewer to look at the packets and see how you can adjust the timing to achieve a 30 FPS TDMS file.
     
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
     
 1. Double click the Create CSI-2 Packet TDMS Files VI in the LabVIEW project.
 
-2. Set the **Number of Frames** control to 2.
+2. Set the **Number of Frames** control to 2. You need two frames so that you can view the entire frame period, which is measured from a Frame Start packet to the next Frame Start packet.
     
 3. Set the **desired frame rate (fps)** to 30.
     
@@ -156,7 +160,7 @@ This tutorial is going to show you how to adjust the interpacket delay to spread
     
     
 ### General
-- **Serial Input Channels** - Array of strings representing the channels you will generate TDMS files for. Generated TDMS files have the prefix “SIx_” to indicate it is associated with a channel ‘SOx’. Although the prefix contains ‘SI’ suggesting ‘serial input’, when used with the Generation GSE, the TDMS file actually associates a specific serial output channel e.g. ‘SO0’.
+- **Serial Input Channels** - Array of strings representing the channels for which you will generate TDMS files. Generated TDMS files have the prefix “SIx_” to indicate it is associated with a channel ‘SOx’. Although the prefix contains ‘SI’ suggesting ‘serial input’, when used with the Generation GSE, the TDMS file actually associates a specific serial output channel e.g. ‘SO0’.
 - **TDMS File Directory** - Path to the directory used to load TDMS data files. 
     > If left blank the TDMS File Directory is automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet data, I2C timestamps, and GPIO timestamps.
 - **Number of Frames** - The number of frames to generate.
@@ -170,7 +174,7 @@ This tutorial is going to show you how to adjust the interpacket delay to spread
 - **vertical resolution** - The number of pixels from top to bottom of a generated frame. Each frame generated will have a number of long packets equal to this value.
 - **virtual channel** - Number representing a Virtual Channel Identifier.
     > Virtual channel identifiers designate separate logical channels for data flows interleaved in the data path.
-- **include line sync packets** - Determines whether each generated Long Packet will be proceded by a Line Start Packet and followed by a Line End packet.
+- **include line sync packets** - Determines whether each generated Long Packet will be preceded by a Line Start Packet and followed by a Line End packet.
 
 ### Frame Timing Configuration
 - **desired frame rate (fps)** - Target frame rate for generated TDMS data.
