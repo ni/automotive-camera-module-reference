@@ -23,7 +23,7 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
 > Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
 
 
-### Performing a Simple Generation and Acquisition
+### Performing a Simple Generation and Acquisdfsdfsdfsdfition
 1. Create a TDMS file for generation. There are two options for creating a TDMS file.
 
 | Option A: Create a TDMS File | Option B: Acquire Data from a Camera |
