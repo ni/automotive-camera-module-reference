@@ -112,6 +112,8 @@ Refer to this document to understand the elements of the getting started example
 
 - **Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the SerDes. GMSL SerDes do not support changing this from the default value of 25 MHz. However for FPD-Link SerDes, in certain modes of operation, you may need to adjust this value and should consult the datasheet of your SerDes for more information about supported reference clock frequencies and clocking modes.
 
+- **Serial Input Active Lane Count** - Specifies the number of CSI-2 data lanes for the deserializer to use when acquiring data.
+
 ### I2C Tab
 - **timestamp filter** - Specifies I2C timestamp IDs to display after the acquisition completes.  I2C timestamps with IDs not matching an ID included in the timestamp filter array are logged, but not displayed.
     > User24 represents the I2C traffic on serial channel 0 (SI0), User25 represents the I2C traffic on serial channel 1 (SI1), and so on.
