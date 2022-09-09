@@ -175,7 +175,7 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 
     ![TDMS File Viewer VI Front Panel](../../images/PXIe-148X-GSE-TDMSFileViewer-FrontPanel.png)
 
-2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Acq\\TDMS Files</font>.
+2.  Select the correct location for the **TDMS File Directory** control. By default, TDMS files in the previous tutorial were saved to `<yourprojectdir>\Host\Acq\TDMS Files`.
 
     > Note: The directory browse window will not show the TDMS files located in the "TDMS Files" directory.
 

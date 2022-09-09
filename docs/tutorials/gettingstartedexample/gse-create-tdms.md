@@ -24,7 +24,7 @@ This tutorial is written for users who understand how to perform a basic generat
     > Note: During the first run of the VI, the TDMS File Directory control automatically populates with a value pointing to a subfolder ("TDMS Files"). This subfolder is automatically created within the project folder to store any generated TDMS files.
 
 
-3. Open Windows Explorer and navigate to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE, the TDMS file actually associates with serial output channel 'SO0'.
+3. Open Windows Explorer and navigate to `<yourprojectdir>\Host\Gen\TDMS Files`. The newly created TDMS file has the prefix "SI0_" to indicate it is associated with the first channel 'SO0'. Although the prefix contains 'SI' suggesting 'serial input', when used with the Generation GSE, the TDMS file actually associates with serial output channel 'SO0'.
 
     ![Create CSI-2 Packet TDMS Files Explorer View](../../images/PXIe-148X-CreateTDMS-ExplorerView.png)    
 
@@ -97,7 +97,7 @@ The Create CSI-2 Packet TDMS Files VI can be used to easily determine a maximum 
     
     ![Open TDMS File Viewer VI](../../images/PXIe-148X-GSE-TDMSFileViewer.png)
 
-8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
+8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to `<yourprojectdir>\Host\Gen\TDMS Files`.
 
     > Note: The directory browse window will not show the TDMS files located in the "TDMS Files" directory.
     
@@ -126,7 +126,7 @@ This tutorial enables line sync packets in the generated data and use the TDMS f
     
 7. Double click the TDMS File Viewer VI in the LabVIEW project.
     
-8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
+8. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to `<yourprojectdir>\Host\Gen\TDMS Files`.
     
 9. Run the TDMS File Viewer VI and verify that all of the RAW12 Long Packets are surrounded by Line Start and Line End packets. The display should look like the image below.
     
@@ -150,7 +150,7 @@ This tutorial shows you how to adjust the interpacket delay to spread the line p
     
 5. Double click the TDMS File Viewer VI in the LabVIEW project.
     
-6. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to <font face = "courier new">\<yourprojectdir\>\\Host\\Gen\\TDMS Files</font>.
+6. Select the correct location for the **TDMS File Directory** control. By default, TDMS files generated were saved to `<yourprojectdir>\Host\Gen\TDMS Files`.
     
 7. Run the TDMS File Viewer VI and look at the timestamps of the first Frame End and second Frame Start packets on packet indexes 1081 and 1082. Note that there is a remaining frame period of 20 milliseconds. We can adjust our interpacket delay so that there is more time between each line packet and still achieve 30 FPS. Note the image below.
     

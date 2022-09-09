@@ -11,6 +11,7 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 ### Generation
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](tutorials/gettingstartedexample/gse-gen-basic.md)
 - [PXIe-148X Getting Started Example - Common Generation Tutorials](tutorials/gettingstartedexample/gse-gen-common.md)
+- [PXIe-148X Tutorial - Create CSI-2 Packet TDMS Files](tutorials/gettingstartedexample/gse-create-tdms.md)
 
 ---
 
