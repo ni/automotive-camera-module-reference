@@ -142,7 +142,7 @@ Complete this part of the tutorial to generate images, which will be stored to t
 
     ![GPIO Timestamps](../../images/PXIe-148X-Gen-GPIOTimestamps-BasicSimpleGen.png)
 
-    > Note: The module interface does not toggle GPIOs by default. Any change shown in the figure above reflects GPIO level reset when the example VI is first run and may vary by module.
+    > Note: The module interface does not read/write (*toggle*) to GPIO by default. Any change shown in the figure above reflects GPIO level reset when the example VI is first run and may vary by module.
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Common Generation Tutorials](./gse-gen-common.md)
