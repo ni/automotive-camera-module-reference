@@ -1,7 +1,7 @@
 # PXIe-148X Automotive Camera Module Details
 {: .no_toc }
 
-This document includes reference information on various properties of PXIe-148x automotive camera modules and links to related specifications.
+This document contains reference information on various properties of PXIe-148X automotive camera modules and links to their related specifications.
 
 ### Table of contents
 {: .no_toc }
@@ -22,7 +22,7 @@ This document includes reference information on various properties of PXIe-148x 
 | Deserializer             | Specific deserializer of the module, if applicable. |
 | Slot Count               | The number of physical slots required in a PXIe chassis for a given module. |
 | Front Panel Overlay      | Name printed on the front panel of the physical module. |
-| NI MAX Name              | The name of a module shown in NI Max. |
+| NI MAX Name              | The name of a module shown in NI MAX. |
 | LabVIEW FPGA Target Name | The name of an FPGA Target for a module shown in a LabVIEW Project. |
 | FlexRIO First Supported  | The first NI-FlexRIO driver version to support a given module. |
 | Product ID               | FlexRIO driver product ID. Occasionally referenced in example code or help text. |
@@ -69,7 +69,7 @@ This document includes reference information on various properties of PXIe-148x 
 | PXIe-1487 SerDes       | NI PXIe-1487 (4 In/4 Out - 9295A/9296A SerDes - KU11P) | NI PXIe-1487 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A87     | 1487_4I_4O  |
 
 <a id="compat-note"></a>
-> (\*) Full details on hardware and OS compatibility can be found [here on ni.com](https://www.ni.com/en-us/support/documentation/compatibility/21/ni-hardware-and-operating-system-compatibility.html)
+> (\*) Full details on hardware and OS compatibility can be found [here](https://www.ni.com/en-us/support/documentation/compatibility/21/ni-hardware-and-operating-system-compatibility.html) on ni.com.
 
 ---
 
