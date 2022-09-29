@@ -32,17 +32,18 @@ Complete installation of hardware as described in the Getting Started Guide for 
 
 ## Initial Software Setup
 
+Use the NI Example Finder to create a default project for your interface module.
+
 1.  Complete installation of software specified in the Getting Started Guide for your interface module.
-2.  Use the NI Example Finder to create a default project for your interface module.
-    1. Open LabVIEW and click **Help » Find Examples...**
+2.  Open LabVIEW and click **Help » Find Examples...**
     
     ![Open NI Example Finder](../../images/LabVIEW-Help-FindExamples.png)
     
-    2. In the NI Example Finder dialog, double-click **Hardware Input and Output » FlexRIO » Integrated IO » Getting Started » Getting Started FlexRIO Integrated IO.vi**
+3. In the NI Example Finder dialog, double-click **Hardware Input and Output » FlexRIO » Integrated IO » Getting Started » Getting Started FlexRIO Integrated IO.vi**
     
     ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
     
-    3. In the FlexRIO with Integrated IO Project Creator dialog, set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font>, make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module, and click **OK**.
+4. In the FlexRIO with Integrated IO Project Creator dialog, set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font>, make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module, and click **OK**.
     
     ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-1486-PXIe-148XTutorial.png)
 
