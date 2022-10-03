@@ -18,38 +18,40 @@ This tutorial is written for users who understand how to perform a basic generat
 > Note: The tutorials in this document assume the use of a PXIe-148X GMSL or FPD-Link Generation Interface module and an Acquisition Interface module connected to SI0 and SO0 of the respective modules. A Leopard Imaging IMX490 camera is also used to acquire packet data and replay it through a generation interface module. See PXIe-148X Getting Started Example - Basic Acquisition Tutorial and Basic Generation Tutorial for specific setup if needed.
 
 ## Generation and Acquisition Topics
-This tutorial expects that SO0 of a generation module and SI0 of an acquisition module are cabled together. This tutorial will use one generation LabVIEW project and one acquisition LabVIEW project to demonstrate the generation capabilities of the generation module.
+This tutorial expects that SO0 of a generation module and SI0 of an acquisition module are cabled together. This tutorial uses one generation LabVIEW project and one acquisition LabVIEW project to demonstrate the generation capabilities of the generation module.
 
-> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
+> Note: For the purposes of this tutorial, all input control values not specified should be left with their default values.
 
 
 ### Performing a Simple Generation and Acquisition
-1. Create a TDMS file for generation. There are two options for creating a TDMS file.
 
-| Option A: Create a TDMS File | Option B: Acquire Data from a Camera |
+1. Create a TDMS file for generation. There are two options for creating a TDMS file:
+
+| Option | Description |
 |-|-|
-| Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default. | Acquire data from a camera.<br />If the data was acquired from a camera attached to a serial input channel other than SI0, rename the TDMS file on disk to have SI0 in the name to generate on SI0.<br />Copy the acquired TDMS file to the default TDMS folder for generation. |
+| Option A: Create a TDMS file | Double click the Create CSI-2 Packet TDMS Files VI in the generation LabVIEW project and create a TDMS file for SI0. Leave all values default. |
+| Option B: Acquire data from a camera | Acquire data from a camera.<br />If the data was acquired from a camera attached to a serial input channel other than SI0, rename the TDMS file on disk to have SI0 in the name to generate on SI0.<br />Copy the acquired TDMS file to the default TDMS folder for generation. |
 
-2. Double click the Generation Example VI in the LabVIEW project.
+2. Double-click the Generation Example VI in the LabVIEW project.
 
 3. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Control | Value |
     |---|---|---|
-    | Resource | RIO Device | [System Specific] |
-    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | **Resource** | **RIO Device** | [System Specific] |
+    | **Resource** | **Bitfile Path** | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
 
-4. Double click the Acquisition Example VI in the Acquisition LabVIEW project.
+4. Double-click the Acquisition Example VI in the Acquisition LabVIEW project.
 
 5. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab            | Control                 | Value                                                                                                                                                               |
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
-    | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | **Resource**       | **RIO Device**              | [System Specific]                                                                                                                                                   |
+    | **Resource**       | **Bitfile Path**            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | **Serial Channel** | **Configuration Script**    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
 
 6. Run the Generation Example VI and wait for the **Waiting for Serializer Setup** indicator to illuminate.
 
@@ -62,21 +64,21 @@ This tutorial expects that SO0 of a generation module and SI0 of an acquisition 
 ![Compare First Display Channel Tabs ](../../images/PXIe-148x-Acq-Gen-display-compare.png)
 
 ### Generating and Displaying I2C Timestamps
-This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module. The Generation Example VI will be used to run a script to create I2C traffic.
+This section shows how to acquire and view I2C timestamps on a PXIe-148X interface module. You will use the Generation Example VI to run a script to create I2C traffic.
 
-> Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the acquisition. This allows capturing I2C and GPIO timestamps during configuration before the acquisition starts.
+> Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not to the start of the acquisition. This allows for capturing I2C and GPIO timestamps during configuration, before the acquisition starts.
 
 1. Set the following controls on the Acquisition Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab            | Setting                 | Value                                                                                                                                                               |
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
-    | Resource       | Display Acquired Images | Disabled                                                                                                                                                            |
-    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
+    | **Resource**       | **RIO Device**              | [System Specific]                                                                                                                                                   |
+    | **Resource**       | **Bitfile Path**            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
+    | **Resource**       | **Display Acquired Images** | **Disabled**                                                                                                                                                            |
+    | **Resource**       | **Log I2C to Disk**         | **Enabled**                                                                                                                                                             |
 
-2.  Select the **I2C** tab and make the following modifications.
+2.  Select the **I2C** tab and make the following modification.
 
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
     - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
@@ -88,13 +90,13 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
     | Tab            | Setting                 | Value                                                                                                                                                               |
     |----------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
-    | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles)        |
-    | Resource       | Display Generated Images | Disabled                                                                                                                                                            |
-    | Resource       | Log I2C to Disk         | Enabled                                                                                                                                                             |
-    | Serial Channel | Serializer (Output) Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
+    | **Resource**       | **RIO Device**              | [System Specific]                                                                                                                                                   |
+    | **Resource**       | **Bitfile Path**            | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles)        |
+    | **Resource**       | **Display Generated Images** | **Disabled**                                                                                                                                                            |
+    | **Resource**       | **Log I2C to Disk**         | **Enabled**                                                                                                                                                             |
+    | **Serial Channel** | **Serializer (Output) Configuration Script**    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
     
-4.  Select the **I2C** tab on the Generation VI and make the following modifications.
+4.  Select the **I2C** tab on the Generation VI and make the following modification.
 
     > The I2C tab only has one control, the I2C **timestamp filter**. This filter contains an array of timestamp IDs. **User24** represents the I2C traffic on serial channel 0 (SI0), **User25** represents the I2C traffic on serial channel 1 (SI1), and so on.
     - Set the **timestamp filter** array to contain only the **User24** timestamp ID. This will let you see the I2C traffic on SI0. If you run the VI with a configuration script selected, you will see configuration traffic in the I2C Data Output tab after the VI has stopped.
@@ -105,12 +107,12 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
 6.  Run the Generation VI.
 
-    > Note: Because a script was defined in the **Serializer (Output) Configuration Script** control, the generation begins immediately without pausing while illuminating **Waiting for Serializer Setup** as seen in previous sections of this tutorial.  In this scenario, the Acquisition VI must be started before the Generation VI.
+    > Note: Because a script was defined in the **Serializer (Output) Configuration Script** control, the generation begins immediately when you run the VI and does not wait for **Waiting for Serializer Setup** to illuminate as seen in previous sections of this tutorial.  In this scenario, the Acquisition VI must be started before the Generation VI.
 
 7.  Select the **I2C Timestamps** tab on the Generation VI to view I2C timestamp data.
     - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
 
-        > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
+        > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and the desired timestamp IDs must be added to the **timestamp filter** array. The displayed I2C timestamp data is read from the `User_Timestamps.tdms` file and filtered to display only the timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
    
 8. Select the **I2C Timestamps** tab on the Acquisition VI to view I2C timestamp data.
 
@@ -118,66 +120,68 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 
 ## Setting FPGA Display Parameters
 
-This tutorial shows you how to configure the **FPGA Display Parameters** to change the images displayed during generation.
+You can use the **FPGA Display Parameters** to change the images displayed during generation.
 
 1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Control | Value |
     |---|---|---|
-    | Resource | RIO Device | [System Specific] |
-    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
+    | **Resource** | **RIO Device** | [System Specific] |
+    | **Resource**| **Bitfile Path** | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | **Resource** | **TDMS File Directory** | A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
     
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
-    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
+    > Use the default **TDMS File Directory** value if you are generating from a TDMS file that was created with default settings by the Create CSI-2 Packet TDMS Files utility. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
 ### Displaying Generated Images
-The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
+The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition tutorial for this objective, with a few minor differences.
 
 1. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#displaying-acquired-images) with the following differences.
     - Replace all references to <font face = "courier new">SI0</font> with <font face = "courier new">SO0</font>.
-    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
+    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate and then click **Serializer Setup Complete**.
 
 ### Reducing System Bandwidth Usage
-The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
+The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition tutorial for this objective, with a few minor differences.
 
 1. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#reducing-system-bandwidth-usage) with the following differences.
-    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
+    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate and then click **Serializer Setup Complete**.
 
 ## Setting RAW Display Parameters
 
-This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed during generation. The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, the acquisition tutorial for this topic is used with a few minor differences.
+This section shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed during generation. The logic for FPGA display parameters is shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition tutorial for this objective, with a few minor differences.
 
-> Note: If using a TDMS file created with the Create CSI-2 Packet TDMS Files utility, the impact of the RAW display parameter settings will differ from a TDMS file containing image data acquired from a camera.
+> Note: The effect on TDMS files of the RAW display parameter settings is different depending on whether the TDMS files are created with the Create CSI-2 Packet TDMS Files utility or contain image data acquired from a camera.
 
 1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Control | Value |
     |---|---|---|
-    | Resource | RIO Device | [System Specific] |
-    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | TDMS File Directory| A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
+    | **Resource** | **RIO Device** | [System Specific] |
+    | **Resource** | **Bitfile Path** | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | **Resource** | **TDMS File Directory** | A directory path to TDMS files containing LLP Packet data for serial output channels (e.g. <font face = "courier new">SI0_LLP_Packets.tdms</font>) |
 
     > Note: The **TDMS File Directory** is a folder selection and the browse dialog shows folders only, not file names. 
     >
-    > Use the default **TDMS File Directory** value if generating from a TDMS file created with the Create CSI-2 Packet TDMS Files utility's default settings. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
+    > Use the default **TDMS File Directory** value if you are generating from a TDMS file that was created with default settings by the Create CSI-2 Packet TDMS Files utility. See the [PXIe-148X Getting Started Example - Basic Generation Tutorial](gse-gen-basic.md#create-tdms-files-for-generation) for details on creating TDMS files.
 
 2. Complete the steps in [PXIe-148X Getting Started Example - Common Acquisition Tutorials](gse-acq-common.md#setting-raw-display-parameters) with the following differences.
     - Replace all references to <font face = "courier new">SI0</font> with <font face = "courier new">SO0</font>.
-    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate then click **Serializer Setup Complete**.
+    - When running the Generation Example VI, wait for the **Waiting for Serializer Setup** indicator to illuminate and then click **Serializer Setup Complete**.
 
 ## Setting Serial Channel Configurations
 
-This tutorial shows you how to configure the **Serial Channel** tab to generate and display images on multiple serial output channels and set a start trigger delay.
+You can generate and display images on multiple serial output channels and set a start trigger delay with the settings on the **Serial Channel** tab.
+
+Complete [Creating TDMS Files to Generate Multiple Images](#creating-tdms-files-to-generate-multiple-images), [Generating and Displaying Multiple Images](#generating-and-displaying-multiple-images), and [Setting a Start Trigger Delay](#setting-a-start-trigger-delay) in sequence in this section.
 
 ### Creating TDMS Files to Generate Multiple Images
 
 1. Open the Create CSI-2 Packet TDMS Files utility in the LabVIEW project.
 
-2. Run the VI with all default settings to generate a TDMS file for channel SI0 containing 10 frames at 1920x1080 resolution.
+2. Run the VI with all default settings to generate a TDMS file for channel SI0 that contains 10 frames at 1920 × 1080 resolution.
 
 3. Make the following modifications on the Create CSI-2 Packet TDMS Files utility front panel to generate a second TDMS file with image data differing from the first TDMS file created in the previous step.
     - Set the value at index 0 of the **Serial Input Channels** array to <font face = "courier new">SI1</font>.
@@ -189,11 +193,9 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
     ![Create TDMS Files Settings for Multiple Images - SI1](../../images/PXIe-148X-CreateTDMS-GenMultipleImages.png)
 
-4.  Run the VI to generate a TDMS file for channel SI1 containing 10 frames at 2880x1280 resolution.
+4.  Run the VI to generate a TDMS file for channel SI1 that contains 10 frames at 2880 × 1280 resolution.
 
 ### Generating and Displaying Multiple Images
-
-> Note: This is a continuation from the previous section.
 
 5. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
@@ -231,9 +233,7 @@ This tutorial shows you how to configure the **Serial Channel** tab to generate 
 
 ### Setting a Start Trigger Delay
 
-> Note: This is a continuation from the previous section.
-
-This section of the tutorial shows you how to delay the generation start. Image data acquired using the PXIe-148X Acquisition getting started example often has several seconds of delay before the first packet is acquired while the camera is configured. The PXIe-148X Generation getting started example sets a packet timing offset value to the negative of the first packet timestamp in the TDMS file to prevent any unwanted delay in the start of generation. If a delay is desired the **Start Trigger Delay (s)** control is used. Refer to the **Start Trigger Delay (s)** description in the [PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#serial-channel-tab) for additional details.
+You can use start trigger delay to delay the start of image generation. Image data acquired using the PXIe-148X Acquisition getting started example often has several seconds of delay before the first packet is acquired while the camera is configured. The PXIe-148X Generation getting started example sets a negative packet timing offset value relative to the first packet timestamp in the TDMS file to prevent any unwanted delay in the start of generation. Use the **Start Trigger Delay (s)** control to implement delay. Refer to the **Start Trigger Delay (s)** description in the [PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#serial-channel-tab) for additional details.
 
 10. Select the **Serial Channel** tab and set the **Start Trigger Delay (s)** control value to <font face = "courier new">2</font>.
    
@@ -246,19 +246,19 @@ This section of the tutorial shows you how to delay the generation start. Image 
 
 ## Using the General Purpose Input/Output (GPIO) Lines
 
-This tutorial shows you how to configure routing of GPIO lines between GPIO banks as well as manually reading and writing to the GPIO banks on the PXIe-148X interface module. This tutorial modifies GPIO line values while the generation is running, logs the GPIO timestamps to disk and displays digital waveforms of the GPIO lines.
+This section shows you how to configure routing of GPIO lines between GPIO banks as well as how to manually read and write to the GPIO banks on the PXIe-148X interface module. This procedure modifies GPIO line values while the generation is running, logs the GPIO timestamps to disk, and displays digital waveforms of the GPIO lines.
 
-> Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not the start of the generation. This allows capturing I2C and GPIO timestamps during configuration before the generation starts.
+> Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not to the start of the generation. This allows for capturing I2C and GPIO timestamps during configuration before the generation starts.
 
 1. Set the following controls on the Generation Example GSE VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Setting | Value |
     |---|---|---|
-    | Resource | RIO Device | [System Specific] |
-    | Resource | Bitfile Path | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
-    | Resource | Display Generated Images | Disabled |
-    | Resource | Log GPIO to Disk | Enabled |
+    | **Resource** | **RIO Device** | [System Specific] |
+    | **Resource** | **Bitfile Path** | [Refer to Bitfile Path in the PXIe-148X Generation GSE Help](../../reference/gettingstartedexample/gse-gen-help.md#table-of-pxie-148x-generation-bitfiles) |
+    | **Resource** | **Display Generated Images** | **Disabled** |
+    | **Resource** | **Log GPIO to Disk** | **Enabled** |
 
 ### Creating a TDMS File for the GPIO Tutorial
 
@@ -275,28 +275,29 @@ This tutorial shows you how to configure routing of GPIO lines between GPIO bank
 
     ![Create TDMS Files Settings for the GPIO Turtorial](../../images/PXIe-148X-CreateTDMS-GenGPIO.png)
 
-3. Run the VI to generate a TDMS file for channel SI0 containing 60 frames at 640x480 resolution.
-    > The frame rate of 1 frame per second will cause the generation to run for 1 minute, which will allow enough time to manually read and write to GPIO during the generation.
+3. Run the VI to generate a TDMS file for channel SI0 containing 60 frames at 640 × 480 resolution.
+
+The frame rate of 1 frame per second will cause the generation to run for 1 minute, which will allow enough time to manually read and write to GPIO during the generation.
 
 ### Manually Reading and Writing to GPIO
 
-This tutorial shows you how to perform manual reads and writes to GPIO during generation and display digital waveforms for the resulting GPIO timestamp data.
-> Note: The [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section should be run prior to running the steps in this tutorial.
+This section shows you how to perform manual reads and writes to GPIO during generation and how to display digital waveforms for the resulting GPIO timestamp data.
+> Note: Complete [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) before you begin this section.
 
 1. Select the **GPIO** tab and make the following modifications.
     - Update the **GPIO to Display** array with the following settings.
         - At index 0 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
 
-        > Setting these values enables display of GPIO traffic for GPIO line 0 on the SO0 channel. Optionally add any additional GPIO lines to display.
+        > Setting these values enables display of GPIO traffic for GPIO line 0 on the SO0 channel. Optionally, add any additional GPIO lines to display.
         >
-        > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the generation completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged, but not displayed.
+        > The **GPIO to Display** control specifies GPIO lines to display on the GPIO Timestamps Waveform after the generation completes. Timestamps for GPIO lines not included in the **GPIO to Display** array are logged but not displayed.
 
     - Select **SO0 Serializer** from the **GPIO Bank Select** drop down menu.
     
-        > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Output**, **GPIO Bank Output Enable** and **GPIO Bank Read** controls during the generation. The **GPIO Bank Select** selection may be changed at runtime.
+        > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Output**, **GPIO Bank Output Enable**, and **GPIO Bank Read** controls during the generation. The **GPIO Bank Select** selection may be changed at runtime.
 
     - In the **GPIO Bank Output Enable** cluster, enable the **GPIO 0** control.
-        > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case we are choosing to write to line 0 of the GPIO selected on the **GPIO Bank Select** control and leave all other lines in the bank unchanged.
+        > The **GPIO Bank Output Enable** controls are used as write enables for manual GPIO writes to override the defined GPIO routing. In this case, this option writes to line 0 of the GPIO selected on the **GPIO Bank Select** control and leaves all other lines in the bank unchanged.
 
    > The settings on the **GPIO** tab are now similar to the image below.
    
@@ -307,10 +308,10 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
 3. Click **Update GPIO Output** to write a false value to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is not illuminated (false).
 
-4. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SO 0 Serializer GPIO bank.
+4. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> and then click the **Update GPIO Output** button to write a true value to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicator in the **GPIO Bank Read** cluster is illuminated (true).
 
-5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to line 0 on the SO 0 Serializer GPIO bank.
+5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">false</font> and then click the **Update GPIO Output** button to write a false values to line 0 on the SO 0 Serializer GPIO bank.
     > Notice that the **GPIO 0** Boolean indicators in the **GPIO Bank Read** cluster are not illuminated (false).
 
 6. Click the **Stop Generation** button.
@@ -319,16 +320,16 @@ This tutorial shows you how to perform manual reads and writes to GPIO during ge
 
     > GPIO timestamp data is displayed in the **GPIO Timestamps Waveform** digital waveform indicator. The pattern observed matches the sequence of manual writes that were performed on GPIO line 0 during the tutorial.
     
-    > Note: The digital waveform is read from the GPIO_Timestamps.tdms file and filtered to display only timestamps for GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the generation completes.
+    > Note: The digital waveform is read from the <font face = "courier new">GPIO_Timestamps.tdms</font> file and filtered to display only timestamps for the GPIO lines included in the **GPIO to Display** array. The **GPIO Timestamps Waveform** display is updated after the generation completes.
 
     ![Manually Reading and Writing to GPIO - GPIO Timestamps Tab](../../images/PXIe-148X-Gen-GPIO-GPIOTimestampsTab.png)
 
 ### Routing GPIO Lines
 
-This tutorial shows you how to define GPIO line routes between GPIO banks on Serial Input/Output channel pairs. Routing GPIO lines means that the values read from the source GPIO lines are written to the destination GPIO lines on the FPGA. Manual GPIO writes performed from the host override the GPIO routes. 
+This tutorial shows you how to define GPIO line routes between GPIO banks on Serial Input/Output channel pairs. A GPIO line *route* is the combination of a source GPIO line where data is read and of a destination GPIO line on the FPGA. Manual GPIO writes performed from the host override the GPIO routes. 
 > Notes: 
-> - This tutorial only applies to interface modules with serial input _and_ serial output channels since GPIO routing is done between pairs of input and output channels.
-> - The [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section should be run prior to running the steps in this tutorial.
+> - This tutorial only applies to interface modules with both serial input and serial output channels since GPIO routing is done between pairs of input and output channels.
+> - Complete the [Creating a TDMS File for the GPIO Tutorial](#creating-a-tdms-file-for-the-gpio-tutorial) section before attempting the steps in this section.
 > - The focus of this tutorial is on configuring GPIO routes, not manually reading and writing to GPIO or displaying digital waveforms of GPIO timestamps. For more detailed descriptions of those topics, see [Manually Reading and Writing to GPIO](#manually-reading-and-writing-to-gpio).
 
 1. Select the **GPIO** tab and make the following modifications.
@@ -356,10 +357,10 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
     > | SI 0 Deserializer Line 1 | SO 0 Serializer Line 0 |
 
     - Update the **GPIO to Display** array with the following settings.
-        - At index 0 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
-        - At index 1 select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">1</font>.
-        - At index 2 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
-        - At index 3 select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">3</font>.
+        - At index 0, select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
+        - At index 1, select **Des0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">1</font>.
+        - At index 2, select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">0</font>. 
+        - At index 3, select **Ser0 GPIO** in the **GPIO Bank** control and set the **GPIO Number** to <font face = "courier new">3</font>.
 
     - Select **SI 0 Deserializer** from the **GPIO Bank Select** drop down menu.
 
@@ -371,13 +372,13 @@ This tutorial shows you how to define GPIO line routes between GPIO banks on Ser
 
 3. Run the VI, wait for the **Waiting for Serializer Setup** indicator to illuminate, and click the **Serializer Setup Complete** control button to start the generation.
 
-4. Click **Update GPIO Output** to write false values to the lines 0 and 1 on the SI 0 Deserializer GPIO bank.
+4. Click **Update GPIO Output** to write false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
-5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
+5. Set the **GPIO 0** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> (illuminated) and then click the **Update GPIO Output** button to write a true value to line 0 on the SI 0 Deserializer GPIO bank.
 
-6. Set the **GPIO 1** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> then click the **Update GPIO Output** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
+6. Set the **GPIO 1** button in the **GPIO Bank Output** control to <font face = "courier new">true</font> and then click the **Update GPIO Output** button to write a true value to line 1 on the SI 0 Deserializer GPIO bank.
 
-7. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Output** control to <font face = "courier new">false</font> then click the **Update GPIO Output** button to write a false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
+7. Set the **GPIO 0** and **GPIO 1** buttons in the **GPIO Bank Output** control to <font face = "courier new">false</font> and then click the **Update GPIO Output** button to write false values to lines 0 and 1 on the SI 0 Deserializer GPIO bank.
 
 8. Click the **Stop Generation** button.
 
