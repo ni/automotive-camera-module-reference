@@ -16,11 +16,11 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 ## TODO List
 1. Update Error/Warnings Code with Possible Causes and Troubleshooting Options.
 2. Update Common Scenarios with Possible Causes and Troubleshooting Options.
-3. Write section - Host-FPGA General Debugging Workflow
-4. Create SI and SO Channel Status SubVIs and Add to All 3 GSEs
+3. (Nick) Write section - Host-FPGA General Debugging Workflow
+4. (Josh) Create SI and SO Channel Status SubVIs and Add to All 3 GSEs
 5. Write sections - Get serial input channel status from the FPGA & Get serial output channel status from the FPGA
-6. Write section - Instrumenting and Monitoring FPGA Behavior
-7. Write section - Optimize System Settings for Streaming Performance
+6. (Nick) Write section - Instrumenting and Monitoring FPGA Behavior
+7. (Josh) Write section - Optimize System Settings for Streaming Performance
 8. Look in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
 ---
 
