@@ -127,6 +127,7 @@ Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document
 
 ### Host-FPGA General Debugging Workflow
 - explain how we bubble up FPGA detected errors to the host and how a user can drill down to find the relevant FPGA source.
+- Explain the boolean -> case structure architecture
 
 ### Get serial input channel status from the FPGA
 Add screenshots and workflow showing best way to add the channel status indicator to the Acq GSE.
