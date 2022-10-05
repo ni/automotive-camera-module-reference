@@ -15,7 +15,13 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 
 ## TODO List
 1. Update Error/Warnings Code with Possible Causes and Troubleshooting Options.
-1. Update Common Scenarios with Possible Causes and Troubleshooting Options.
+2. Update Common Scenarios with Possible Causes and Troubleshooting Options.
+3. Write section - Host-FPGA General Debugging Workflow
+4. Create SI and SO Channel Status SubVIs and Add to All 3 GSEs
+5. Write sections - Get serial input channel status from the FPGA & Get serial output channel status from the FPGA
+6. Write section - Instrumenting and Monitoring FPGA Behavior
+7. Write section - Optimize System Settings for Streaming Performance
+8. Look in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
 ---
 
 ## Error/Warnings Codes
@@ -24,7 +30,7 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 |-|-|-|-|
 | -1210 | Multiple entries for the same serial channel detected in serial channel configurations array. | Self explanatory | - Verify the Serial Channel control does not contain duplicates. |
 | -1210 | Data type %s is invalid (Serial Channel Display Parameters) | | |
-| -1210 | Invalid GPIO bank | The value selected in the **GPIO Bank Control** is not a valid choice for the board.  | - Verify the GPIO value in the control. <br />- Review the Host to FPGA general debugging strategy |
+| -1210 | Invalid GPIO bank | The value selected in the **GPIO Bank Control** is not a valid choice for the board.  | - Verify the GPIO value in the control. <br />- Review the Host-FPGA General Debugging Workflow |
 | -1210 | Invalid display channel | | |
 | -1210 | Data type %s is invalid (Packet from FPGA) | | |
 | -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | | |
@@ -54,9 +60,6 @@ In additional to observed error codes, some common scenarios can occur that requ
 | Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | TBD. Source is supposed to be based on how many metadata 'chunks' are being pulled from the FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
 | Any | Bitfile build failure occurs | Limited resources available in FPGA | | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
 
-TODO: Look in csi2serdesconfig source for list of unique error codes
-TODO: Consider adding a 'general debugging strategy' that explains how we bubble up FPGA detected errors to the host and how a user can drill down to find the relevant FPGA source.
-
 ## Troubleshooting Guides
 
 ### How to debug incomplete I2C transaction errors (-304321)
@@ -71,45 +74,48 @@ Wire up the script output from Run Configuration Script VI and review for clues 
    1. TODO: insert screenshot
 
 ### How to debug image display that does not show images or has a low frame rate
+QUESTION: Is not showing images and low FR different issues?
 This may need to merge with some of the FIFO debugging?
 
-### How to debug packet timing errors
+### How to debug Generation GSE packet timing errors and FIFO overflows
+- Add link to the 'serial channel status' instructions below
+ 
+- Examine DRAM status in SCSI
+  - Most useful for output as a sanity check that data is going in and coming out. (quick and dirty check)
+  - Explain how DRAM status values can tell you something
+  - More useful for output sanity check b/c there's no DMA pushback on Gen. Any pushback is from FPGA if seen.
+  - Can be used for rough input/output rate.
+  
+Open question: Can we distinguish between 'system can't handle it' and 'FPGA can't handle it'?
+- Disable display (or shrink image size)
+- Adjust frame/line/pixel skip settings to reduce system pressure
+  - Link to PXIe-148X Getting Started Example - Common Acquisition Tutorials section
+- Use smaller packets (reduce bandwidth requirements)
+- Make your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
+- Make a known good set of gen data with the timing desired characteristics 
+- Reduce channel count.
 
-
-### How do I get more channel status information from the FPGA? (acq)
-- Adding the 'serial input channel status' or 'serial channel status' (for output) cluster inside the host GSE
-
-Most useful for output as a sanity check that data is going in and coming out. (quick and dirty check)
-dram status
-bytes written
-bytes read
+### How to debug Acquisition FIFO overflow
+- Add link to the 'serial input channel status' instructions below
 
 Usually trying to debug an overflow. Can check if DRAM manager overflowing or if the overflow is somewhere else.
 You can't easily distinguish if DMA is pushing back on DRAM, causing DRAM overflow (e.g. system can't receive data fast enough, this can be many root causes), or if it's just data coming in faster than we can handle (FPGA simply can't handle this data rate)
 
-Open question: Can we distinguish between 'system can't handle it' and 'FPGA can't handle it'?
-For generation:
-- Make your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
-
-For acq:
-- TBD?  TODO: How to help someone determine between these two scenarios
 - If downstream is not ready for output and you overflow, likely it's downstream at issue (DMA pushing back)
 - If downstream is ready, and you overflow, DRAM manager might not be able to handle. This scenario is generally unlikely based on empirical testing
 
-### How do I get more channel status information from the FPGA? (gen)
-Most useful for output as a sanity check that data is going in and coming out. (quick and dirty check)
-dram status
-bytes written
-bytes read
+Things we can suggest to determine if it's 'system can't handle it' vs 'FPGA can't handle it' vs ???
+- Double check active Lane speeds / count
+- Look at SCSI for patterns, are problems following a specific channel always
+- Verify DRAM filling, try to compare rate of DRAM filling vs FIFO transfer rate to host
+- Instrument the datapath to look for specific hard to detect states? (This may turn into a big doc of its own?)
+- Adjust frame/line/pixel skip settings to reduce system pressure
+  - Link to PXIe-148X Getting Started Example - Common Acquisition Tutorials section
 
-More useful for output sanity check b/c there's no DMA pushback on Gen. Any pushback is from FPGA if seen.
-Can be used for rough input/output rate.
+- TODO: Look up the error for this and decide if it's a separate Tap-specific issue
+- Fifo overflow scenario that Daniel explained where reduced gen lane count on a tap board couldn't keep up with a 'burst' on the acq side (even though 'average bandwidth' should have been fine)
 
-When you say 'monitor some FPGA signals' it means either log every cycle and kick through fifo, or add indicators and view on host (lossy), or you add counters/logic and make a cheap logic analyzer in diagram.
-
-
-elements per DRAM bank
-
+### How to debug issues with generation not starting
 Host\Gen\API\Configure Serial Output Channels.vi
 timestamp buffer start threshold
 packet data buffer start threshold (bytes)
@@ -117,45 +123,33 @@ dram partition start threshold (bytes)
 
 Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document the logic on what triggers start. Some of these values come from host.
 
+## General Debugging Best Practices
 
-#### TODO: Optimal system settings for streaming (BIOS config, etc)
-- Look for Chimera notes
-- Or source from Neil F's original docs
-- RAM, disk, BIOS, limiting memory/interrupt intensive ops
-#### TODO: Add specific subtopics on major areas of the serial channel status cluster indicators
-Deep dive on each of the status indicators inside the serial channel status clusters, possible causes, etc.
+### Host-FPGA General Debugging Workflow
+- explain how we bubble up FPGA detected errors to the host and how a user can drill down to find the relevant FPGA source.
+
+### Get serial input channel status from the FPGA
+Add screenshots and workflow showing best way to add the channel status indicator to the Acq GSE.
+Add mini indicator reference section that explains each indicator
  - What does the indicator mean (simple explanation)
  - What kinds of scenarios can you sniff out based on the indicator behavior
 
+### Get serial output channel status from the FPGA
+Add screenshots and workflow showing best way to add the channel status indicator to the Gen GSE.
+Add mini indicator reference section that explains each indicator
+ - What does the indicator mean (simple explanation)
+ - What kinds of scenarios can you sniff out based on the indicator behavior
 
-## Next Steps
-- Meeting with Daniel
-- Flesh out the channel status information section
-- Meeting with Jared
+### Instrumenting and Monitoring FPGA Behavior
+When you say 'monitor some FPGA signals' it means either log every cycle and kick through fifo, or add indicators and view on host (lossy), or you add counters/logic and make a cheap logic analyzer in diagram.
 
-- Review recent escalations
-  -  Tyler can help get a list for devs to review?
-
+### Optimize System Settings for Streaming Performance
+- (BIOS config, etc)
+- Look for Chimera notes
+- Or source from Neil F's original docs
+- RAM, disk, BIOS, limiting memory/interrupt intensive ops
 
 ---
-### UNSORTED TODO: Open questions / techniques we may want to include
-- What kind of ECU problems have we seen?
-- What kind of TAP problems have we seen?
-- Fifo overflow scenario that Daniel explained where reduced gen lane count on a tap board couldn't keep up with a 'burst' on the acq side (even though 'average bandwidth' should have been fine)
-- Question: Should we have a Subvi that exposes the channel status more easily in the host VI?
-- Adjust frame/line/pixel skip settings to reduce system pressure
-- Tweaks / adjustments to various 'block sizes' used in FIFOs?
--  - probably we meant 'element size in fifos. we will not document, it's all empirically determined magic numbers that are optimal already'.
-- TODO: Figure out where to put this: csi2serdesconfig.exe tool how to use it for internal purposes. - But not really a debug topic.
-- Should we show people how to make host side changes to enable >2 displays?
-- Frame sync usage techniques? How/when to use it.
-- Tips and tricks for simulating continuous generation with a gen board
----
-
-Discussion with Jared
-
-
-
 
 ## Related Documents
 - [PXIe-148X Getting Started Example - Generation Help](./gse-gen-help.md)
