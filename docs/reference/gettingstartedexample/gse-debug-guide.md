@@ -126,8 +126,15 @@ Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document
 ## General Debugging Best Practices
 
 ### Host-FPGA General Debugging Workflow
-- explain how we bubble up FPGA detected errors to the host and how a user can drill down to find the relevant FPGA source.
-- Explain the boolean -> case structure architecture
+The overall architecture of our Host and FPGA example code is to have the host query and poll at appropriate times to pass the status of the FPGA to the user. Errors that are detected at runtime on the FPGA are bubbled up through boolean status signals on the FPGA front panel. The host will read these signals and set an error message so that the source of the error can be found. Errors that are set will tell the user where to start looking for errors. Looking at the host code will tell you which portions of the FPGA design to look at. The signals are latched until the host api calls reset or FPGA diagram reset. 
+TODO - Image (Example GPIO write, checks a bool and sets a status)
+
+Aditionally the host will check certain status's that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
+TODO Image (Get Acq State image example)
+TODO - Image (Check channel status generation image example)
+
+There are other times where we wait for a certain state to be returned from the FPGA. If a host side timeout occurs while waiting for that state, we will set an error.
+TODO - Image (Wait for Acquisition state error)
 
 ### Get serial input channel status from the FPGA
 Add screenshots and workflow showing best way to add the channel status indicator to the Acq GSE.
@@ -142,7 +149,23 @@ Add mini indicator reference section that explains each indicator
  - What kinds of scenarios can you sniff out based on the indicator behavior
 
 ### Instrumenting and Monitoring FPGA Behavior
-When you say 'monitor some FPGA signals' it means either log every cycle and kick through fifo, or add indicators and view on host (lossy), or you add counters/logic and make a cheap logic analyzer in diagram.
+When debugging or investigating FPGA behavior, there are some general strategies that you can implement to figure out where errors are coming from. You can monitor the boolean signals that we pass to the user through the FPGA front panel, or you can monitor various internal state machines. The exact nature of what you should instrument is dependent on the problem you are trying to solve, but there are three common strategies for getting debug information out of the LabVIEW FPGA image at runtime.
+
+#### Add additional indicators that allow you to poll and view the information from the host. 
+Adding indicators will alloww you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
+TODO - image
+
+#### You can latch signals and add new indicators
+Dropping down a basic latch when a certain condition occurs can allow you to save a particular state. Make sure to wire up the reset signal so that you can clear your state. This will allow you to capture a specific change on the FPGA.
+TODO - image
+
+#### You can count rising and falling edges to see where things are going wrong
+This is a good way to measure boolean signals to see how many times a certain condition occurs. This can give you insights into complexe data flow problems wondering how many times a gate or state is allowing valid data to flow.
+TODO - image
+
+#### Add an FPGA to Host FIFO to send up debug information sideband.
+This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a cerain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
+TODO - image
 
 ### Optimize System Settings for Streaming Performance
 - (BIOS config, etc)
