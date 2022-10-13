@@ -29,21 +29,21 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 | Error | Explanation | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
 | -1210 | Multiple entries for the same serial channel detected in serial channel configurations array. | Self explanatory | - Verify the Serial Channel control does not contain duplicates. |
-| -1210 | Data type %s is invalid (Serial Channel Display Parameters) | | |
+| -1210 | Data type %s is invalid (Serial Channel Display Parameters) | The data type selected of the serial channel is not supported for display. | Select a valid data type for the payloads of the channel you wish to display. See Configure Serial Display Channels.vi for valid data types. |
 | -1210 | Invalid GPIO bank | The value selected in the **GPIO Bank Control** is not a valid choice for the board.  | - Verify the GPIO value in the control. <br />- Review the Host-FPGA General Debugging Workflow |
-| -1210 | Invalid display channel | | |
-| -1210 | Data type %s is invalid (Packet from FPGA) | | |
-| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | | |
-| -52018 | Bad packet size detected on SI%d. Transfer aborted due to data corruption as a result of a packet size that did not match the expected value. |   |   |
-| -200474 | Timed out while waiting for acquisition state. | | |
-| -200474 | Timed out while waiting for generation state. | | |
+| -1210 | Invalid display channel | The display channel selected has not been configured for display in the FPGA | - Select a channel that has been configured in the FPGA for display <br />- Modify the FPGA VI so that the channel of interest is configured for display and recompile the FPGA image |
+| -1210 | Data type %s is invalid (Packet from FPGA) | TODO | TODO |
+| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | One of the many FIFOs between the Host and FPGA has overflowed. | TODO |
+| -52018 | Bad packet size detected on SI%d. Transfer aborted due to data corruption as a result of a packet size that did not match the expected value. | The packet payload was larger or smaller than the packet header indicated. | Verify the camera is powered properly and connections on the serial input channel are correct. |
+| -200474 | Timed out while waiting for acquisition state. | No valid CSI-2 packets were detected.  | Verify the camera is powered properly and connections on the serial input channel are correct. |
+| -200474 | Timed out while waiting for generation state. | No valid CSI-2 packets were sent from the host.| Verify the TDMS data set used is valid. |
 | -304321 | Error -304321 occurred at The requested I2C transaction was unable to complete. This is usually because the requested I2C address was not acknowledged, or because the I2C slave prematurely terminated the transaction. | - Wrong script used <br />- Script syntax error <br />- Device attached to PXIe-148x module not found | TODO: insert inline link |
-| -375704 |  Display channel number %d is invalid | | |
+| -375704 |  Display channel number %d is invalid | The display channel selected has not been configured for display in the FPGA | Select a channel that has been configured in the FPGA for display |
 
 | Warning | Explanation | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
-| 1302 | Array size mismatch for serial output channels and active lane counts. | | |
-| 1302 | Array size mismatch for serial output channels and data rates. | | |
+| 1302 | Array size mismatch for serial output channels and active lane counts. | TODO | TODO |
+| 1302 | Array size mismatch for serial output channels and data rates. | TODO | TODO |
 
 ## Common Scenarios
 
