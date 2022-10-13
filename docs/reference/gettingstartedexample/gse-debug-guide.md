@@ -57,71 +57,70 @@ In additional to observed error codes, some common scenarios can occur that requ
 | Any | I2C packets are not logged as expected | | |
 | Any | GPIO line change not logged as expected | | |
 | Any | Display **Source Rate (fps)** and **Update Rate (fps)** both lower than expected | System bandwidth cannot support this sustained rate. DMA Bandwidth problem | May be impacted by Skip settings as well because that reduces DMA usage |
-| Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | TBD. Source is supposed to be based on how many metadata 'chunks' are being pulled from the FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
+| Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | TODO. TBD. Source is supposed to be based on how many metadata 'chunks' are being pulled from the FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
 | Any | Bitfile build failure occurs | Limited resources available in FPGA | | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
 
 ## Troubleshooting Guides
 
 ### How to debug incomplete I2C transaction errors (-304321)
-Some comments on general troubleshooting tips to quickly check first
+Most errors can be resolved with one of the following steps:
 1. On a 1487, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
-2. A camera may not be powered on. Double checking the Power over Coax settings are correct to power on the camera from the PXIe-148x acquisition board.
+2. A camera may not be powered on. Double check the Power over Coax settings are correct to power on the camera from the PXIe-148x acquisition board.
 3. Script may have invalid commands - need to compare camera data sheet vs script commands
-4. Others?
 
 Some explanation on how to do a deeper dive
-Wire up the script output from Run Configuration Script VI and review for clues on where the problem is occurring
-   1. TODO: insert screenshot
+Wire up the script output from Run Configuration Script VI and review for clues on where the problem is occurring. The output should match the script and the logged I2C traffic in the I2C tab of the GSE.
+
+TODO: insert screenshot of block diagram of GSE for the output script.
 
 ### How to debug image display that does not show images or has a low frame rate
-QUESTION: Is not showing images and low FR different issues?
-This may need to merge with some of the FIFO debugging?
+Images will not be displayed or will be displayed with a low frame rate when the system does not have the bandwidth to keep up with the images coming from the FPGA. 
+
+TODO: Refer to /gse-acq-common.md#reducing-system-bandwidth-usage to reduce the bandwidth display is using.
 
 ### How to debug Generation GSE packet timing errors and FIFO overflows
-- Add link to the 'serial channel status' instructions below
+The first thing to check is the Serial Output Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
+- TODO: Add link to the 'serial channel status' instructions below
  
-- Examine DRAM status in SCSI
-  - Most useful for output as a sanity check that data is going in and coming out. (quick and dirty check)
-  - Explain how DRAM status values can tell you something
-  - More useful for output sanity check b/c there's no DMA pushback on Gen. Any pushback is from FPGA if seen.
-  - Can be used for rough input/output rate.
-  
-Open question: Can we distinguish between 'system can't handle it' and 'FPGA can't handle it'?
+If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. You can start by refering to gse-gen-common.md#reducing-system-bandwidth-usage. Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
+
+TODO: maybe flesh these steps out a bit more? They are really just ways to get started...
 - Disable display (or shrink image size)
-- Adjust frame/line/pixel skip settings to reduce system pressure
-  - Link to PXIe-148X Getting Started Example - Common Acquisition Tutorials section
 - Use smaller packets (reduce bandwidth requirements)
-- Make your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
-- Make a known good set of gen data with the timing desired characteristics 
-- Reduce channel count.
+- Set your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
+- Use the /gse-create-tdms.md to create a known good set of csi-2 packet data with the desired timing characteristics and verify your generation completes successfully 
+- Reduce serial output channel count
 
 ### How to debug Acquisition FIFO overflow
-- Add link to the 'serial input channel status' instructions below
+The first thing to check is the Serial Input Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it likely means the FPGA to Host FIFO is pushing back on the DRAM manager and the DRAM partition is getting full.
+- TODO: Add link to the 'serial channel status' instructions below
 
-Usually trying to debug an overflow. Can check if DRAM manager overflowing or if the overflow is somewhere else.
-You can't easily distinguish if DMA is pushing back on DRAM, causing DRAM overflow (e.g. system can't receive data fast enough, this can be many root causes), or if it's just data coming in faster than we can handle (FPGA simply can't handle this data rate)
+It is hard to distinguish if DMA is pushing back on DRAM causing DRAM overflow (e.g. system can't receive data fast enough, this can be many root causes), or if it's just data coming in faster than we can handle (FPGA simply can't handle this data rate).
 
 - If downstream is not ready for output and you overflow, likely it's downstream at issue (DMA pushing back)
-- If downstream is ready, and you overflow, DRAM manager might not be able to handle. This scenario is generally unlikely based on empirical testing
+- If downstream is ready, and you overflow, DRAM manager might not be able to handle. This scenario is generally unlikely based on empirical testing. 
 
-Things we can suggest to determine if it's 'system can't handle it' vs 'FPGA can't handle it' vs ???
-- Double check active Lane speeds / count
-- Look at SCSI for patterns, are problems following a specific channel always
+If one of the two scenarios above is suspected, you can instrument the FPGA to determine where in the data path you are getting clogged up.
+TODO - add link to FPGA instrumentation guide.
+
+Things we can suggest to look into:
+- Double check Active Lane rate and count are matched throughout your system (Camera -> Instrument)
+- Look at the Serial Channel Input Status array for patterns, are problems always following a specific channel?
 - Verify DRAM filling, try to compare rate of DRAM filling vs FIFO transfer rate to host
-- Instrument the datapath to look for specific hard to detect states? (This may turn into a big doc of its own?)
-- Adjust frame/line/pixel skip settings to reduce system pressure
-  - Link to PXIe-148X Getting Started Example - Common Acquisition Tutorials section
+- Instrument the datapath to look for specific hard to detect states? TODO - link to instrumentation part
+- Reduce the acquisition to a single channel and verify that it stops successfully.
 
-- TODO: Look up the error for this and decide if it's a separate Tap-specific issue
-- Fifo overflow scenario that Daniel explained where reduced gen lane count on a tap board couldn't keep up with a 'burst' on the acq side (even though 'average bandwidth' should have been fine)
 
 ### How to debug issues with generation not starting
-Host\Gen\API\Configure Serial Output Channels.vi
-timestamp buffer start threshold
-packet data buffer start threshold (bytes)
-dram partition start threshold (bytes)
+If generation never starts, the first thing to check is the generation start thresholds configured in the Host\Gen\API\Configure Serial Output Channels.vi.
 
-Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document the logic on what triggers start. Some of these values come from host.
+- **timestamp buffer start threshold** - The minimum number of timestamps that must be buffered before generation begins
+- **packet data buffer start threshold (bytes)** - The minimum number of valid csi-2 packet bytes that must be buffered before generation begins
+- **dram partition start threshold (bytes)** - The number of bytes that dram partition must have stored before generatoin begins
+
+The most common way to force the generation to start is the reduce the above thresholds to zero, and increase the **packet timing error threshold (cycles)** to a very large number (e.g. FFFFFFFFFFFFFFF0) so that it will never have a timing error and generation will start immediately. Then you can look at the Serial Channel Output Status indicator to determine if the channel is otherwise behaving correctly.
+
+TODO - Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document the logic on what triggers start. Some of these values come from host.
 
 ## General Debugging Best Practices
 
