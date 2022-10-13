@@ -51,11 +51,11 @@ In additional to observed error codes, some common scenarios can occur that requ
 
 | GSE Type | Scenario | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
-| Gen | Packet timing errors detected on generation | TODO | TODO |
-| Gen | Generation doesn't start after clicking **Serializer Setup Complete** | - You send data with TS too far in the future, DRAM fills but waiting for timer to hit first TS, you might hit system timeout (defaults to 20/30sec TBD?) <br /> - You don't have consistent data stream, can 'go idle'. You pump no data for long enough, it will automatically stop your generation (everything goes to false)| |
+| Gen | Packet timing errors detected on generation | This has many root causes. | TODO - Link to section below |
+| Gen | Generation doesn't start after clicking **Serializer Setup Complete** | - You send data with TS too far in the future, DRAM fills but waiting for timer to hit first TS, you might hit system timeout (defaults to 20/30sec TBD?) <br /> - You don't have consistent data stream, can 'go idle'. You pump no data for long enough, it will automatically stop your generation (everything goes to false)| TODO- link to generation not starting below |
 | Acq | VI 'hangs' after acquisition completes but does (eventually) stop | Display too many logged packets TODO | |
-| Any | I2C packets are not logged as expected | | |
-| Any | GPIO line change not logged as expected | | |
+| Any | I2C packets are not logged as expected | This has many root causes. | TODO - link below |
+| Any | GPIO line change not logged as expected | TODO | TODO |
 | Any | Display **Source Rate (fps)** and **Update Rate (fps)** both lower than expected | System bandwidth cannot support this sustained rate. DMA Bandwidth problem | May be impacted by Skip settings as well because that reduces DMA usage |
 | Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | TODO. TBD. Source is supposed to be based on how many metadata 'chunks' are being pulled from the FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
 | Any | Bitfile build failure occurs | Limited resources available in FPGA | | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
