@@ -127,26 +127,76 @@ Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document
 
 ### Host-FPGA General Debugging Workflow
 The overall architecture of our Host and FPGA example code is to have the host query and poll at appropriate times to pass the status of the FPGA to the user. Errors that are detected at runtime on the FPGA are bubbled up through boolean status signals on the FPGA front panel. The host will read these signals and set an error message so that the source of the error can be found. Errors that are set will tell the user where to start looking for errors. Looking at the host code will tell you which portions of the FPGA design to look at. The signals are latched until the host api calls reset or FPGA diagram reset. 
+
 TODO - Image (Example GPIO write, checks a bool and sets a status)
 
 Aditionally the host will check certain status's that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
+
 TODO Image (Get Acq State image example)
 TODO - Image (Check channel status generation image example)
 
 There are other times where we wait for a certain state to be returned from the FPGA. If a host side timeout occurs while waiting for that state, we will set an error.
+
 TODO - Image (Wait for Acquisition state error)
 
 ### Get serial input channel status from the FPGA
-Add screenshots and workflow showing best way to add the channel status indicator to the Acq GSE.
-Add mini indicator reference section that explains each indicator
- - What does the indicator mean (simple explanation)
- - What kinds of scenarios can you sniff out based on the indicator behavior
+One of the best ways to diagnose Acqusition or TAP FPGA errors is to monitor the Serial Input Channel Status indicator from the FPGA. This indicator can be added to the Acquisition or Tap GSE from the Read Serial Input Channel Status VI.
+
+TODO - Add Screenshot of GSE block diagram with indicator
+
+The Serial Input Channel Status is an array of status cluster indicators - one for each channel.
+The cluster has the following indicators:
+- **acq state** - Indicates the current acquisition state of the channel.
+- **stop timed out** - The last packet header was not detected within **Stop Timeout (s)** seconds.
+- **bad packet header** - This indicator is set if there was an uncorrectable header error.
+- **bad packet payload** - This indicator is set if the CRC of the payload was incorrect.
+- **bad packet size** - This indicator is set if the packet was truncated and did not match the size in the header.
+- **dram status** - This indicator gives you insight into the state of the DRAM manager.
+   - **bytes written** - Number of bytes written to this channel's DRAM partition.
+   - **bytes read** - Number of bytes read from this channel's DRAM partition.
+   - **overflow** - The DRAM parition could not be written to because the partition was full.
+   - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
+   - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
+
+
+What kinds of scenarios can you sniff out based on the indicator behavior?
+- If **acq state** is stuck in idle, we are never detecting a valid CSI-2 packet
+- If **stop timed out** is true, we did not receive the last packet in the expected amount of time. Increase the **Stop Timeout (s)** control on the front panel to see if the packet is late, or if there is a missing packet.
+- If any of the bad packet indicators are lit, we are not receiving valid CSI-2 packets. Check your camera and connection to the serial input channel.
+- If the acquisition has ended but **bytes written** is greater than **bytes read** then there is valid data getting stuck in the DRAM partition and something downstream is not ready to receive CSI-2 packets.
+- If the **overflow** indicator is true, the DRAM manager and data path is not keeping up with the incoming packets on the serial input channel. This can be caused from the FPGA to Host FIFO backing up and pushing back on the DRAM manager. This can happen if the data is not being written to disk fast enough on the host or if data is not being pulled out of the serial channel FIFO fast enough on the host side.
+- If the **partition full** indicator is true, the partition needs to be read from. You can instrument this signal on the FPGA side to see how often the partition is getting full. It likely bounces between full and not full many times before finally overflowing. This is indicative of the host FIFO or data path not being able to keep up with incoming data on the serial input channel.
+- If the **last byte flushed** stays false when an acquisition completes, the last packet will be missing from the data set.
+
 
 ### Get serial output channel status from the FPGA
-Add screenshots and workflow showing best way to add the channel status indicator to the Gen GSE.
-Add mini indicator reference section that explains each indicator
- - What does the indicator mean (simple explanation)
- - What kinds of scenarios can you sniff out based on the indicator behavior
+One of the best ways to diagnose Generation errors is to monitor the Serial Output Channel Status indicator from the FPGA. This indicator can be added to the Generation GSE from the Read Serial Output Channel Status VI.
+
+TODO - Add Screenshot of GSE block diagram with indicator
+
+The Serial Output Channel Status is an array of status cluster indicators - one for each channel.
+The cluster has the following indicators:
+- **num buffered llp packets** - Indicates the number of llp packets that are waiting to be generated.
+- **packet timing error (cycles)** - Indicates how many cycles the timestamp of the generated packet is behind expected time to generate.
+- **packet timing error** - This indicator is set if the timestamp of the generated packet was beyond the allowed packet timing error of the data.
+- **ready to generate packet** - This indicator toggles true every time the downstream data path is ready to accept a csi-2 packet.
+- **dram status** - This indicator gives you insight into the state of the DRAM manager.
+   - **bytes written** - Number of bytes written to this channel's DRAM partition.
+   - **bytes read** - Number of bytes read from this channel's DRAM partition.
+   - **overflow** - The DRAM parition could not be written to because the partition was full.
+   - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
+   - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
+- **num buffered llp timestamps** - The number of llp timestamps that are waiting to be generated. This should be close to the number of buffered llp packets.
+- **generation done** - Indicates the generation has completed.
+- **num generated packets** - The number of csi-2 packets that were sent out the serial output channel.
+
+What kinds of scenarios can you sniff out based on the indicator behavior?
+- If the generation has ended but **bytes written** is greater than **bytes read** then there is valid data getting stuck in the DRAM partition and something downstream is not ready to receive CSI-2 packets.
+- If the **overflow** indicator is true, the DRAM manager and data path is not keeping up with the incoming packets on the serial output channel. This can be caused if the host is sending more data than the DRAM manager or serial output data path can process.
+- If the **partition full** indicator is true, the partition needs to be read from. You can instrument this signal on the FPGA side to see how often the partition is getting full. It likely bounces between full and not full many times before finally overflowing. This is indicative of the host FIFO or data path not being able to generate data fast enough on the serial output channel.
+- If the **last byte flushed** stays false when a generation completes, the last packet will never have been generated.
+- If the **number of generated packets** does not match the expected number of generated packets, the data set might not be valid. This can happen if the data is expected to run faster than the serializer can output, or if the packets are getting stuck in DRAM.
+
 
 ### Instrumenting and Monitoring FPGA Behavior
 When debugging or investigating FPGA behavior, there are some general strategies that you can implement to figure out where errors are coming from. You can monitor the boolean signals that we pass to the user through the FPGA front panel, or you can monitor various internal state machines. The exact nature of what you should instrument is dependent on the problem you are trying to solve, but there are three common strategies for getting debug information out of the LabVIEW FPGA image at runtime.
