@@ -61,6 +61,18 @@ In additional to observed error codes, some common scenarios can occur that requ
 
 ## Troubleshooting Guides
 
+### How to debug FIFO overflow errors (-52012)
+The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA or visa versa. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples, the common causes of failures, and links to other debugging steps to take when encountering these errors.
+
+Acquisition/ TAP FIFOs
+
+Generation FIFOs
+???? This doesn't actually appear anywhere in the Generation specific FIFOs ????
+We can get a DRAM overflow on the Generation side. This happens when we try to write to DRAM but DRAM is full because it hasnt generated a packet yet.
+
+Common FIFOs
+
+
 ### How to debug incomplete I2C transaction errors (-304321)
 Most errors can be resolved with one of the following steps:
 1. On a 1487, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
