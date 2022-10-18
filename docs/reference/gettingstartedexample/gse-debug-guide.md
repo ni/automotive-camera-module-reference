@@ -62,15 +62,19 @@ In additional to observed error codes, some common scenarios can occur that requ
 ## Troubleshooting Guides
 
 ### How to debug FIFO overflow errors (-52012)
-The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA or visa versa. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples, the common causes of failures, and links to other debugging steps to take when encountering these errors.
+The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples, the common causes of failures, and links to other debugging steps to take when encountering these errors.
 
-Acquisition/ TAP FIFOs
+## Acquisition/ TAP FIFOs
+### LLP Packets
+There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. TODO - see How to debug Generation GSE packet timing errors and FIFO overflows section below.
 
-Generation FIFOs
-???? This doesn't actually appear anywhere in the Generation specific FIFOs ????
-We can get a DRAM overflow on the Generation side. This happens when we try to write to DRAM but DRAM is full because it hasnt generated a packet yet.
 
-Common FIFOs
+## Common FIFOs
+TODO
+
+
+## Generation FIFOs
+It should not be possible to see a FIFO overflow on the Host to FPGA FIFO. The generation GSE holds off on writing data to the FIFO until the FIFO has space available.
 
 
 ### How to debug incomplete I2C transaction errors (-304321)
