@@ -14,11 +14,11 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 ---
 
 ## TODO List
-1. Update Error/Warnings Code with Possible Causes and Troubleshooting Options.
-2. Update Common Scenarios with Possible Causes and Troubleshooting Options.
+1. (Nick) Update Error/Warnings Code with Possible Causes and Troubleshooting Options.
+2. (Nick) Update Common Scenarios with Possible Causes and Troubleshooting Options.
 3. (Nick) Write section - Host-FPGA General Debugging Workflow
 4. (Josh) Create SI and SO Channel Status SubVIs and Add to All 3 GSEs
-5. Write sections - Get serial input channel status from the FPGA & Get serial output channel status from the FPGA
+5. (Nick) Write sections - Get serial input channel status from the FPGA & Get serial output channel status from the FPGA
 6. (Nick) Write section - Instrumenting and Monitoring FPGA Behavior
 7. (Josh) Write section - Optimize System Settings for Streaming Performance
 8. Look in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
@@ -32,7 +32,7 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 | -1210 | Data type %s is invalid | The data type selected of the serial channel is not supported for display. | Select a valid data type for the payloads of the channel you wish to display. See <font face="courier new">Configure Serial Display Channels.vi</font> and <font face="courier new">Read Pixels and Copy to Display Image.vi</font> SubVIs for valid data types. |
 | -1210 | Invalid GPIO bank | The value selected in the **GPIO Bank Control** is not a valid choice for the board.  | - Verify the GPIO value in the control. <br />- Review the Host-FPGA General Debugging Workflow |
 | -1210 | Invalid display channel | The display channel selected has not been configured for display in the FPGA | - Select a channel that has been configured in the FPGA for display <br />- Modify the FPGA VI so that the channel of interest is configured for display and recompile the FPGA image |
-| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | One of the many FIFOs between the Host and FPGA has overflowed. | TODO |
+| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | One of the many FIFOs between the Host and FPGA has overflowed. | [How to Debug FIFO Overflow Errors](#how-to-debug-fifo-overflow-errors(-52012)) |
 | -52018 | Bad packet size detected on SI%d. Transfer aborted due to data corruption as a result of a packet size that did not match the expected value. | The packet payload was larger or smaller than the packet header indicated. | Verify the camera is powered properly and connections on the serial input channel are correct. |
 | -200474 | Timed out while waiting for acquisition state. | No valid CSI-2 packets were detected.  | Verify the camera is powered properly and connections on the serial input channel are correct. |
 | -200474 | Timed out while waiting for generation state. | No valid CSI-2 packets were sent from the host.| Verify the TDMS data set used is valid. |
