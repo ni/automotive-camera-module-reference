@@ -32,17 +32,17 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 | -1210 | Data type %s is invalid | The data type selected of the serial channel is not supported for display. | Select a valid data type for the payloads of the channel you wish to display. See <font face="courier new">Configure Serial Display Channels.vi</font> and <font face="courier new">Read Pixels and Copy to Display Image.vi</font> SubVIs for valid data types. |
 | -1210 | Invalid GPIO bank | The value selected in the **GPIO Bank Control** is not a valid choice for the board.  | - Verify the GPIO value in the control. <br />- Review the Host-FPGA General Debugging Workflow |
 | -1210 | Invalid display channel | The display channel selected has not been configured for display in the FPGA | - Select a channel that has been configured in the FPGA for display <br />- Modify the FPGA VI so that the channel of interest is configured for display and recompile the FPGA image |
-| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | One of the many FIFOs between the Host and FPGA has overflowed. | [How to Debug FIFO Overflow Errors](#how-to-debug-fifo-overflow-errors(-52012)) |
+| -52012 | FIFO overflow. Transfer aborted due to a loss of data as a result of a FIFO overflow. | One of the many FIFOs between the Host and FPGA has overflowed. | [How to Debug FIFO Overflow Errors](#how-to-debug-fifo-overflow-errors--52012) |
 | -52018 | Bad packet size detected on SI%d. Transfer aborted due to data corruption as a result of a packet size that did not match the expected value. | The packet payload was larger or smaller than the packet header indicated. | Verify the camera is powered properly and connections on the serial input channel are correct. |
 | -200474 | Timed out while waiting for acquisition state. | No valid CSI-2 packets were detected.  | Verify the camera is powered properly and connections on the serial input channel are correct. |
 | -200474 | Timed out while waiting for generation state. | No valid CSI-2 packets were sent from the host.| Verify the TDMS data set used is valid. |
-| -304321 | Error -304321 occurred at The requested I2C transaction was unable to complete. This is usually because the requested I2C address was not acknowledged, or because the I2C slave prematurely terminated the transaction. | - Wrong script used <br />- Script syntax error <br />- Device attached to PXIe-148x module not found | TODO: insert inline link |
+| -304321 | Error -304321 occurred at The requested I2C transaction was unable to complete. This is usually because the requested I2C address was not acknowledged, or because the I2C slave prematurely terminated the transaction. | - Wrong script used <br />- Script syntax error <br />- Device attached to PXIe-148x module not found | [How to Debug Incomplete I2C Transaction Errors](#how-to-debug-incomplete-i2c-transaction-errors--304321) |
 | -375704 |  Display channel number %d is invalid | The display channel selected has not been configured for display in the FPGA | Select a channel that has been configured in the FPGA for display |
 
 | Warning | Explanation | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
-| 1302 | Array size mismatch for serial output channels and active lane counts. | TODO | TODO |
-| 1302 | Array size mismatch for serial output channels and data rates. | TODO | TODO |
+| 1302 | Array size mismatch for serial output channels and active lane counts. | The array sizes of the controls do not match. | Makes sure the serial output channels and active lane count array sizes are matched. |
+| 1302 | Array size mismatch for serial output channels and data rates. | The array sizes of the controls do not match. | Makes sure the serial output channels and data rate array sizes are matched. |
 
 ## Common Scenarios
 
@@ -50,7 +50,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 
 | GSE Type | Scenario | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
-| Gen | Packet timing errors detected on generation | This has many root causes. | TODO - Link to section below |
+| Gen | Packet timing errors detected on generation | This has many root causes. | [How to debug Generation GSE packet timing errors](#how-to-debug-generation-gse-packet-timing-errors) |
 | Gen | Generation doesn't start after clicking **Serializer Setup Complete** | - You send data with TS too far in the future, DRAM fills but waiting for timer to hit first TS, you might hit system timeout (defaults to 20/30sec TBD?) <br /> - You don't have consistent data stream, can 'go idle'. You pump no data for long enough, it will automatically stop your generation (everything goes to false)| TODO- link to generation not starting below |
 | Acq | VI 'hangs' after acquisition completes but does (eventually) stop | Display too many logged packets TODO | |
 | Any | I2C packets are not logged as expected | This has many root causes. | TODO - link below |
@@ -76,7 +76,7 @@ TODO: insert screenshot of block diagram of GSE for the output script.
 The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples and links to other debugging steps to take when encountering these errors.
 
 -  Acquisition/ TAP FIFOs
-    - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. A more detailed explanation and  TODO - interlink to How to debug Acquisition FIFO overflow.
+    - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. For a more detailed explanation refer to [How to debug Acquisition FIFO overflow](#how-to-debug-acquisition-fifo-overflow).
 
 - Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it is usually indicative a system bandwidth limitation. If one of these FIFOs fail, try following steps from other troubleshooting guides below. 
     - Image Data FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. TODO link - How to debug image display that does not show images or has a low frame rate 
@@ -84,7 +84,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
     - I2C Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
     - GPIO Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
 
-- Generation FIFOs - It should not be possible to see a FIFO overflow on the Host to FPGA LLP Packets FIFOs. The generation GSE holds off on writing data to the FIFO until the FIFO has space available. TODO link - How to debug Generation GSE packet timing errors.
+- Generation FIFOs - It should not be possible to see a FIFO overflow on the Host to FPGA LLP Packets FIFOs. The generation GSE holds off on writing data to the FIFO until the FIFO has space available. Refer to [How to debug Generation GSE packet timing errors](#how-to-debug-generation-gse-packet-timing-errors) for more Generation GSE specific debugging.
 
 ### How to debug Generation GSE packet timing errors
 The first thing to check is the Serial Output Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
