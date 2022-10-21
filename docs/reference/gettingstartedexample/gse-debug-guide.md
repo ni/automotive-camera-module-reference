@@ -88,15 +88,14 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 
 ### How to debug Generation GSE packet timing errors
 The first thing to check is the Serial Output Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
-- TODO: Add link to the 'serial channel status' instructions below
+Refer to [Get serial output channel status from the fpga](#get-serial-output-channel-status-from-the-fpga).
  
 If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. You can start by refering to gse-gen-common.md#reducing-system-bandwidth-usage. Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
 
-TODO: maybe flesh these steps out a bit more? They are really just ways to get started...
 - Disable display (or shrink image size)
 - Use smaller packets (reduce bandwidth requirements)
 - Set your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
-- Use the /gse-create-tdms.md to create a known good set of csi-2 packet data with the desired timing characteristics and verify your generation completes successfully 
+- Use the [TDMS file creator](../gse-create-tdms.md) to create a known good set of csi-2 packet data with the desired timing characteristics and verify your generation completes successfully 
 - Reduce serial output channel count
 
 ### How to debug Acquisition FIFO overflow
@@ -115,7 +114,6 @@ Things we can suggest to look into:
 - Double check Active Lane rate and count are matched throughout your system (Camera -> Instrument)
 - Look at the Serial Channel Input Status array for patterns, are problems always following a specific channel?
 - Verify DRAM filling, try to compare rate of DRAM filling vs FIFO transfer rate to host
-- Instrument the datapath to look for specific hard to detect states? TODO - link to instrumentation part
 - Reduce the acquisition to a single channel and verify that it stops successfully.
 
 ### How to debug image display that does not show images or has a low frame rate
