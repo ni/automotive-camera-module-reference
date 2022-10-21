@@ -3,7 +3,7 @@
 
 Refer to this document to get insights and suggestions on troubleshooting performance issues, error codes, and problems with using the PXIe-148x Getting Started Examples (GSE).
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -51,7 +51,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 | GSE Type | Scenario | Possible Causes | Troubleshooting Options |
 |-|-|-|-|
 | Gen | Packet timing errors detected on generation | This has many root causes. | [How to debug Generation GSE packet timing errors](#how-to-debug-generation-gse-packet-timing-errors) |
-| Gen | Generation doesn't start after clicking **Serializer Setup Complete** | - You send data with TS too far in the future, DRAM fills but waiting for timer to hit first TS, you might hit system timeout (defaults to 20/30sec TBD?) <br /> - You don't have consistent data stream, can 'go idle'. You pump no data for long enough, it will automatically stop your generation (everything goes to false)| [How to debug issues with generation not starting](#how-to-debug-issues-with-generation-not-starting) |
+| Gen | Generation doesn't start after clicking **Serializer Setup Complete** | - If your data set has timestamps too far in the future, DRAM can fill up but nothing will generate waiting for timer to hit that first timestamp. You can hit the host side timeout which defaults to 30 seconds. <br /> - You don't have consistent data stream of valid packets and can 'go idle'. If you are idle for long enough, it will automatically stop your generation (everything goes to false)| [How to debug issues with generation not starting](#how-to-debug-issues-with-generation-not-starting) |
 | Acq | VI 'hangs' after acquisition completes but does (eventually) stop | The VI is trying to display too many logged packets. | Change the type of packets logged, or disable logging packets to disk. |
 | Any | I2C packets are not logged as expected | This has many root causes. | - Make sure that the I2C settings are correct for the serial channel you are interested in.<br />- Refer to [How to Debug Incomplete I2C Transaction Errors](#how-to-debug-incomplete-i2c-transaction-errors--304321) |
 | Any | GPIO line change not logged as expected | This has many root causes. | - Make sure that the GPIO settings are correct for the serial channel you are interested in. |
