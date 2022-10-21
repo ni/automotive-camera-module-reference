@@ -79,8 +79,8 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
     - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. For a more detailed explanation refer to [How to debug Acquisition FIFO overflow](#how-to-debug-acquisition-fifo-overflow).
 
 - Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it is usually indicative a system bandwidth limitation. If one of these FIFOs fail, try following steps from other troubleshooting guides below. 
-    - Image Data FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. TODO link - How to debug image display that does not show images or has a low frame rate 
-    - Image Metadata FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. TODO link - How to debug image display that does not show images or has a low frame rate 
+    - Image Data FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
+    - Image Metadata FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
     - I2C Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
     - GPIO Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
 
@@ -101,7 +101,7 @@ TODO: maybe flesh these steps out a bit more? They are really just ways to get s
 
 ### How to debug Acquisition FIFO overflow
 The first thing to check is the Serial Input Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it likely means the FPGA to Host FIFO is pushing back on the DRAM manager and the DRAM partition is getting full.
-- TODO: Add link to the 'serial channel status' instructions below
+Refer to [Get serial input channel status from the FPGA](#get-serial-input-channel-status-from-the-fpga).
 
 It is hard to distinguish if DMA is pushing back on DRAM causing DRAM overflow (e.g. system can't receive data fast enough, this can be many root causes), or if it's just data coming in faster than we can handle (FPGA simply can't handle this data rate).
 
@@ -109,7 +109,7 @@ It is hard to distinguish if DMA is pushing back on DRAM causing DRAM overflow (
 - If downstream is ready, and you overflow, DRAM manager might not be able to handle. This scenario is generally unlikely based on empirical testing. 
 
 If one of the two scenarios above is suspected, you can instrument the FPGA to determine where in the data path you are getting clogged up.
-TODO - add link to FPGA instrumentation guide.
+Refer to [Instrumenting and Monitoring FPGA Behavior](#instrumenting-and-monitoring-fpga-behavior).
 
 Things we can suggest to look into:
 - Double check Active Lane rate and count are matched throughout your system (Camera -> Instrument)
@@ -121,7 +121,7 @@ Things we can suggest to look into:
 ### How to debug image display that does not show images or has a low frame rate
 Images will not be displayed or will be displayed with a low frame rate when the system does not have the bandwidth to keep up with the images coming from the FPGA. 
 
-TODO: Refer to /gse-acq-common.md#reducing-system-bandwidth-usage to reduce the bandwidth display is using.
+Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage) to reduce the bandwidth display is using.
 
 ### How to debug issues with generation not starting
 If generation never starts, the first thing to check is the generation start thresholds configured in the Host\Gen\API\Configure Serial Output Channels.vi.
