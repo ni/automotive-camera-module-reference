@@ -57,7 +57,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 | Any | GPIO line change not logged as expected | This has many root causes. | - Make sure that the GPIO settings are correct for the serial channel you are interested in. |
 | Any | Display **Source Rate (fps)** and **Update Rate (fps)** both lower than expected | System bandwidth cannot support this sustained rate. | Reduce system bandwidth by modifying the display settings. Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage) |
 | Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | The Source rate is calculated from reading the display metadata FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
-| Any | Bitfile build failure occurs | Limited resources available in FPGA | | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
+| Any | Bitfile build failure occurs | Limited resources available in FPGA | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
 
 ## Troubleshooting Guides
 
@@ -67,8 +67,7 @@ Most errors can be resolved with one of the following steps:
 2. A camera may not be powered on. Double check the Power over Coax settings are correct to power on the camera from the PXIe-148x acquisition board.
 3. Script may have invalid commands - need to compare camera data sheet vs script commands
 
-Some explanation on how to do a deeper dive
-Wire up the script output from Run Configuration Script VI and review for clues on where the problem is occurring. The output should match the script and the logged I2C traffic in the I2C tab of the GSE.
+For help in determining the root cause of the error, wire the script output from the Run Configuration Script VI to an indicator and enable the **Log I2C to Disk** control. Run the VI and compare the script output to the logged I2C traffic.
 
 TODO: insert screenshot of block diagram of GSE for the output script.
 
@@ -78,7 +77,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 -  Acquisition/ TAP FIFOs
     - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. For a more detailed explanation refer to [How to debug Acquisition FIFO overflow](#how-to-debug-acquisition-fifo-overflow).
 
-- Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it is usually indicative a system bandwidth limitation. If one of these FIFOs fail, try following steps from other troubleshooting guides below. 
+- Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it is usually indicative a system bandwidth limitation. Try following steps from other troubleshooting guides below. 
     - Image Data FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
     - Image Metadata FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
     - I2C Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
@@ -87,7 +86,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 - Generation FIFOs - It should not be possible to see a FIFO overflow on the Host to FPGA LLP Packets FIFOs. The generation GSE holds off on writing data to the FIFO until the FIFO has space available. Refer to [How to debug Generation GSE packet timing errors](#how-to-debug-generation-gse-packet-timing-errors) for more Generation GSE specific debugging.
 
 ### How to debug Generation GSE packet timing errors
-The first thing to check is the Serial Output Channel Status indicator. You should verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
+The first thing to check is the Serial Output Channel Status indicator. Verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
 Refer to [Get serial output channel status from the fpga](#get-serial-output-channel-status-from-the-fpga).
  
 If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. You can start by refering to gse-gen-common.md#reducing-system-bandwidth-usage. Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
@@ -117,7 +116,7 @@ Things we can suggest to look into:
 - Reduce the acquisition to a single channel and verify that it stops successfully.
 
 ### How to debug image display that does not show images or has a low frame rate
-Images will not be displayed or will be displayed with a low frame rate when the system does not have the bandwidth to keep up with the images coming from the FPGA. 
+Images display with a reduced frame rate or do not display at all when the system does not have the bandwidth to keep up with the images coming from the FPGA.
 
 Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage) to reduce the bandwidth display is using.
 
