@@ -89,7 +89,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 The first thing to check is the Serial Output Channel Status indicator. Verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
 Refer to [Get serial output channel status from the fpga](#get-serial-output-channel-status-from-the-fpga).
  
-If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. You can start by refering to gse-gen-common.md#reducing-system-bandwidth-usage. Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
+If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage). Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
 
 - Disable display (or shrink image size)
 - Use smaller packets (reduce bandwidth requirements)
