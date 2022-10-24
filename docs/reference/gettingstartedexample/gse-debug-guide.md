@@ -14,14 +14,8 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 ---
 
 ## TODO List
-1. (Nick) Update Error/Warnings Code with Possible Causes and Troubleshooting Options.
-2. (Nick) Update Common Scenarios with Possible Causes and Troubleshooting Options.
-3. (Nick) Write section - Host-FPGA General Debugging Workflow
-4. (Josh) Create SI and SO Channel Status SubVIs and Add to All 3 GSEs
-5. (Nick) Write sections - Get serial input channel status from the FPGA & Get serial output channel status from the FPGA
-6. (Nick) Write section - Instrumenting and Monitoring FPGA Behavior
-7. (Josh) Write section - Optimize System Settings for Streaming Performance
-8. Look in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
+1. Write section - Optimize System Settings for Streaming Performance
+2. Consider looking in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
 ---
 
 ## Error/Warnings Codes
@@ -222,7 +216,7 @@ This is a good way to measure boolean signals to see how many times a certain co
 
 #### Add an FPGA to Host FIFO to send up debug information sideband.
 This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a cerain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
-TODO - image
+![DMA Debug](../../images/PXIe-148X-DMA-Debug.PNG)
 
 ### Optimize System Settings for Streaming Performance
 - (BIOS config, etc)
