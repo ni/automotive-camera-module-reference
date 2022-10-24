@@ -69,7 +69,7 @@ Most errors can be resolved with one of the following steps:
 
 For help in determining the root cause of the error, wire the script output from the Run Configuration Script VI to an indicator and enable the **Log I2C to Disk** control. Run the VI and compare the script output to the logged I2C traffic.
 
-TODO: insert screenshot of block diagram of GSE for the output script.
+![I2C Script Output](../../images/PXIe-148X-I2C-Script-Output.PNG)
 
 ### How to debug FIFO overflow errors (-52012)
 The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples and links to other debugging steps to take when encountering these errors.
@@ -136,21 +136,20 @@ TODO - Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and d
 ### Host-FPGA General Debugging Workflow
 The overall architecture of our Host and FPGA example code is to have the host query and poll at appropriate times to pass the status of the FPGA to the user. Errors that are detected at runtime on the FPGA are bubbled up through boolean status signals on the FPGA front panel. The host will read these signals and set an error message so that the source of the error can be found. Errors that are set will tell the user where to start looking for errors. Looking at the host code will tell you which portions of the FPGA design to look at. The signals are latched until the host api calls reset or FPGA diagram reset. 
 
-TODO - Image (Example GPIO write, checks a bool and sets a status)
+![GPIO Write Bool](../../images/PXIe-148X-GPIO-Write-Bool.PNG)
 
 Aditionally the host will check certain status's that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
 
-TODO Image (Get Acq State image example)
-TODO - Image (Check channel status generation image example)
+![Generation Check State](../../images/PXIe-148X-Gen-Check-State.PNG)
 
 There are other times where we wait for a certain state to be returned from the FPGA. If a host side timeout occurs while waiting for that state, we will set an error.
 
-TODO - Image (Wait for Acquisition state error)
+![Acquisition Check Done](../../images/PXIe-148X-Acq-Done-State.PNG)
 
 ### Get serial input channel status from the FPGA
 One of the best ways to diagnose Acqusition or TAP FPGA errors is to monitor the Serial Input Channel Status indicator from the FPGA. This indicator can be added to the Acquisition or Tap GSE from the Read Serial Input Channel Status VI.
 
-TODO - Add Screenshot of GSE block diagram with indicator
+![Serial Input Channel Status](../../images/PXIe-148X-Serial-Input-Status.PNG)
 
 The Serial Input Channel Status is an array of status cluster indicators - one for each channel.
 The cluster has the following indicators:
@@ -180,7 +179,7 @@ What kinds of scenarios can you sniff out based on the indicator behavior?
 ### Get serial output channel status from the FPGA
 One of the best ways to diagnose Generation errors is to monitor the Serial Output Channel Status indicator from the FPGA. This indicator can be added to the Generation GSE from the Read Serial Output Channel Status VI.
 
-TODO - Add Screenshot of GSE block diagram with indicator
+![Serial Output Channel Status](../../images/PXIe-148X-Serial-Output-Status.PNG)
 
 The Serial Output Channel Status is an array of status cluster indicators - one for each channel.
 The cluster has the following indicators:
@@ -211,15 +210,15 @@ When debugging or investigating FPGA behavior, there are some general strategies
 
 #### Add additional indicators that allow you to poll and view the information from the host. 
 Adding indicators will alloww you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
-TODO - image
+![Generation In Reset](../../images/PXIe-148X-Gen-In-Reset.PNG)
 
 #### You can latch signals and add new indicators
 Dropping down a basic latch when a certain condition occurs can allow you to save a particular state. Make sure to wire up the reset signal so that you can clear your state. This will allow you to capture a specific change on the FPGA.
-TODO - image
+![Latch Ready Indicator](../../images/PXIe-148X-Latch-Ready-Indicator.PNG)
 
 #### You can count rising and falling edges to see where things are going wrong
 This is a good way to measure boolean signals to see how many times a certain condition occurs. This can give you insights into complexe data flow problems wondering how many times a gate or state is allowing valid data to flow.
-TODO - image
+![Latch Ready Counter](../../images/PXIe-148X-Latch-Ready-Counter.PNG)
 
 #### Add an FPGA to Host FIFO to send up debug information sideband.
 This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a cerain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
