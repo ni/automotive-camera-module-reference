@@ -175,7 +175,7 @@ The cluster has the following indicators:
 - **num buffered llp packets** - Indicates the number of llp packets that are waiting to be generated.
 - **packet timing error (cycles)** - Indicates how many cycles the timestamp of the generated packet is behind expected time to generate.
 - **packet timing error** - This indicator is set if the timestamp of the generated packet was beyond the allowed packet timing error of the data.
-- **ready to generate packet** - This indicator toggles true every time the downstream data path is ready to accept a csi-2 packet.
+- **ready to generate packet** - This indicator toggles true every time the downstream data path is ready to accept a CSI-2 packet.
 - **dram status** - This indicator gives you insight into the state of the DRAM manager.
    - **bytes written** - Number of bytes written to this channel's DRAM partition.
    - **bytes read** - Number of bytes read from this channel's DRAM partition.
