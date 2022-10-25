@@ -172,7 +172,7 @@ One of the best ways to diagnose Generation errors is to monitor the Serial Outp
 
 The Serial Output Channel Status is an array of status cluster indicators - one for each channel.
 The cluster has the following indicators:
-- **num buffered llp packets** - Indicates the number of llp packets that are waiting to be generated.
+- **num buffered llp packets** - Indicates the number of LLP packets that are waiting to be generated.
 - **packet timing error (cycles)** - Indicates how many cycles the timestamp of the generated packet is behind expected time to generate.
 - **packet timing error** - This indicator is set if the timestamp of the generated packet was beyond the allowed packet timing error of the data.
 - **ready to generate packet** - This indicator toggles true every time the downstream data path is ready to accept a CSI-2 packet.
@@ -182,7 +182,7 @@ The cluster has the following indicators:
    - **overflow** - The DRAM parition could not be written to because the partition was full.
    - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
    - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
-- **num buffered llp timestamps** - The number of LLP timestamps that are waiting to be generated. This should be close to the number of buffered llp packets.
+- **num buffered llp timestamps** - The number of LLP timestamps that are waiting to be generated. This should be close to the number of buffered LLP packets.
 - **generation done** - Indicates the generation has completed.
 - **num generated packets** - The number of CSI-2 packets that were sent out the serial output channel.
 
