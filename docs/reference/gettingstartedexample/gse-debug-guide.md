@@ -13,11 +13,6 @@ Refer to this document to get insights and suggestions on troubleshooting perfor
 
 ---
 
-## TODO List
-1. Write section - Optimize System Settings for Streaming Performance
-2. Consider looking in csi2serdesconfig source for list of unique error codes and add to table (timebox 2 hours)
----
-
 ## Error/Warnings Codes
 
 | Error | Explanation | Possible Causes | Troubleshooting Options |
@@ -49,7 +44,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 | Acq | VI 'hangs' after acquisition completes but does (eventually) stop | The VI is trying to display too many logged packets. | Change the type of packets logged, or disable logging packets to disk. |
 | Any | I2C packets are not logged as expected | This has many root causes. | - Make sure that the I2C settings are correct for the serial channel you are interested in.<br />- Refer to [How to Debug Incomplete I2C Transaction Errors](#how-to-debug-incomplete-i2c-transaction-errors--304321) |
 | Any | GPIO line change not logged as expected | This has many root causes. | - Make sure that the GPIO settings are correct for the serial channel you are interested in. |
-| Any | Display **Source Rate (fps)** and **Update Rate (fps)** both lower than expected | System bandwidth cannot support this sustained rate. | Reduce system bandwidth by modifying the display settings. Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage) |
+| Any | Display **Source Rate (fps)** and **Update Rate (fps)** both lower than expected | System bandwidth cannot support this sustained rate. | Reduce system bandwidth by modifying the display settings. Refer to [Reducing system bandwidth usage](../../tutorials/gettingstartedexample/gse-gen-common.md#reducing-system-bandwidth-usage) |
 | Any | Display **Update Rate (fps)** lower than the display **Source Rate (fps)** | The Source rate is calculated from reading the display metadata FIFO. If you can't keep up pushing to display at same rate you're pulling in source data, Display will be lower (skipping images). | Use Skip Line/Pixels to reduce size and remove need to resample on host. Saves bandwidth and CPU resources. Or use Skip Frames to reduce frames sent if can't be displayed anyway (e.g. HW limitations) |
 | Any | Bitfile build failure occurs | Limited resources available in FPGA | General guidelines on easy pieces to remove/tweak in GSE FPGA VIs |
 
@@ -57,7 +52,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 
 ### How to debug incomplete I2C transaction errors (-304321)
 Most errors can be resolved with one of the following steps:
-1. On a 1487, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
+1. On a PXIe-1487, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
 2. A camera may not be powered on. Double check the Power over Coax settings are correct to power on the camera from the PXIe-148x acquisition board.
 3. Script may have invalid commands - need to compare camera data sheet vs script commands
 
@@ -71,7 +66,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 -  Acquisition/ TAP FIFOs
     - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. For a more detailed explanation refer to [How to debug Acquisition FIFO overflow](#how-to-debug-acquisition-fifo-overflow).
 
-- Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it is usually indicative a system bandwidth limitation. Try following steps from other troubleshooting guides below. 
+- Common FIFOs - These FIFOs are small and do not move much data to the Host. If one of these FIFOs overflows, it usually indicates a system bandwidth limitation. Try following steps from other troubleshooting guides below. 
     - Image Data FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
     - Image Metadata FIFO - There are two of these FPGA to Host FIFOs by default in each GSE. Refer to [How to debug image display that does not show images or has a low frame rate](#how-to-debug-image-display-that-does-not-show-images-or-has-a-low-frame-rate).
     - I2C Timestamp FIFO - There is one of these FPGA to Host FIFOs by default in each GSE.
@@ -87,8 +82,8 @@ If you cannot figure out what part of the serial output data path is causing the
 
 - Disable display (or shrink image size)
 - Use smaller packets (reduce bandwidth requirements)
-- Set your timing error limit so high that we don't error out, and then see if DRAM manager still fills up
-- Use the [TDMS file creator](../gse-create-tdms.md) to create a known good set of csi-2 packet data with the desired timing characteristics and verify your generation completes successfully 
+- Set your timing error limit so high that the system does not error out, and then see if DRAM manager still fills up
+- Use the [TDMS file creator](../../tutorials/gettingstartedexample/gse-create-tdms.md) to create a known good set of CSI-2 packet data with the desired timing characteristics and verify your generation completes successfully 
 - Reduce serial output channel count
 
 ### How to debug Acquisition FIFO overflow
@@ -112,13 +107,13 @@ Things we can suggest to look into:
 ### How to debug image display that does not show images or has a low frame rate
 Images display with a reduced frame rate or do not display at all when the system does not have the bandwidth to keep up with the images coming from the FPGA.
 
-Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage) to reduce the bandwidth display is using.
+Refer to [Reducing system bandwidth usage](../../tutorials/gettingstartedexample/gse-gen-common.md#reducing-system-bandwidth-usage) to reduce the bandwidth display is using.
 
 ### How to debug issues with generation not starting
 If generation never starts, the first thing to check is the generation start thresholds configured in the Host\Gen\API\Configure Serial Output Channels.vi.
 
 - **timestamp buffer start threshold** - The minimum number of timestamps that must be buffered before generation begins
-- **packet data buffer start threshold (bytes)** - The minimum number of valid csi-2 packet bytes that must be buffered before generation begins
+- **packet data buffer start threshold (bytes)** - The minimum number of valid CSI-2 packet bytes that must be buffered before generation begins
 - **dram partition start threshold (bytes)** - The number of bytes that dram partition must have stored before generatoin begins
 
 The most common way to force the generation to start is the reduce the above thresholds to zero, and increase the **packet timing error threshold (cycles)** to a very large number (e.g. FFFFFFFFFFFFFFF0) so that it will never have a timing error and generation will start immediately. Then you can look at the Serial Channel Output Status indicator to determine if the channel is otherwise behaving correctly.
@@ -132,7 +127,7 @@ The overall architecture of our Host and FPGA example code is to have the host q
 
 ![GPIO Write Bool](../../images/PXIe-148X-GPIO-Write-Bool.PNG)
 
-Aditionally the host will check certain status's that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
+Aditionally the host will check certain statuses that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
 
 ![Generation Check State](../../images/PXIe-148X-Gen-Check-State.PNG)
 
@@ -161,7 +156,7 @@ The cluster has the following indicators:
 
 
 What kinds of scenarios can you sniff out based on the indicator behavior?
-- If **acq state** is stuck in idle, we are never detecting a valid CSI-2 packet
+- If **acq state** is stuck in idle, we are never detecting a valid CSI-2 packet.
 - If **stop timed out** is true, we did not receive the last packet in the expected amount of time. Increase the **Stop Timeout (s)** control on the front panel to see if the packet is late, or if there is a missing packet.
 - If any of the bad packet indicators are lit, we are not receiving valid CSI-2 packets. Check your camera and connection to the serial input channel.
 - If the acquisition has ended but **bytes written** is greater than **bytes read** then there is valid data getting stuck in the DRAM partition and something downstream is not ready to receive CSI-2 packets.
@@ -187,9 +182,9 @@ The cluster has the following indicators:
    - **overflow** - The DRAM parition could not be written to because the partition was full.
    - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
    - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
-- **num buffered llp timestamps** - The number of llp timestamps that are waiting to be generated. This should be close to the number of buffered llp packets.
+- **num buffered llp timestamps** - The number of LLP timestamps that are waiting to be generated. This should be close to the number of buffered llp packets.
 - **generation done** - Indicates the generation has completed.
-- **num generated packets** - The number of csi-2 packets that were sent out the serial output channel.
+- **num generated packets** - The number of CSI-2 packets that were sent out the serial output channel.
 
 What kinds of scenarios can you sniff out based on the indicator behavior?
 - If the generation has ended but **bytes written** is greater than **bytes read** then there is valid data getting stuck in the DRAM partition and something downstream is not ready to receive CSI-2 packets.
@@ -200,10 +195,11 @@ What kinds of scenarios can you sniff out based on the indicator behavior?
 
 
 ### Instrumenting and Monitoring FPGA Behavior
-When debugging or investigating FPGA behavior, there are some general strategies that you can implement to figure out where errors are coming from. You can monitor the boolean signals that we pass to the user through the FPGA front panel, or you can monitor various internal state machines. The exact nature of what you should instrument is dependent on the problem you are trying to solve, but there are three common strategies for getting debug information out of the LabVIEW FPGA image at runtime.
+When debugging or investigating FPGA behavior, there are some general strategies that you can implement to figure out where errors are coming from. You can monitor the boolean signals that are passed to the host through the FPGA front panel, or you can monitor various internal state machines. The exact nature of what you should instrument is dependent on the problem you are trying to solve, but there are three common strategies for getting debug information out of the LabVIEW FPGA image at runtime.
+    > Note: All of the strategies below will require the FPGA to be recompiled to reflect the suggested changes.
 
 #### Add additional indicators that allow you to poll and view the information from the host. 
-Adding indicators will alloww you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
+Adding indicators will allow you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
 ![Generation In Reset](../../images/PXIe-148X-Gen-In-Reset.PNG)
 
 #### You can latch signals and add new indicators
@@ -219,10 +215,7 @@ This technique takes a long time to setup, can dramatically change the resource 
 ![DMA Debug](../../images/PXIe-148X-DMA-Debug.PNG)
 
 ### Optimize System Settings for Streaming Performance
-- (BIOS config, etc)
-- Look for Chimera notes
-- Or source from Neil F's original docs
-- RAM, disk, BIOS, limiting memory/interrupt intensive ops
+Section Coming Soon
 
 ---
 
