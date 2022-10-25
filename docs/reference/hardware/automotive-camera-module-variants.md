@@ -39,20 +39,14 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1486 Deserializer | 8 input      | FPD-Link III | N/A        | DS90UB954    | 2          | FlexRIO FPD-LINK™ III 954 Deserializer |
 | PXIe-1486 Serializer   | 8 output     | FPD-Link III | DS90UB953  | N/A          | 2          | FlexRIO FPD-LINK™ III 953 Serializer   |
 | PXIe-1486 SerDes       | 4 in / 4 out | FPD-Link III | DS90UB953  | DS90UB954    | 2          | FlexRIO FPD-LINK™ III 953/954 SerDes   |
-| PXIe-1486 Deserializer | 8 input      | FPD-Link III | N/A        | DS90UB638    | 2          | FlexRIO FPD-LINK™ III 638 Deserializer |
-| PXIe-1486 Serializer   | 8 output     | FPD-Link III | DS90UB635  | N/A          | 2          | FlexRIO FPD-LINK™ III 635 Serializer   |
-| PXIe-1486 SerDes       | 4 in / 4 out | FPD-Link III | DS90UB635  | DS90UB638    | 2          | FlexRIO FPD-LINK™ III 635/638 SerDes   |
 
 ### Software Details
 
-| Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported    | Product ID | Model Alias |
-|------------------------|----------------------------------------------------|-----------------------------------|----------------------------|------------|-------------|
-| PXIe-1486 Deserializer | NI PXIe-1486 (8 In - 954 Deserializer - KU11P)     | NI PXIe-1486 (8 In - KU11P)       | [20.6](#compat-note)       | 0x7A82     | 1486_8I     |
-| PXIe-1486 Serializer   | NI PXIe-1486 (8 Out - 953 Serializer - KU11P)      | NI PXIe-1486 (8 Out - KU11P)      | [20.7](#compat-note)       | 0x7A83     | 1486_8O     |
-| PXIe-1486 SerDes       | NI PXIe-1486 (4 In 4 Out - 953/954 SerDes - KU11P) | NI PXIe-1486 (4 In 4 Out - KU11P) | [20.6](#compat-note)       | 0x7A84     | 1486_4I_4O  |
-| PXIe-1486 Deserializer | NI PXIe-1486 (8 In - 638 Deserializer - KU11P)     | NI PXIe-1486 (8 In - KU11P)       | [2022 Q4](#compat-note)    | 0x7A82     | 1486_8I     |
-| PXIe-1486 Serializer   | NI PXIe-1486 (8 Out - 635 Serializer - KU11P)      | NI PXIe-1486 (8 Out - KU11P)      | [2022 Q4](#compat-note)    | 0x7A83     | 1486_8O     |
-| PXIe-1486 SerDes       | NI PXIe-1486 (4 In 4 Out - 635/638 SerDes - KU11P) | NI PXIe-1486 (4 In 4 Out - KU11P) | [2022 Q4](#compat-note)    | 0x7A84     | 1486_4I_4O  |
+| Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Model Alias |
+|------------------------|----------------------------------------------------|-----------------------------------|-------------------------|------------|-------------|
+| PXIe-1486 Deserializer | NI PXIe-1486 (8 In - 954 Deserializer - KU11P)     | NI PXIe-1486 (8 In - KU11P)       | [20.6](#compat-note)    | 0x7A82     | 1486_8I     |
+| PXIe-1486 Serializer   | NI PXIe-1486 (8 Out - 953 Serializer - KU11P)      | NI PXIe-1486 (8 Out - KU11P)      | [20.7](#compat-note)    | 0x7A83     | 1486_8O     |
+| PXIe-1486 SerDes       | NI PXIe-1486 (4 In 4 Out - 953/954 SerDes - KU11P) | NI PXIe-1486 (4 In 4 Out - KU11P) | [20.6](#compat-note)    | 0x7A84     | 1486_4I_4O  |
 
 ---
 
