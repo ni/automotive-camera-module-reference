@@ -110,15 +110,19 @@ Images display with a reduced frame rate or do not display at all when the syste
 Refer to [Reducing system bandwidth usage](../../tutorials/gettingstartedexample/gse-gen-common.md#reducing-system-bandwidth-usage) to reduce the bandwidth display is using.
 
 ### How to debug issues with generation not starting
-If generation never starts, the first thing to check is the generation start thresholds configured in the Host\Gen\API\Configure Serial Output Channels.vi.
+If generation never starts, the first thing to check is the generation start thresholds configured in the host VI <font face="courier new">Configure Serial Output Channels.vi</font>.
+    
+![Configure Serial Output Channels](../../images/PXIe-148X-Buffer-Start-Thresholds.PNG)
 
 - **timestamp buffer start threshold** - The minimum number of timestamps that must be buffered before generation begins
 - **packet data buffer start threshold (bytes)** - The minimum number of valid CSI-2 packet bytes that must be buffered before generation begins
 - **dram partition start threshold (bytes)** - The number of bytes that dram partition must have stored before generatoin begins
 
 The most common way to force the generation to start is the reduce the above thresholds to zero, and increase the **packet timing error threshold (cycles)** to a very large number (e.g. FFFFFFFFFFFFFFF0) so that it will never have a timing error and generation will start immediately. Then you can look at the Serial Channel Output Status indicator to determine if the channel is otherwise behaving correctly.
+    
+If modifying the thresholds on the host side is not giving you sufficient insight, you can instrument the FPGA VI <font face="courier new">Monitor Ready For Start Condition.vi</font> to see which of the three threshold conditions is not being met. Refer to [Instrumenting and Monitoring FPGA Behavior](#instrumenting-and-monitoring-fpga-behavior).
 
-TODO - Take a look at FPGA\Gen\SubVIs\Monitor Ready For Start Condition.vi and document the logic on what triggers start. Some of these values come from host.
+![Monitor Start Conditions](../../images/PXIe-148X-Monitor-Start-Conditions.PNG)
 
 ## General Debugging Best Practices
 
