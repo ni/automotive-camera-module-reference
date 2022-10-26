@@ -78,7 +78,7 @@ The Getting Started Examples use many FIFOs to pass data and metadata between th
 The first thing to check is the Serial Output Channel Status indicator. Verify that the bytes going in and coming out of the DRAM match. If the DRAM manager is overflowing, it means the number of packets being sent out the serial output channel is less than then packets being sent from the host. Verify the TDMS data set has timestamps running at the correct rate.
 Refer to [Get serial output channel status from the fpga](#get-serial-output-channel-status-from-the-fpga).
  
-If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. Refer to [Reducing system bandwidth usage](../../gse-gen-common.md#reducing-system-bandwidth-usage). Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
+If you cannot figure out what part of the serial output data path is causing the timing errors, or are seeing FIFO overflow errors, take these steps to reduce system bandwidth. Refer to [Reducing system bandwidth usage](../../tutorials/gettingstartedexample/gse-gen-common.md#reducing-system-bandwidth-usage). Afterwards, try some of these tasks to see which part of your system or data set is responsible for causing overflows.
 
 - Disable display (or shrink image size)
 - Use smaller packets (reduce bandwidth requirements)
@@ -204,18 +204,22 @@ When debugging or investigating FPGA behavior, there are some general strategies
 
 #### Add additional indicators that allow you to poll and view the information from the host. 
 Adding indicators will allow you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
+    
 ![Generation In Reset](../../images/PXIe-148X-Gen-In-Reset.PNG)
 
 #### You can latch signals and add new indicators
 Dropping down a basic latch when a certain condition occurs can allow you to save a particular state. Make sure to wire up the reset signal so that you can clear your state. This will allow you to capture a specific change on the FPGA.
+    
 ![Latch Ready Indicator](../../images/PXIe-148X-Latch-Ready-Indicator.PNG)
 
 #### You can count rising and falling edges to see where things are going wrong
 This is a good way to measure boolean signals to see how many times a certain condition occurs. This can give you insights into complexe data flow problems wondering how many times a gate or state is allowing valid data to flow.
+    
 ![Latch Ready Counter](../../images/PXIe-148X-Latch-Ready-Counter.PNG)
 
 #### Add an FPGA to Host FIFO to send up debug information sideband.
 This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a cerain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
+    
 ![DMA Debug](../../images/PXIe-148X-DMA-Debug.PNG)
 
 ### Optimize System Settings for Streaming Performance
