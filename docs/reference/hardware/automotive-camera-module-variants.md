@@ -40,6 +40,9 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1486 Serializer   | 8 output     | FPD-Link III | DS90UB953  | N/A          | 2          | FlexRIO FPD-LINK™ III 953 Serializer   |
 | PXIe-1486 SerDes       | 4 in / 4 out | FPD-Link III | DS90UB953  | DS90UB954    | 2          | FlexRIO FPD-LINK™ III 953/954 SerDes   |
 
+#### Block Diagram
+![1486 block diagram](/docs/images/PXIe-1486-block-dia.png)
+
 ### Software Details
 
 | Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Model Alias |
