@@ -47,8 +47,8 @@ This document contains reference information on various properties of PXIe-148X 
 - GPIO and I2C voltage is 1.8V on the Serializer and Deserializer. Do not configure the I2C voltage register to 3.3V.
 - I2C busses are point-to-point for each SER / DES and the CPLD. They are not shared.
 - Default config from boot-strapping voltage dividers is: 
-    - UB954: I2C address 0x60 (8b), synchronous mode
-    - UB953: I2C address 0x30 (8b), synchronous mode
+    - DS90UB954: I2C address 0x60 (8b), synchronous mode
+    - DS90UB953: I2C address 0x30 (8b), synchronous mode
 - Changing the REFCLK on the PLL will reset both components.
 
 ### Software Details
