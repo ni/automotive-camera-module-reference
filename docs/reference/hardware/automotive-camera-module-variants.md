@@ -40,6 +40,17 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1486 Serializer   | 8 output     | FPD-Link III | DS90UB953  | N/A          | 2          | FlexRIO FPD-LINK™ III 953 Serializer   |
 | PXIe-1486 SerDes       | 4 in / 4 out | FPD-Link III | DS90UB953  | DS90UB954    | 2          | FlexRIO FPD-LINK™ III 953/954 SerDes   |
 
+#### Block Diagram
+![1486 block diagram](/docs/images/PXIe-1486-block-dia.png)
+
+#### Features & Limitations
+- GPIO and I2C voltage is 1.8V on the Serializer and Deserializer. Do not configure the I2C voltage register to 3.3V.
+- I2C busses are point-to-point for each SER / DES and the CPLD. They are not shared.
+- Default config from boot-strapping voltage dividers is: 
+    - DS90UB954: I2C address 0x60 (8b), synchronous mode
+    - DS90UB953: I2C address 0x30 (8b), synchronous mode
+- Changing the REFCLK on the PLL will reset both components.
+
 ### Software Details
 
 | Model Number           | NI MAX Name                                        | LabVIEW FPGA Target Name          | FlexRIO First Supported | Product ID | Model Alias |
