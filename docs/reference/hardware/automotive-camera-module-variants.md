@@ -41,7 +41,7 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1486 SerDes       | 4 in / 4 out | FPD-Link III | DS90UB953  | DS90UB954    | 2          | FlexRIO FPD-LINK™ III 953/954 SerDes   |
 
 #### Block Diagram
-![1486 block diagram](/docs/images/PXIe-1486-block-dia.png)
+![1486 block diagram](../../images/PXIe-1486-block-dia.png)
 
 #### Features & Limitations
 - GPIO and I2C voltage is 1.8V on the Serializer and Deserializer. Do not configure the I2C voltage register to 3.3V.
