@@ -19,6 +19,7 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 ### Getting Started Example
 - [PXIe-148X Getting Started Example - Acquisition Help](reference/gettingstartedexample/gse-acq-help.md)
 - [PXIe-148X Getting Started Example - Generation Help](reference/gettingstartedexample/gse-gen-help.md)
+- [PXIe-148X Getting Started Example - Troubleshooting Guide](reference/gettingstartedexample/gse-debug-guide.md)
 - [PXIe-148X Configuration Scripts User Guide](reference/gettingstartedexample/config-scripts-user-guide.md)
 
 ### Hardware
