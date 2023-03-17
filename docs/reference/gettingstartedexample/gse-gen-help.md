@@ -82,6 +82,14 @@ Refer to this document to understand the elements of the getting started example
   | **None**      | Power over coax disabled.                                  |
   | **Auxiliary** | Route received power over coax to the AUX POWER connector. |
 
+- **Power Over Coax Source** - The source used to provide power over coax on active serial input channels. (Applies to Tap Boards only with [I2C -> Enable I2C TAP (All Channels)](#i2c-tab) enabled)
+    
+  | Value     | Description                                                         |
+  |-----------|---------------------------------------------------------------------|
+  | None      | No power over coax provided.                                        |
+  | Internal  | Use internal power source to provide power over coax.               |
+  | Auxiliary | User power from the AUX POWER connector to provide power over coax. |
+
 - **Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the SerDes. GMSL SerDes do not support changing this value from the default of 25 MHz. However for FPD-Link SerDes, in certain modes of operation, you may need to adjust this value and should consult the specifications for your SerDes for more information about supported reference clock frequencies and clocking modes.
 
 - **Requested Serial Output Data Rate (bps)** - Specifies the desired serializer data rate. Passing a requested value of -1 uses the maximum data rate for the board.
@@ -148,6 +156,7 @@ Refer to this document to understand the elements of the getting started example
 - **Power Over Coax Current (A)** - Displays the power over coax current draw, in amps, for all active serial output channels.
 - **Power Over Coax Voltage (V)** - Displays the power over coax voltage level, in volts, for all active serial output channels.
 - **Power Over Coax Sink In Range** - Indicates whether the power over coax voltage level is in range for all active serial output channels.
+- **Power Over Coax Source In Range** - Indicates if the power over coax voltage level is in range for all active serial input channels. (Applies to Tap Boards only with [I2C -> Enable I2C TAP (All Channels)](#i2c-tab) enabled)
 - **Error Out** - Displays any error that occurred during the generation.
 
 ## Related Documents
