@@ -19,12 +19,12 @@ Basic knowledge of LabVIEW and LabVIEW FPGA concepts.
 
 A supported interface module on a PXI system running a compatible Windows version.
 
-| **Interface Modules**   |
-|------------------------|
-| PXIe-1486 (8 Out)      |
-| PXIe-1486 (4 In 4 Out) |
-| PXIe-1487 (8 Out)      |
-| PXIe-1487 (4 In 4 Out) |
+| **Interface Modules**                       |
+|---------------------------------------------|
+| PXIe-1486 (8 Out - 953 Serializer)          |
+| PXIe-1486 (4 In 4 Out - 953/954 SerDes)     |
+| PXIe-1487 (8 Out - 9295A Serializer)        |
+| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) |
 
 ## Initial Hardware Setup
 
