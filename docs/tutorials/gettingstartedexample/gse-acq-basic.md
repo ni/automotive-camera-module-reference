@@ -3,7 +3,7 @@
 
 This tutorial will teach you the steps needed to configure an acquisition using a PXIe-148X module with a Leopard Imaging IMX490 camera and familiarize you with the basic functionality provided by the Acquisition Getting Started Example.
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
+> Note: This document references the example included with the NI-FlexRIO 23Q1 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -103,8 +103,7 @@ A supported interface module and camera on a PXI system running Windows.
 
     ![Channel Configurations Control](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
-8. Rerun the VI to see the impact of the display parameter changes on the image displayed.
-    > Note: Changes made to the display parameters while the VI is running will not take effect until the next time the VI is run.
+    > Note: Changes made to the **RAW Display Parameters** will take effect while the VI is running.
 
 ## Performing a Finite Acquisition with Data Logging
 
