@@ -66,22 +66,22 @@ Refer to this document to understand the elements of the getting started example
         - **Interpretation** - Describes the actual contents and format of the RAW data to be decoded and displayed.
             > Supported Options: Grayscale, Bayer (default), RGB, YUV422, YUV420, Legacy YUV420
 
-            > This control may be set while the VI is running.
+            > This control may be modified while the VI is running.
         - **Bayer Parameters** - Additional parameters applicable when interpreting RAW data types as Bayer-encoded data to achieve the correct pattern and color balance.
             - **Pattern** - Specifies the variation of the Bayer encoding pattern to use.
                 > Supported Options: GB, GR, BG, RG (default)
 
-                > This control may be set while the VI is running.
+                > This control may be modified while the VI is running.
             - **Algorithm** - Specifies the algorithm used to create the image. Because the bilinear algorithm is faster, it is recommended to try the bilinear algorithm before the variable number of gradients (VNG) algorithm. If the image contains many edges, or if the quality of the edges in the image is important, use the VNG algorithm.
                 > Supported Options: Bilinear (default), VNG
 
-                > This control may be set while the VI is running.
+                > This control may be modified while the VI is running.
             - **Red Gain** - The gain to be applied to the red pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
-                > This control may be set while the VI is running.
+                > This control may be modified while the VI is running.
             - **Green Gain** - The gain to be applied to the green pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
-                > This control may be set while the VI is running.
+                > This control may be modified while the VI is running.
             - **Blue Gain** - The gain to be applied to the blue pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
-                > This control may be set while the VI is running.
+                > This control may be modified while the VI is running.
 
 ### Board Tab
 - **Power Over Coax Sink** - The destination used to receive power over coax on active serial output channels.
