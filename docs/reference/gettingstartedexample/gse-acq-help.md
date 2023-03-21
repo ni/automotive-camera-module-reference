@@ -4,7 +4,7 @@
 Refer to this document to understand the elements of the getting started example for acquisition with variants of the PXIe-148X GMSL and FPD-Link interface modules. This document provides a description for all controls and indicators on the acquisition getting started example front panel. 
 > Note: Updates to controls when the VI is running will not take effect unless otherwise indicated.
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+> Note: This document references the example included with the NI-FlexRIO 23Q1 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -75,14 +75,23 @@ Refer to this document to understand the elements of the getting started example
     - **RAW Display Parameters** - Parameters that determine how the raw image data is interpreted for display.
         - **Interpretation** - Describes the actual contents and format of the RAW data to be decoded and displayed.
             > Supported Options: Grayscale, Bayer (default), RGB, YUV422, YUV420, Legacy YUV420
+
+            > This control may be modified while the VI is running.
         - **Bayer Parameters** - Additional parameters applicable when interpreting RAW data types as Bayer-encoded data to achieve the correct pattern and color balance.
             - **Pattern** - Specifies the variation of the Bayer encoding pattern to use.
                 > Supported Options: GB, GR, BG, RG (default)
+
+                > This control may be modified while the VI is running.
             - **Algorithm** - Specifies the algorithm to use to create the image. Because the bilinear algorithm is faster, it is recommended to try the bilinear algorithm before the variable number of gradients (VNG) algorithm. If the image contains many edges, or if the quality of the edges in the image is important use the VNG algorithm.
                 > Supported Options: Bilinear (default), VNG
+
+                > This control may be modified while the VI is running.
             - **Red Gain** - The gain to be applied to the red pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
+                > This control may be modified while the VI is running.
             - **Green Gain** - The gain to be applied to the green pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
+                > This control may be modified while the VI is running.
             - **Blue Gain** - The gain to be applied to the blue pixels in a Bayer-encoded image. The valid range for this parameter is 0 to 3.999.
+                > This control may be modified while the VI is running.
 
 ### Acquisition Tab
 - **Acquisition Duration (s)** - The acquisition duration in seconds. The duration specifies the time from the start of the acquisition to the assertion of a stop trigger.

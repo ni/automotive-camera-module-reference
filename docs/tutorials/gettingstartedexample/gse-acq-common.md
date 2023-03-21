@@ -3,7 +3,7 @@
 
 This document covers a range of common scenarios using the PXIe-148X Acquisition Getting Started Example (GSE) to help you understand LLP acquisition, I2C and GPIO timestamping, and common configuration options.
 
-> Note: This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
+> Note: This document references the example included with the NI-FlexRIO 23Q1 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -238,8 +238,6 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
     | Resource       | RIO Device              | [System Specific]                                                                                                                                                   |
     | Resource       | Bitfile Path            | [Refer to Bitfile Path in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-bitfiles)        |
     | Serial Channel | Configuration Script    | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
-    | Acquisition    | Acquisition Duration    | 5 seconds                                                                                                                                                           |
-    | Acquisition    | Continuous Acquisition  | Disabled                                                                                                                                                            |
     | Board          | Power Over Coax Source  | Internal                                                                                                                                                            |
 
 2.  Select the **Serial Channel** tab and make the following modifications.
@@ -266,29 +264,26 @@ This tutorial shows you how to configure the **RAW Display Parameters** to chang
 
 3. Run the VI.
 
-   - Select the **First Display Channel** tab and observe the image displayed is distorted.
+4. Select the **First Display Channel** tab and observe the image displayed is distorted.
    
-4.  Select the **Serial Channel** tab and make the following modifications.
+5. Select the **Serial Channel** tab and make the following modifications.
 
     Set the **RAW Display Parameters** to the following sub-settings.
 	
 	- Set the **Interpretation** control to <font face = "courier new">Bayer</font>.
 	- Set the **Pattern** control to <font face = "courier new">GB</font>.
 	
-5. Run the VI.
-
-   - Select the **First Display Channel** tab and observe the image displayed is colorized incorrectly.
+6. Select the **First Display Channel** tab and observe the image displayed is colorized incorrectly.
    
-6.  Select the **Serial Channel** tab and make the following modifications.
+7.  Select the **Serial Channel** tab and make the following modifications.
 
     Set the **RAW Display Parameters** to the following sub-settings.
 	
 	- Set the **Interpretation** control to <font face = "courier new">Bayer</font>.
 	- Set the **Pattern** control to <font face = "courier new">RG</font>.
 	
-7. Run the VI.
-
-   - Select the **First Display Channel** tab and observe the image displayed looks correct. The **RAW Display Parameters** now match the RAW 12 packet data from the Leopard Imaging IMX490 camera.
+8. Select the **First Display Channel** tab and observe the image displayed looks correct. The **RAW Display Parameters** now match the RAW 12 packet data from the Leopard Imaging IMX490 camera.
+9. Click the **Stop Acquisition** button.
 
 ## Setting Serial Channel Configurations
 
