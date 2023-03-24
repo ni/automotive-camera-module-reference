@@ -88,8 +88,8 @@ Refer to this document to understand the elements of the getting started example
 
   | Value     | Description                                                |
   |-----------|------------------------------------------------------------|
-  | **None**      | Power over coax disabled.                                  |
-  | **Auxiliary** | Route received power over coax to the AUX POWER connector. |
+  | None      | Power over coax disabled.                                  |
+  | Auxiliary | Route received power over coax to the AUX POWER connector. |
 
 - **Power Over Coax Source** - The source used to provide power over coax on active serial input channels. (Applies to Tap Boards only with [I2C -> Enable I2C TAP (All Channels)](#i2c-tab) enabled)
     
