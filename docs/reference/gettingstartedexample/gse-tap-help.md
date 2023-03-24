@@ -42,12 +42,12 @@ Refer to this document to understand the elements of the getting started example
 - **Deserializer (Input) Configuration Script** - Full path to a script file used to configure the deserializer.
   #### Table of PXIe-148X Deserializer Tap Scripts
 
-  | **Interface Module**                                 | **Configuration Script**                              |
-  |------------------------------------------------------|-------------------------------------------------------|
-  | PXIe-1486 (4 In 4 Out - 953/954 SerDes)              | Host\\Scripts\\DS90UB954\\Tap\\Des_Tap.py             |
-  | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)          | Host\\Scripts\\MAX9296A\\Tap\\RAW12_ID01_Des_Tap.cpp  |
-  | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes - KU11P) | Host\\Scripts\\MAX96716A\\Tap\\RAW12_ID12_Des_Tap.cpp |
-  | PXIe-1488 (4 In 4 Out - 971/9702 SerDes - KU11P)     | Host\\Scripts\\DS90UB9702\\Tap\\Des_Tap.py            |
+  | **Interface Module**                         | **Configuration Script**                              |
+  |----------------------------------------------|-------------------------------------------------------|
+  | PXIe-1486 (4 In 4 Out - 953/954 SerDes)      | Host\\Scripts\\DS90UB954\\Tap\\Des_Tap.py             |
+  | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | Host\\Scripts\\MAX9296A\\Tap\\RAW12_ID01_Des_Tap.cpp  |
+  | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes) | Host\\Scripts\\MAX96716A\\Tap\\RAW12_ID12_Des_Tap.cpp |
+  | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     | Host\\Scripts\\DS90UB9702\\Tap\\Des_Tap.py            |
 
 - **Serializer (Output) Configuration Script** - Full path to a script file used to configure the serializer.
   #### Table of PXIe-148X Serializer Tap Scripts
@@ -57,13 +57,14 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1486 (4 In 4 Out - 953/954 SerDes)                           | Host\\Scripts\\DS90UB953\\Tap\\Ser_Tap.py                      |
   | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)                       | Host\\Scripts\\MAX9295A\\Tap\\RAW12_ID1_Ser_Tap.cpp            |
   | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) Reverse Splitter Mode | Host\\Scripts\\MAX9295A\\Tap\\RAW12_ID0_ToRevSplit_Ser_Tap.cpp |
-  | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes - KU11P)              | Host\\Scripts\\MAX96717\\Tap\\RAW12_ID2_Ser_Tap.cpp            |
-  | PXIe-1488 (4 In 4 Out - 971/9702 SerDes - KU11P)                  | Host\\Scripts\\DS90UB971\\Tap\\Ser_Tap.py                      |
+  | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes)                      | Host\\Scripts\\MAX96717\\Tap\\RAW12_ID2_Ser_Tap.cpp            |
+  | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)                          | Host\\Scripts\\DS90UB971\\Tap\\Ser_Tap.py                      |
 
 - **Channel Configurations** - Array of active serial channel tap pairs and display parameters for each channel pair.
     - **Serial Channel Tap Pair**
         - **input** - String representing the active serial input channel in the tap pair in the format "SI" for Serial Input followed by the channel number (i.e. "SI0")
         - **output** - String representing the active serial output channel in the tap pair in the format "SO" for Serial Output followed by the channel number (i.e. "SO0")
+        > Note: The input and output numeric values in each channel pair must match.
     - **FPGA Display Parameters** - Parameters that determine what packet data the FPGA will send to the host for display.
         > Note: Display parameters only affect the image on the display channel, not any data logged to disk.
         
@@ -131,10 +132,10 @@ Refer to this document to understand the elements of the getting started example
 
 - **Power Over Coax Sink** - The destination used to receive power over coax on active serial output channels.
 
-  | Value         | Description                                                |
-  |---------------|------------------------------------------------------------|
-  | **None**      | Power over coax disabled.                                  |
-  | **Auxiliary** | Route received power over coax to the AUX POWER connector. |
+  | Value     | Description                                                |
+  |-----------|------------------------------------------------------------|
+  | None      | Power over coax disabled.                                  |
+  | Auxiliary | Route received power over coax to the AUX POWER connector. |
 
 - **Serial Input Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the deserializer. GMSL deserializers do not support changing this from the default value of 25 MHz. However for FPD-Link deserializers, in certain modes of operation, you may need to adjust this value and should consult the datasheet of your deserializer for more information about supported reference clock frequencies and clocking modes.
 
