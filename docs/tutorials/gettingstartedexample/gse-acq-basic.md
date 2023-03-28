@@ -98,12 +98,13 @@ A supported interface module and camera on a PXI system running Windows.
 
     ![First Display Channel Tab](../../images/PXIe-148X-AcqGSE-FirstDisplayChannel-BasicContinuous.png)
 
-6.  Click the **Stop Acquisition** button to stop the acquisition and stop the VI.
-7.  (Optional) Update the **Red Gain**, **Green Gain**, and **Blue Gain** display parameters on the **Serial Channel** tab -> **Channel Configurations** control to better match the acquired image to the actual color of the object.
+6.  (Optional) Update the **Red Gain**, **Green Gain**, and **Blue Gain** display parameters on the **Serial Channel** tab -> **Channel Configurations** control to better match the acquired image to the actual color of the object.
 
     ![Channel Configurations Control](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
     > Note: Changes made to the **RAW Display Parameters** will take effect while the VI is running.
+
+7.  Click the **Stop Acquisition** button to stop the acquisition and stop the VI.
 
 ## Performing a Finite Acquisition with Data Logging
 
@@ -160,7 +161,7 @@ A supported interface module and camera on a PXI system running Windows.
 
 ## Reviewing Previously Logged Data
 
-> Note: The Review Previously Logged Data tutorial assumes that the previous tutorials in this document were completed first.
+> Note: The Reviewing Previously Logged Data tutorial assumes that the previous tutorials in this document were completed first.
 
 TDMS files containing acquired data from the camera were saved to the \"TDMS Files\" subfolder in the previous tutorial. The GPIO timestamps, user timestamps, and data acquired from the camera are stored in individual TDMS files. You can use the file viewer utility to review the acquired packet data.
 
