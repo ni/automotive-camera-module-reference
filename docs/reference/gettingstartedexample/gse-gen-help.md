@@ -97,7 +97,7 @@ Refer to this document to understand the elements of the getting started example
   |-----------|---------------------------------------------------------------------|
   | None      | No power over coax provided.                                        |
   | Internal  | Use internal power source to provide power over coax.               |
-  | Auxiliary | User power from the AUX POWER connector to provide power over coax. |
+  | Auxiliary | Use power from the AUX POWER connector to provide power over coax.  |
 
 - **Reference Clock Frequency (Hz)** - The frequency of the reference clock provided to the reference clock input of the SerDes. GMSL SerDes do not support changing this value from the default of 25 MHz. However for FPD-Link SerDes, in certain modes of operation, you may need to adjust this value and should consult the specifications for your SerDes for more information about supported reference clock frequencies and clocking modes.
 
