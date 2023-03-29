@@ -44,10 +44,15 @@ A supported interface module that includes both serial input and serial output c
 1.  First complete installation of software specified in the Getting Started Guide linked above.
 2.  Use the NI Example Finder to create a default project for your specific tap module.
     - Open LabVIEW and click **Help -> Find Examples...**
+    
     ![Open NI Example Finder](../../images/LabVIEW-Help-FindExamples.png)
+    
     - In the NI Example Finder dialog, double-click **Hardware Input and Output -> FlexRIO -> Integrated IO -> Getting Started -> Getting Started FlexRIO Integrated IO.vi**
+    
     ![NI Example Finder](../../images/NIExampleFinder-GSEFlexRIOWithIntegratedIO.png)
+
     - In the FlexRIO with Integrated IO Project Creator dialog set the **Project Name** to <font face = "courier new">PXIe-148X Tutorial</font> and make the **FlexRIO Integrated IO** selection for the desired PXIe-148X interface module then click **OK**.
+    
     ![FlexRIO with Integrated IO Project Creator](../../images/FlexRIOWithIntegratedIOProjectCreator-PXIe-148XTutorial.png)
 
 3.  Double click the Tap Example VI in the LabVIEW project.
@@ -79,7 +84,7 @@ A supported interface module that includes both serial input and serial output c
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-AcqGSE-ResourceTab-BasicContinuous.png)
 
 2.  Select the **Serial Channel** tab and make the following modifications.
-    - Select the **Deserializer (Input) Configuration Script** and **Serializer (Output) Configuration Script** that correspond to your interface module. The tap scripts are used to configure the deserializer and the serializer on the interface module to configure the I2C communication bridge between input and output channels. <span style="color: red;">TODO: Update description to include explanation of address change.</span> The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
+    - Select the **Deserializer (Input) Configuration Script** and **Serializer (Output) Configuration Script** that correspond to your interface module. The tap scripts are used to configure the deserializer and the serializer on the interface module to establish the I2C communication bridge between input and output channel pairs. See the [PXIe-148X Configuration Scripts User Guide](../../reference/gettingstartedexample/config-scripts-user-guide.md) for more details. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
 
         | **Interface Module**                         | **Deserializer (Input) Configuration Script**         |
         |----------------------------------------------|-------------------------------------------------------|
@@ -101,6 +106,7 @@ A supported interface module that includes both serial input and serial output c
 
 3.  Select the **Board** tab and make the following modifications.
     - In the **Power Over Coax Source** drop down menu, select **Auxiliary** to power the attached camera from the AUX POWER connector.
+    - In the **Power Over Coax Sink** drop down menu, select **Auxiliary** to route received power over coax to the AUX POWER connector.
 
     > The values on the **Board** tab of **Configuration Settings** are now similar to the figure below.
 
@@ -141,7 +147,7 @@ A supported interface module that includes both serial input and serial output c
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
     
-    ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-Acq-ResourceTab-LogToDisk.png)
+    ![Configuration Settings Resource Tab Log to Disk](../../images/PXIe-148X-Tap-ResourceTab-LogToDisk.png)
 
 2.  Select the **Acquisition** tab and disable **Continuous Acquisition**.
 
@@ -178,7 +184,7 @@ A supported interface module that includes both serial input and serial output c
 
     ![I2C Timestamps Tab](../../images/PXIe-148X-Acq-I2CTimestamps-FiniteAcq.png)
 
-9.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
+8.  GPIO timestamp data is plotted in the **GPIO Timestamps** tab.
 
     ![GPIO Timestamps](../../images/PXIe-148X-Acq-GPIOTimestamps-FiniteAcq.png)
 
