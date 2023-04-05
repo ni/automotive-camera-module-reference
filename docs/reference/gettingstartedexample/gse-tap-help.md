@@ -128,7 +128,7 @@ Refer to this document to understand the elements of the getting started example
   |-----------|---------------------------------------------------------------------|
   | None      | No power over coax provided.                                        |
   | Internal  | Use internal power source to provide power over coax.               |
-  | Auxiliary | User power from the AUX POWER connector to provide power over coax. |
+  | Auxiliary | Use power from the AUX POWER connector to provide power over coax.  |
 
 - **Power Over Coax Sink** - The destination used to receive power over coax on active serial output channels.
 
