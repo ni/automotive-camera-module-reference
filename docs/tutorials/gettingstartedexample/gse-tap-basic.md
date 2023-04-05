@@ -64,7 +64,7 @@ A supported interface module that includes both serial input and serial output c
     ![Tap GSE Front Panel](../../images/PXIe-148X-TapGSE-FrontPanel.png)
 
 4. Open an Acquisition Example VI (see [Basic Acquisition Tutorials - Initial Software Setup](./gse-acq-basic.md#initial-software-setup)).
-    > Note: If the acq module is the same as the tap module, there is no need to create a new project. If the acq module is not the same as the tap module, a new project needs to be created for the acq module in order for the acq module FPGA bitfiles to be included in the project.
+    > Note: If the acq module is the same module type as the tap module, there is no need to create a new project. If the acq module is not the same module type as the tap module, a new project needs to be created for the acq module in order for the acq module FPGA bitfiles to be included in the project.
 
 ## Performing a Simple Continuous Tap Acquisition
 
