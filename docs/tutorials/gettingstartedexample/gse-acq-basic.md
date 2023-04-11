@@ -67,6 +67,8 @@ A supported interface module and camera on a PXI system running Windows.
     | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
     | PXIe-1487 (8 In)       | FPGA Bitfiles\\PXIe_1487_8\_In.lvbitx                |
     | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+    | PXIe-1488 (8 In)       | FPGA Bitfiles\\PXIe_1488_8\_In.lvbitx                |
+    | PXIe-1488 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
