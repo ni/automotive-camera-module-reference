@@ -25,6 +25,8 @@ A supported interface module on a PXI system running a compatible Windows versio
 | PXIe-1486 (4 In 4 Out - 953/954 SerDes)     |
 | PXIe-1487 (8 Out - 9295A Serializer)        |
 | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) |
+| PXIe-1488 (8 Out - 971 Serializer)          |
+| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)    |
 
 ## Initial Hardware Setup
 
@@ -94,9 +96,11 @@ Complete this part of the tutorial to generate images, which will be stored to t
     | **Interface Module**   | **Bitfile**                                          |
     |------------------------|------------------------------------------------------|
     | PXIe-1486 (8 Out)       | FPGA Bitfiles\\PXIe_1486_8\_Out.lvbitx              |
-    | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Gen.lvbitx |
+    | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Gen.lvbitx     |
     | PXIe-1487 (8 Out)       | FPGA Bitfiles\\PXIe_1487_8\_Out.lvbitx              |
-    | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Gen.lvbitx |
+    | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Gen.lvbitx     |
+    | PXIe-1488 (8 Out)       | FPGA Bitfiles\\PXIe_1488_8\_Out.lvbitx              |
+    | PXIe-1488 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1488_4\_In_4\_Out_Gen.lvbitx     |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 

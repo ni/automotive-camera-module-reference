@@ -236,5 +236,5 @@ Refer to this document to understand the elements of the getting started example
 ## Related Documents
 - [PXIe-148X Getting Started Example - Basic Tap Tutorial](../../tutorials/gettingstartedexample/gse-tap-basic.md)
 - [PXIe-148X Getting Started Example - Common Tap Tutorials](../../tutorials/gettingstartedexample/gse-tap-common.md)
-- [PXIe-148X Getting Started Example - acq Help](./gse-acq-help.md)
+- [PXIe-148X Getting Started Example - Acquisition Help](./gse-acq-help.md)
 - [PXIe-148X Getting Started Example - Tap Help](./gse-tap-help.md)

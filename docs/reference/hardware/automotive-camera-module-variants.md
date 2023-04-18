@@ -89,6 +89,26 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1487 Serializer   | NI PXIe-1487 (8 Out - 96717F Serializer - KU11P)         | NI PXIe-1487 (8 Out - KU11P)      | [2023 Q1](#compat-note)    | 0x7A86     | 1487_8O     |
 | PXIe-1487 SerDes       | NI PXIe-1487 (4 In/4 Out - 96717F/96716A SerDes - KU11P) | NI PXIe-1487 (4 In 4 Out - KU11P) | [2023 Q1](#compat-note)    | 0x7A87     | 1487_4I_4O  |
 
+---
+
+## PXIe-1488 FlexRIO FPD-Link IV Modules
+
+### Hardware Details
+
+| Model Number           | Channels     | Protocol    | Serializer | Deserializer | Slot Count | Front Panel Overlay                     |
+|------------------------|--------------|-------------|------------|--------------|------------|-----------------------------------------|
+| PXIe-1488 Deserializer | 8 input      | FPD-Link IV | N/A        | DS90UB902    | 2          | FlexRIO FPD-LINK™ III 9702 Deserializer |
+| PXIe-1488 Serializer   | 8 output     | FPD-Link IV | DS90UB971  | N/A          | 2          | FlexRIO FPD-LINK™ III 971 Serializer    |
+| PXIe-1488 SerDes       | 4 in / 4 out | FPD-Link IV | DS90UB971  | DS90UB9702   | 2          | FlexRIO FPD-LINK™ III 971/9702 SerDes   |
+
+### Software Details
+
+| Model Number           | NI MAX Name                                         | LabVIEW FPGA Target Name          | FlexRIO First Supported    | Product ID | Model Alias |
+|------------------------|-----------------------------------------------------|-----------------------------------|----------------------------|------------|-------------|
+| PXIe-1488 Deserializer | NI PXIe-1488 (8 In - 9702 Deserializer - KU11P)     | NI PXIe-1488 (8 In - KU11P)       | [2023 Q2](#compat-note)    | 0x7AE4     | 1488_8I     |
+| PXIe-1488 Serializer   | NI PXIe-1488 (8 Out - 971 Serializer - KU11P)       | NI PXIe-1488 (8 Out - KU11P)      | [2023 Q2](#compat-note)    | 0x7AE5     | 1488_8O     |
+| PXIe-1488 SerDes       | NI PXIe-1488 (4 In 4 Out - 971/9702 SerDes - KU11P) | NI PXIe-1488 (4 In 4 Out - KU11P) | [2023 Q2](#compat-note)    | 0x7AE6     | 1488_4I_4O  |
+
 <a id="compat-note"></a>
 > (\*) Full details on hardware and OS compatibility can be found [here](https://www.ni.com/en-us/support/documentation/compatibility/21/ni-hardware-and-operating-system-compatibility.html) on ni.com.
 

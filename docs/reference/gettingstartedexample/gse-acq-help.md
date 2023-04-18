@@ -27,6 +27,8 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
   | PXIe-1487 (8 In)         | PXIe_1487_8\_In.lvbitx                |
   | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | PXIe-1488 (8 In)         | PXIe_1488_8\_In.lvbitx                |
+  | PXIe-1488 (4 In 4 Out)   | PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
 
 - **TDMS File Directory** - Path to the directory used to store TDMS data files. 
     > If left blank the TDMS File Directory will be automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet acquisition, I2C timestamps, and GPIO timestamps.
