@@ -16,6 +16,7 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 
 ### Tap
 - [PXIe-148X Getting Started Example - Basic Tap Tutorial](tutorials/gettingstartedexample/gse-tap-basic.md)
+- [PXIe-148X Getting Started Example - Common Tap Tutorials](tutorials/gettingstartedexample/gse-tap-common.md)
 
 ---
 
