@@ -1,6 +1,6 @@
 # PXIe-148X Getting Started Example - Common Tap Tutorials
 
-This document covers a range of common scenarios using the PXIe-148X Tap Getting Started Example (GSE) to help you understand LLP generation, I2C and GPIO timestamping, and common configuration options.
+This document covers a range of common scenarios using the PXIe-148X Tap Getting Started Example (GSE) to help you understand LLP tap acquisition, I2C and GPIO timestamping, and common configuration options.
 
 > Note: This document references the example included with the NI-FlexRIO 23Q3 driver. Examples included in newer releases of the driver should be applicable.
 
@@ -67,11 +67,11 @@ This tutorial uses a gen module, tap module and acq module to demonstrate basic 
 
 9. On the Generation Example VI, click **Serializer Setup Complete** to start the generation and wait for the generation to complete.
 
-10. Select the First Display Channel tab on the Generation, Tap and Acquisition Examples and verify that images from the generated TDMS file are displayed on these tabs. The images should look identical.
+10. Click the **Stop Acquisition** button on both the Tap and Acquisition Example VIs to stop the tap acquisition and stop the VIs.
+
+11. Select the First Display Channel tab on the Generation, Tap and Acquisition Examples and verify that images from the generated TDMS file are displayed on these tabs. The images should look identical.
 
 ![Compare First Display Channel Tabs](../../images/PXIe-148x-Gen-Tap-Acq-display.png)
-
-10. Click the **Stop Acquisition** button on both the Tap and Acquisition Example VIs to stop the tap acquisition and stop the VIs.
 
 ## Logging and Displaying I2C Timestamps
 This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X interface module across a tap bridge using the tap and acquisition getting started examples.  
@@ -88,7 +88,8 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | **Resource** | **Log I2C to Disk** | **Enabled** |
     | **Serial Channel** | **Deserializer (Input) Configuration Script** | [Refer to Deserializer Tap Scripts in the PXIe-148X Tap GSE Help](../../reference/gettingstartedexample/gse-tap-help.md#table-of-pxie-148x-deserializer-tap-scripts) |
     | **Serial Channel** | **Serializer (Output) Configuration Script** | [Refer to Serializer Tap Scripts in the PXIe-148X Tap GSE Help](../../reference/gettingstartedexample/gse-tap-help.md#table-of-pxie-148x-serializer-tap-scripts) |
-    | **Board** | **Power Over Coax Source** | **Internal** |
+    | **Board** | **Power Over Coax Source** | **Auxiliary** |
+    | **Board** | **Power Over Coax Sink** | **Auxiliary** |
 
 2.  Select the **I2C** tab and make the following modifications.
 
@@ -107,6 +108,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
     | **Resource** | **Log I2C to Disk** | **Enabled** |
     | **Serial Channel** | **Configuration Script** | [Refer to Configuration Script in the PXIe-148X Acquisition GSE Help](../../reference/gettingstartedexample/gse-acq-help.md#table-of-pxie-148x-acquisition-scripts) |
     | **Acquisition** | **Continuous Acquisition** | **Disabled** |
+    | **Board** | **Power Over Coax Source** | **Internal** |
 
 4.  On the Acquisition Example VI, select the **I2C** tab and make the following modifications.
 
@@ -119,8 +121,8 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 7.  Click the **Stop Acquisition** button on the Tap Example VI.
 8.  Select the **I2C Timestamps** tab to view I2C timestamp data on both the Tap and Acquisition Example VIs.
     - View the displayed I2C timestamp data in the **I2C Timestamps** table. The **I2C Timestamps** table displays I2C timestamp information for all I2C traffic. I2C timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition (i.e. I2C traffic from the configuration script).
-    - The first set of timestamps in the displayed will correspond to the script defined by the **Deserializer (Input) Configuration Script** control. The next set of timestamps displayed will correspond to the script defined by the **Serializer (Output) Configuration Script** control. The last set of timestamps will correspond to the script defined by the **Configuration Script** control on the Acquisition Example VI. 
-    - Note that the tap scripts change the addresses for the serializer and deserializer in the tap channel pair, which prevents an address conflict when running the acquisition script. As a result, the acquisition configuration script I2C commands sent to the default deserializer address result in an ACK response from the acq module and a NACK response from the tap module, while the I2C commands sent to the camera address are passed though the tap bridge to the camera and result in an ACK response on both the tap and acq modules.
+    - The first set of timestamps displayed will correspond to the script defined by the **Deserializer (Input) Configuration Script** control. The next set of timestamps displayed will correspond to the script defined by the **Serializer (Output) Configuration Script** control. The last set of timestamps will correspond to the script defined by the **Configuration Script** control on the Acquisition Example VI. 
+    - Observe that the tap scripts change the addresses for the serializer and deserializer in the tap channel pair, which prevents an address conflict when running the acquisition script. As a result, the acquisition configuration script I2C commands sent to the default deserializer address result in an ACK response from the acq module and a NACK response from the tap module, while the I2C commands sent to the camera address are passed though the tap bridge to the camera and result in an ACK response on both the tap and acq modules.
 
         > Note: To display I2C timestamp data, **Log I2C to Disk** must be enabled and desired timestamp IDs must be added to the **timestamp filter** array. The I2C timestamp data displayed is read from the User_Timestamps.tdms file and filtered to display only timestamp IDs included in the timestamp filer array. The **I2C Timestamps** display is updated after the acquisitions completes.
 
@@ -129,7 +131,7 @@ This tutorial shows how to acquire and view I2C timestamps on the PXIe-148X inte
 ## Setting FPGA Display Parameters
 This tutorial shows you how to configure the **FPGA Display Parameters** to change the images displayed during tap acquisition. 
 
-The logic and front panel controls for FPGA display parameters are shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition [Setting FPGA Display Parameters](gse-acq-common.md#setting-fpga-display-parameters) tutorial for for steps associated with setting FPGA display parameters on the Tap Example VI, while following the procedure specified in the [Performing a Simple Continuous Tap Acquisition](gse-tap-basic.md#performing-a-simple-continuous-tap-acquisition) tutorial for configuring and running the Tap and Acquisition Example VIs.
+The logic and front panel controls for FPGA display parameters are shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition [Setting FPGA Display Parameters](gse-acq-common.md#setting-fpga-display-parameters) tutorial for the steps associated with setting FPGA display parameters on the Tap Example VI, while following the procedure specified in the [Performing a Simple Continuous Tap Acquisition](gse-tap-basic.md#performing-a-simple-continuous-tap-acquisition) tutorial for configuring and running the Tap and Acquisition Example VIs.
 
 ### Displaying Acquired Images
 1. Complete the steps associated with setting FPGA display parameters in the acquisition [Displaying Acquired Images](gse-acq-common.md#displaying-acquired-images) tutorial while following the procedure specified in the [Performing a Simple Continuous Tap Acquisition](gse-tap-basic.md#performing-a-simple-continuous-tap-acquisition).
@@ -140,7 +142,7 @@ The logic and front panel controls for FPGA display parameters are shared for al
 ## Setting RAW Display Parameters
 This tutorial shows you how to configure the **RAW Display Parameters** to change the interpretation of images being displayed from the camera that are being sent in RAW packets.
 
-The logic and front panel controls for RAW display parameters are shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition [Setting RAW Display Parameters](gse-acq-common.md#setting-raw-display-parameters) tutorial for for steps associated with setting RAW display parameters on the Tap Example VI, while following the procedure specified in the [Performing a Simple Continuous Tap Acquisition](gse-tap-basic.md#performing-a-simple-continuous-tap-acquisition) tutorial for configuring and running the Tap and Acquisition Example VIs.
+The logic and front panel controls for RAW display parameters are shared for all PXIe-148X getting started examples. Therefore, you can use the acquisition [Setting RAW Display Parameters](gse-acq-common.md#setting-raw-display-parameters) tutorial for the steps associated with setting RAW display parameters on the Tap Example VI, while following the procedure specified in the [Performing a Simple Continuous Tap Acquisition](gse-tap-basic.md#performing-a-simple-continuous-tap-acquisition) tutorial for configuring and running the Tap and Acquisition Example VIs.
 
 ## Setting Serial Channel Configurations
 This tutorial shows you how to configure the **Serial Channel** tab to acquire multiple images from multiple camera sensors.
@@ -157,6 +159,7 @@ Note: This tutorial requires the use of two Leopard Imaging IMX490 cameras conne
     | **Serial Channel** | **Deserializer (Input) Configuration Script** | [Refer to Deserializer Tap Scripts in the PXIe-148X Tap GSE Help](../../reference/gettingstartedexample/gse-tap-help.md#table-of-pxie-148x-deserializer-tap-scripts) |
     | **Serial Channel** | **Serializer (Output) Configuration Script** | [Refer to Serializer Tap Scripts in the PXIe-148X Tap GSE Help](../../reference/gettingstartedexample/gse-tap-help.md#table-of-pxie-148x-serializer-tap-scripts) |
     | **Board** | **Power Over Coax Source** | **Auxiliary** |
+    | **Board** | **Power Over Coax Sink** | **Auxiliary** |
 
 2. Set the following controls on the Acquisition Example VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
@@ -171,7 +174,8 @@ Note: This tutorial requires the use of two Leopard Imaging IMX490 cameras conne
     | **Board** | **Power Over Coax Source** | **Internal** |
 
 ### Displaying Acquired Images From Multiple Cameras
-1. Select the **Serial Channel** tab and make the following modifications.
+1. Connect the SI1 pin to the SO1 pin on the AUX POWER connector on the front panel of the tap module.
+2. Select the **Serial Channel** tab and make the following modifications.
 
     The **Channel Configurations** control is used to select active channels and configure display parameters if enabled.
 
@@ -189,7 +193,7 @@ Note: This tutorial requires the use of two Leopard Imaging IMX490 cameras conne
 
     ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-TapGSE-SerialChannelTab-BasicContinuous.png)
 
-2.  On the Acquisition Example VI, select the **Serial Channel** tab and make the following modifications.
+3.  On the Acquisition Example VI, select the **Serial Channel** tab and make the following modifications.
 
     The **Channel Configurations** control is used to select active channels and configure display parameters if enabled.
 
@@ -207,9 +211,9 @@ Note: This tutorial requires the use of two Leopard Imaging IMX490 cameras conne
 
     ![Configuration Settings Serial Channel Tab](../../images/PXIe-148X-AcqGSE-ChannelConfig-BasicContinuous.png)
 
-3. Run the Tap Example VI and wait for the **Waiting for Sensor Setup** indicator to illuminate then click **Sensor Setup Complete**.
-4. Run the Acquisition Example VI and wait for the acquisition to complete.
-5. Click the **Stop Acquisition** button on the Tap Example VI.
+4. Run the Tap Example VI and wait for the **Waiting for Sensor Setup** indicator to illuminate then click **Sensor Setup Complete**.
+5. Run the Acquisition Example VI and wait for the acquisition to complete.
+6. Click the **Stop Acquisition** button on the Tap Example VI.
    - Select the **First Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI0.
    - Select the **Second Display Channel** tab and observe the image from the Leopard Imaging IMX490 camera connected to SI1.
 
@@ -221,7 +225,7 @@ This section shows you how to configure routing of GPIO lines between GPIO banks
 
 > Note: Timestamps are relative to a time immediately after the FPGA bitfile is downloaded and run, not to the start of the acquisition. This allows for capturing I2C and GPIO timestamps during configuration before the acquisition starts.
 
-1. Set the following controls on the Tsp Example VI and leave all other values at their defaults.
+1. Set the following controls on the Tap Example VI and leave all other values at their defaults.
     > Note: VI controls and indicators can be reset to default values by clicking on the **Edit** menu and selecting the **Reinitialize Values to Default** option.
 
     | Tab | Setting | Value |
