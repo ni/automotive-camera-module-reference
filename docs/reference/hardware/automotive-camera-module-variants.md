@@ -109,6 +109,28 @@ This document contains reference information on various properties of PXIe-148X 
 | PXIe-1488 Serializer   | NI PXIe-1488 (8 Out - 971 Serializer - KU11P)       | NI PXIe-1488 (8 Out - KU11P)      | [2023 Q2](#compat-note)    | 0x7AE5     | 1488_8O     |
 | PXIe-1488 SerDes       | NI PXIe-1488 (4 In 4 Out - 971/9702 SerDes - KU11P) | NI PXIe-1488 (4 In 4 Out - KU11P) | [2023 Q2](#compat-note)    | 0x7AE6     | 1488_4I_4O  |
 
+---
+
+## PXIe-1489 FlexRIO GMSL3 Modules
+
+### Hardware Details
+
+| Model Number           | Channels     | Protocol | Serializer | Deserializer | Slot Count | Front Panel Overlay                |
+|------------------------|--------------|----------|------------|--------------|------------|------------------------------------|
+| PXIe-1489 Deserializer | 4 input      | GMSL3    | N/A        | MAX96792A    | 1          | FlexRIO GMSL3 96792A Deserializer  |
+| PXIe-1489 Serializer   | 4 output     | GMSL3    | MAX96793   | N/A          | 1          | FlexRIO GMSL3 96793 Serializer     |
+| PXIe-1489 SerDes       | 2 in / 2 out | GMSL3    | MAX96793   | MAX96792A    | 1          | FlexRIO GMSL3 96793/96792A SerDes  |
+
+### Software Details
+
+| Model Number           | NI MAX Name                                              | LabVIEW FPGA Target Name          | FlexRIO First Supported    | Product ID | Model Alias |
+|------------------------|----------------------------------------------------------|-----------------------------------|----------------------------|------------|-------------|
+| PXIe-1489 Deserializer | NI PXIe-1489 (4 In - 96792A Deserializer - KU11P)        | NI PXIe-1489 (4 In - KU11P)       | [2023 Q3](#compat-note)    | 0x7AE7     | 1489_4I     |
+| PXIe-1489 Serializer   | NI PXIe-1489 (4 Out - 96793 Serializer - KU11P)          | NI PXIe-1489 (4 Out - KU11P)      | [2023 Q3](#compat-note)    | 0x7AE8     | 1489_4O     |
+| PXIe-1489 SerDes       | NI PXIe-1489 (2 In 2 Out - 96793/96792A SerDes - KU11P)  | NI PXIe-1489 (2 In 2 Out - KU11P) | [2023 Q3](#compat-note)    | 0x7AE9     | 1489_2I_2O  |
+
+---
+
 <a id="compat-note"></a>
 > (\*) Full details on hardware and OS compatibility can be found [here](https://www.ni.com/en-us/support/documentation/compatibility/21/ni-hardware-and-operating-system-compatibility.html) on ni.com.
 
@@ -120,3 +142,7 @@ This document contains reference information on various properties of PXIe-148X 
 - [PXIe-1486 Specifications](https://www.ni.com/docs/en-US/bundle/pxie-1486-specs/page/specs.html)
 - [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/page/intro.html)
 - [PXIe-1487 Specifications](https://www.ni.com/docs/en-US/bundle/pxie-1487-specs/page/specs.html)    
+- [PXIe-1488 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1488-getting-started/page/intro.html)
+- [PXIe-1488 Specifications](https://www.ni.com/docs/en-US/bundle/pxie-1488-specs/page/specs.html)    
+- [PXIe-1489 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1489-getting-started/page/intro.html)
+- [PXIe-1489 Specifications](https://www.ni.com/docs/en-US/bundle/pxie-1489-specs/page/specs.html)    
