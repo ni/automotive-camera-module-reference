@@ -13,20 +13,26 @@ This tutorial teaches you the steps needed to configure a generation using a PXI
 
 ## Prerequisites
 
-Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
+Review and complete all setup from the appropriate getting started guide:
+- [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/)
+- [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/)
+- [PXIe-1488 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1488-getting-started/)
+- [PXIe-1489 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1489-getting-started/)
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
 A supported interface module on a PXI system running a compatible Windows version.
 
-| **Interface Modules**                       |
-|---------------------------------------------|
-| PXIe-1486 (8 Out - 953 Serializer)          |
-| PXIe-1486 (4 In 4 Out - 953/954 SerDes)     |
-| PXIe-1487 (8 Out - 9295A Serializer)        |
-| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) |
-| PXIe-1488 (8 Out - 971 Serializer)          |
-| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)    |
+| **Interface Modules**                        |
+|----------------------------------------------|
+| PXIe-1486 (8 Out - 953 Serializer)           |
+| PXIe-1486 (4 In 4 Out - 953/954 SerDes)      |
+| PXIe-1487 (8 Out - 9295A Serializer)         |
+| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  |
+| PXIe-1488 (8 Out - 971 Serializer)           |
+| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     |
+| PXIe-1489 (4 Out - 96793 Serializer)         |
+| PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) |
 
 ## Initial Hardware Setup
 
@@ -95,12 +101,14 @@ Complete this part of the tutorial to generate images, which will be stored to t
 
     | **Interface Module**   | **Bitfile**                                          |
     |------------------------|------------------------------------------------------|
-    | PXIe-1486 (8 Out)       | FPGA Bitfiles\\PXIe_1486_8\_Out.lvbitx              |
+    | PXIe-1486 (8 Out)      | FPGA Bitfiles\\PXIe_1486_8\_Out.lvbitx               |
     | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Gen.lvbitx     |
-    | PXIe-1487 (8 Out)       | FPGA Bitfiles\\PXIe_1487_8\_Out.lvbitx              |
+    | PXIe-1487 (8 Out)      | FPGA Bitfiles\\PXIe_1487_8\_Out.lvbitx               |
     | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Gen.lvbitx     |
-    | PXIe-1488 (8 Out)       | FPGA Bitfiles\\PXIe_1488_8\_Out.lvbitx              |
+    | PXIe-1488 (8 Out)      | FPGA Bitfiles\\PXIe_1488_8\_Out.lvbitx               |
     | PXIe-1488 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1488_4\_In_4\_Out_Gen.lvbitx     |
+    | PXIe-1489 (4 Out)      | FPGA Bitfiles\\PXIe_1489_4\_Out.lvbitx               |
+    | PXIe-1489 (2 In 2 Out) | FPGA Bitfiles\\PXIe_1489_2\_In_2\_Out_Gen.lvbitx     |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
