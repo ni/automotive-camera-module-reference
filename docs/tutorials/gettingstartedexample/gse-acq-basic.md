@@ -15,18 +15,26 @@ This tutorial will teach you the steps needed to configure an acquisition using 
 
 ## Prerequisites
 
-Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
+Review and complete all setup from the appropriate getting started guide:
+- [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/)
+- [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/)
+- [PXIe-1488 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1488-getting-started/)
+- [PXIe-1489 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1489-getting-started/)
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
-A supported interface module and camera on a PXI system running Windows.
+A supported interface module and camera on a PXI system running Windows. The table below lists all supported interface modules and supported cameras that have configuration scripts provided with the getting started example. Configuration scripts for cameras not listed in the table below need to be provided separately.
 
-| **Interface Module**   | **Camera**                                                                                                                                                 |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| PXIe-1486 (8 In - 954 Deserializer)         | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1486 (4 In 4 Out - 953/954 SerDes)     | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1487 (8 I - 9296A Deserializer)        | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
-| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| **Interface Module**                         | **Camera**                                                                                                                            |
+|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| PXIe-1486 (8 In - 954 Deserializer)          | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
+| PXIe-1486 (4 In 4 Out - 953/954 SerDes)      | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
+| PXIe-1487 (8 I - 9296A Deserializer)         | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| PXIe-1488 (8 In - 9702 Deserializer - KU11P) |                                                                                                                                       |
+| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     |                                                                                                                                       |
+| PXIe-1489 (4 In - 96792A Deserializer)       |                                                                                                                                       |
+| PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) |                                                                                                                                       |
 
 ## Initial Hardware Setup
 
@@ -69,13 +77,15 @@ A supported interface module and camera on a PXI system running Windows.
     | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
     | PXIe-1488 (8 In)       | FPGA Bitfiles\\PXIe_1488_8\_In.lvbitx                |
     | PXIe-1488 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
+    | PXIe-1489 (4 In)       | FPGA Bitfiles\\PXIe_1489_4\_In.lvbitx                |
+    | PXIe-1489 (2 In 2 Out) | FPGA Bitfiles\\PXIe_1489_2\_In_2\_Out_Acq_Tap.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
     ![Configuration Settings Resource Tab](../../images/PXIe-148X-AcqGSE-ResourceTab-BasicContinuous.png)
 
 2.  Select the **Serial Channel** tab and make the following modifications.
-    - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts required for this tutorial are in the project folder under the subfolder 'Host\\Scripts':
+    - Select the **Configuration Script** that corresponds to your interface module. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts provided with the getting started example are in the project folder under the subfolder 'Host\\Scripts' and listed in the table below. Configuration scripts not listed in the table below need to be provided separately.
 
         | **Interface Module**   | **Configuration Script**                                           |
         |------------------------|--------------------------------------------------------------------|
