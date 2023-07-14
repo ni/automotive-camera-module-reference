@@ -26,6 +26,7 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1486 (4 In 4 Out)   | PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
   | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
   | PXIe-1488 (4 In 4 Out)   | PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | PXIe-1489 (2 In 2 Out)   | PXIe_1489_2\_In_2\_Out_Acq_Tap.lvbitx |
 
 - **TDMS File Directory** - Path to the directory used to store TDMS data files. 
     > If left blank the TDMS File Directory will be automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet acquisition, I2C timestamps, and GPIO timestamps.
@@ -48,6 +49,7 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | Host\\Scripts\\MAX9296A\\Tap\\RAW12_ID01_Des_Tap.cpp  |
   | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes) | Host\\Scripts\\MAX96716A\\Tap\\RAW12_ID12_Des_Tap.cpp |
   | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     | Host\\Scripts\\DS90UB9702\\Tap\\Des_Tap.py            |
+  | PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) | Host\\Scripts\\MAX96792A\\Tap\\RAW12_ID12_Des_Tap.cpp |
 
 - **Serializer (Output) Configuration Script** - Full path to a script file used to configure the serializer.
   #### Table of PXIe-148X Serializer Tap Scripts
@@ -59,6 +61,7 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) Reverse Splitter Mode | Host\\Scripts\\MAX9295A\\Tap\\RAW12_ID0_ToRevSplit_Ser_Tap.cpp |
   | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes)                      | Host\\Scripts\\MAX96717\\Tap\\RAW12_ID2_Ser_Tap.cpp            |
   | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)                          | Host\\Scripts\\DS90UB971\\Tap\\Ser_Tap.py                      |
+  | PXIe-1489 (2 In 2 Out - 96793/96792A SerDes)                      | Host\\Scripts\\MAX96793\\Tap\\RAW12_ID2_Ser_Tap.cpp            |
 
 - **Channel Configurations** - Array of active serial channel tap pairs and display parameters for each channel pair.
     - **Serial Channel Tap Pair**
