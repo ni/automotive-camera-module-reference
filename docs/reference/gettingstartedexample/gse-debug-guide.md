@@ -52,7 +52,7 @@ In additional to observed error codes, some common scenarios can occur that requ
 
 ### How to debug incomplete I2C transaction errors (-304321)
 Most errors can be resolved with one of the following steps:
-1. On a PXIe-1487, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
+1. On a PXIe-1487 or PXIe-1489, there are three loopback scripts for odd channels, even channels, or both. Ensure the correct script is used for the desired serial channel.
 2. A camera may not be powered on. Double check the Power over Coax settings are correct to power on the camera from the PXIe-148x acquisition board.
 3. Script may have invalid commands - need to compare camera data sheet vs script commands
 

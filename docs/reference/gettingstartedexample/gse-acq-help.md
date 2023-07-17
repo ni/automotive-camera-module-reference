@@ -29,6 +29,8 @@ Refer to this document to understand the elements of the getting started example
   | PXIe-1487 (4 In 4 Out)   | PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
   | PXIe-1488 (8 In)         | PXIe_1488_8\_In.lvbitx                |
   | PXIe-1488 (4 In 4 Out)   | PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
+  | PXIe-1489 (4 In)         | PXIe_1489_4\_In.lvbitx                |
+  | PXIe-1489 (2 In 2 Out)   | PXIe_1489_2\_In_2\_Out_Acq_Tap.lvbitx |
 
 - **TDMS File Directory** - Path to the directory used to store TDMS data files. 
     > If left blank the TDMS File Directory will be automatically populated with a path to a subfolder ("TDMS Files") within the getting started example root directory. TDMS data files include files for LLP packet acquisition, I2C timestamps, and GPIO timestamps.
@@ -43,7 +45,7 @@ Refer to this document to understand the elements of the getting started example
 ### Serial Channel Tab
 - **CSI-2 Data Source** - Selects the CSI-2 data source type. "Corrected" returns the received data after correcting for single-bit transmission errors. "Raw" returns the received data as is. 
 - **Configuration Script** - Full path to a script file used to configure the deserializer.
-  #### Table of PXIe-148X Acquisition Scripts
+  #### Table of Provided PXIe-148X Camera Configuration Scripts
 
   | **Interface Module**               | **Configuration Script**                                                   |
   |------------------------------------|----------------------------------------------------------------------------|
