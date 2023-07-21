@@ -401,10 +401,14 @@ This tutorial shows how to manually read and write to the GPIO banks on the PXIe
 
         | **Interface Module**     | **GPIO Bank**          |
         |--------------------------|------------------------|
-        | PXIe-1486 (8 In)         | SI 0 SI 1 Deserializer |
+        | PXIe-1486 (8 In)         | SI 0 Deserializer      |
         | PXIe-1486 (4 In 4 Out)   | SI 0 Deserializer      |
         | PXIe-1487 (8 In)         | SI 0 SI 1 Deserializer |
         | PXIe-1487 (4 In 4 Out)   | SI 0 Deserializer      |
+        | PXIe-1488 (8 In)         | SI 0 SI 1 Deserializer |
+        | PXIe-1488 (4 In 4 Out)   | SI 0 Deserializer      |
+        | PXIe-1489 (4 In)         | SI 0 SI 1 Deserializer |
+        | PXIe-1489 (2 In 2 Out)   | SI 0 Deserializer      |
     
         > The **GPIO Bank Select** control specifies the GPIO bank used for the **GPIO Bank Read** and **GPIO Bank Write** controls during the acquisition. The **GPIO Bank Select** selection may be changed at runtime.
 
