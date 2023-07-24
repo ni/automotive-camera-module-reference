@@ -25,7 +25,7 @@ Basic knowledge of LabVIEW and LabVIEW FPGA concepts.
 
 A camera supported by the getting started example configuration scripts (i.e. Leopard Imaging IMX490).
 
-A supported interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. Configuration scripts for cameras not listed in the table below need to be provided separately.
+A supported PXIe-148X interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. Configuration scripts for cameras not listed in the table below need to be provided separately. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. For modules and cameras not listed in the table below, configuration scripts need to be provided separately.
 
 | **Interface Module**                         | **Camera**                                                                                                                            |
 |----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,10 +33,6 @@ A supported interface module that includes both serial input and serial output c
 | PXIe-1486 (4 In 4 Out - 953/954 SerDes)      | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
 | PXIe-1487 (8 In - 9296A Deserializer)        | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
 | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
-| PXIe-1488 (8 In - 9702 Deserializer)         |                                                                                                                                       |
-| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     |                                                                                                                                       |
-| PXIe-1489 (4 In - 96792A Deserializer)       |                                                                                                                                       |
-| PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) |                                                                                                                                       |
 
 > Note: The tap and acq modules used in this tutorial must have matching model numbers (i.e. 1486).
 
