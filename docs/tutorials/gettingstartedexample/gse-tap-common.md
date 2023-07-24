@@ -31,9 +31,14 @@ This tutorial is written for users who understand how to perform a basic tap acq
 > Note: Tutorials in this document use one tap LabVIEW project and one acquisition LabVIEW project as well as a camera or a generation LabVIEW project to provide the image data to the tap module serial input. All tutorial steps in this document reference the Tap Example VI unless otherwise specified and all input control values not specified should be left as the default value.
 
 ## Running a Generation-Tap-Acquisition Getting Started Example Combination
-This tutorial uses a gen module, tap module and acq module to demonstrate basic tap capabilities using a gen module in place of a camera. The sequence for this tutorial is configure generation example, configure tap example, configure acquisition example, start acquisition example, start tap example, start generation example, wait for generation example to complete, stop acquisition example, stop tap example.
+This tutorial uses a gen module, tap module and acq module to demonstrate basic tap capabilities using a gen module in place of a camera. The sequence for this tutorial is as follows:
 
-1. Disconnect the camera from serial input channel 0 (SI0) on the tap module and connect serial output channel 0 (SO0) on the gen module to serial input channel 0 (SI0) on the tap module with a FAKRA cable.
+>   1. **Configure**: Configure the generation example, tap example and acquisition example.
+>   2. **Start**: Sequentially start the acquisition example, tap example and generation example.
+>   3. **Wait**: Wait for generation example to complete (stops automatically).
+>   4. **Stop**: Stop the acquisition example and the tap example.
+
+1. Connect serial output channel 0 (SO0) on the gen module to serial input channel 0 (SI0) on the tap module with a FAKRA cable (disconnect the camera if currently attached to SIO).
 
 2. Open a Generation Example VI (see [Basic Generation Tutorials - Initial Software Setup](./gse-gen-basic.md#initial-software-setup)) and run [Basic Generation Tutorials - Create TDMS Files for Generation](./gse-gen-basic.md#create-tdms-files-for-generation).
     > Note: If the gen module is the same module type as the tap module, there is no need to create a new project. If the gen module is not the same module type as the tap module, a new project needs to be created for the gen module in order for the gen module FPGA bitfiles to be included in the project.
