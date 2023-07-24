@@ -25,7 +25,7 @@ Basic knowledge of LabVIEW and LabVIEW FPGA concepts.
 
 A camera supported by the getting started example configuration scripts (i.e. Leopard Imaging IMX490).
 
-A supported PXIe-148X interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. Configuration scripts for cameras not listed in the table below need to be provided separately. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. For modules and cameras not listed in the table below, configuration scripts need to be provided separately.
+A supported PXIe-148X interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. For modules and cameras not listed in the table below, configuration scripts need to be provided separately.
 
 | **Interface Module**                         | **Camera**                                                                                                                            |
 |----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
