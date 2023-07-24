@@ -15,20 +15,24 @@ This tutorial will teach you the steps needed to configure a tap acquisition usi
 
 ## Prerequisites
 
-Review and complete all setup from the [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/) or [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/).
+Review and complete all setup from the appropriate getting started guide:
+- [PXIe-1486 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1486-getting-started/)
+- [PXIe-1487 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1487-getting-started/)
+- [PXIe-1488 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1488-getting-started/)
+- [PXIe-1489 Getting Started Guide](https://www.ni.com/docs/en-US/bundle/pxie-1489-getting-started/)
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
 A camera supported by the getting started example configuration scripts (i.e. Leopard Imaging IMX490).
 
-A supported interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows.
+A supported PXIe-148X interface module that includes both serial input and serial output channels (tap module) and a second supported interface module that includes serial input channels (acq module) on a PXI system running Windows. The table below lists all supported tap and acq modules and supported cameras that have configuration scripts provided with the getting started example. For modules and cameras not listed in the table below, configuration scripts need to be provided separately.
 
-| **Interface Module**   | **Camera**                                                                                                                                                 |
-|------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| PXIe-1486 (8 In - 954 Deserializer)         | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1486 (4 In 4 Out - 953/954 SerDes)     | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
-| PXIe-1487 (8 I - 9296A Deserializer)        | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
-| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes) | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| **Interface Module**                         | **Camera**                                                                                                                            |
+|----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| PXIe-1486 (8 In - 954 Deserializer)          | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
+| PXIe-1486 (4 In 4 Out - 953/954 SerDes)      | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
+| PXIe-1487 (8 In - 9296A Deserializer)        | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
+| PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
 
 > Note: The tap and acq modules used in this tutorial must have matching model numbers (i.e. 1486).
 
@@ -79,6 +83,7 @@ A supported interface module that includes both serial input and serial output c
     | PXIe-1486 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1486_4\_In_4\_Out_Acq_Tap.lvbitx |
     | PXIe-1487 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1487_4\_In_4\_Out_Acq_Tap.lvbitx |
     | PXIe-1488 (4 In 4 Out) | FPGA Bitfiles\\PXIe_1488_4\_In_4\_Out_Acq_Tap.lvbitx |
+    | PXIe-1489 (2 In 2 Out) | FPGA Bitfiles\\PXIe_1489_2\_In_2\_Out_Acq_Tap.lvbitx |
 
     > The values on the **Resource** tab of **Configuration Settings** are now similar to the figure below.
 
@@ -93,6 +98,7 @@ A supported interface module that includes both serial input and serial output c
         | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | Host\\Scripts\\MAX9296A\\Tap\\RAW12_ID01_Des_Tap.cpp  |
         | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes) | Host\\Scripts\\MAX96716A\\Tap\\RAW12_ID12_Des_Tap.cpp |
         | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     | Host\\Scripts\\DS90UB9702\\Tap\\Des_Tap.py            |
+        | PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) | Host\\Scripts\\MAX96792A\\Tap\\RAW12_ID12_Des_Tap.cpp |
 
         | **Interface Module**                         | **Serializer (Output) Configuration Script**        |
         |----------------------------------------------|-----------------------------------------------------|
@@ -100,6 +106,7 @@ A supported interface module that includes both serial input and serial output c
         | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | Host\\Scripts\\MAX9295A\\Tap\\RAW12_ID1_Ser_Tap.cpp |
         | PXIe-1487 (4 In 4 Out - 96717/96716A SerDes) | Host\\Scripts\\MAX96717\\Tap\\RAW12_ID2_Ser_Tap.cpp |
         | PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     | Host\\Scripts\\DS90UB971\\Tap\\Ser_Tap.py           |
+        | PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) | Host\\Scripts\\MAX96793\\Tap\\RAW12_ID2_Ser_Tap.cpp |
 
     > The values on the **Serial Channel** tab of **Configuration Settings** are now similar to the figure below.
 
@@ -227,6 +234,3 @@ TDMS files containing acquired data from the camera were saved to the \"TDMS Fil
 - [PXIe-148X Getting Started Example - Tap Help](../../reference/gettingstartedexample/gse-tap-help.md)
 - [PXIe-148X Getting Started Example - Basic Acquisition Tutorial](./gse-acq-basic.md)
 - [PXIe-148X Getting Started Example - Basic Generation Tutorial](./gse-gen-basic.md)
-
-
-    
