@@ -23,7 +23,7 @@ Review and complete all setup from the appropriate getting started guide:
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
-A supported interface module and camera on a PXI system running Windows. The table below lists all supported interface modules and supported cameras that have configuration scripts provided with the getting started example. Configuration scripts for cameras not listed in the table below need to be provided separately.
+A supported PXIe-148X interface module and camera on a PXI system running Windows. The table below lists all supported interface modules and supported cameras that have configuration scripts provided with the getting started example. For modules and cameras not listed in the table below, configuration scripts need to be provided separately.
 
 | **Interface Module**                         | **Camera**                                                                                                                            |
 |----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
@@ -31,10 +31,6 @@ A supported interface module and camera on a PXI system running Windows. The tab
 | PXIe-1486 (4 In 4 Out - 953/954 SerDes)      | [LI-IMX490-FPDLINKIII](https://www.leopardimaging.com/product-category/autonomous-camera/ti-fpdlinkiii-cameras/li-imx490-fpdlinkiii/) |
 | PXIe-1487 (8 In - 9296A Deserializer)        | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
 | PXIe-1487 (4 In 4 Out - 9295A/9296A SerDes)  | [LI-IMX490-GMSL2](https://www.leopardimaging.com/product-category/autonomous-camera/maxim-gmsl2-cameras/li-imx490-gmsl2/)             |
-| PXIe-1488 (8 In - 9702 Deserializer)         |                                                                                                                                       |
-| PXIe-1488 (4 In 4 Out - 971/9702 SerDes)     |                                                                                                                                       |
-| PXIe-1489 (4 In - 96792A Deserializer)       |                                                                                                                                       |
-| PXIe-1489 (2 In 2 Out - 96793/96792A SerDes) |                                                                                                                                       |
 
 ## Initial Hardware Setup
 
