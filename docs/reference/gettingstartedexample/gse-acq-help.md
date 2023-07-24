@@ -191,7 +191,7 @@ Refer to this document to understand the elements of the getting started example
 
 - **GPIO Timestamps Waveform** - Displays a digital waveform for each GPIO line included in the **GPIO to Display** array on the GPIO tab. GPIO timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as toggles created from a reset.
     > The **GPIO Timestamps Waveform** display is updated after the acquisition completes.
-- **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the "Build GPIO Waveform.vi" SubVI.
+- **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the <font face="courier new">Build GPIO Waveform.vi</font> SubVI.
 
 ## General
 - **Stop Acquisition** - Creates a manual stop trigger for the acquisition. Clicking this button will cause all processing loops (Display, I2C, GPIO, monitoring, and LLP acquisition) to stop and the VI to stop running.
