@@ -220,7 +220,7 @@ Refer to this document to understand the elements of the getting started example
 
 - **GPIO Timestamps Waveform** - Displays a digital waveform for each GPIO line included in the **GPIO to Display** array on the GPIO tab. GPIO timestamps begin logging immediately after the FPGA bitfile is downloaded and include timestamp data prior to the start of the LLP packet data acquisition, such as toggles created from a reset.
     > The **GPIO Timestamps Waveform** display is updated after the acquisition completes.
-- **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the "Build GPIO Waveform.vi" SubVI.
+- **Error Parsing GPIO Timestamps** - Indicates if an error occurred while creating the digital waveform in the <font face="courier new">Build GPIO Waveform.vi</font> SubVI.
 
 ## General
 - **Sensor Setup Complete** - Starts the tap process after SerDes configuration has completed. Click this button after **Waiting for Sensor Setup** is illuminated and SerDes setup through a connected acquisition device (e.g. an ECU or PXIe-148X acquisition board) has completed.

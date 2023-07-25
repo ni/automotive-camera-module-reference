@@ -74,7 +74,7 @@ This tutorial shows you how to acquire packets from a camera on a serial channel
     - The **Bytes Acquired (1st Channel)** indicator updates during the acquisition.
     - The **Packets Logged (1st Channel)** indicator updates after the acquisition completes.
 
-        > Note: The Getting Started Example utility *GettingStarted_Common_148X_Host.lvlib-\>TDMS File Viewer.vi* can be used for viewing packet data logged in an LLP Packets TDMS file.
+        > Note: The Getting Started Example utility <font face="courier new">GettingStarted_Common_148X_Host.lvlib-\>TDMS File Viewer.vi</font> can be used for viewing packet data logged in an LLP Packets TDMS file.
 
     ![image016.png](../../images/PXIe-148X-Acq-AcquiredPackets-AcqAndFilterLLPPackets.png)
 
