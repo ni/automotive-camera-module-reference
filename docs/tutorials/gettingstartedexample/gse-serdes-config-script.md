@@ -23,14 +23,7 @@ Review and complete all setup from the appropriate getting started guide:
 
 Basic knowledge of LabVIEW and LabVIEW FPGA concepts. 
 
-A supported interface module on a PXI system running a compatible Windows version.
-
-| **Interface Modules** |
-|-----------------------|
-| PXIe-1486             |
-| PXIe-1487             |
-| PXIe-1488             |
-| PXIe-1489             |
+A supported interface module (PXIe-1486, PXIe-1487, PXIe-1488, PXIe-1489) on a PXI system running a compatible Windows version.
 
 ## Initial Hardware Setup
 
@@ -81,4 +74,4 @@ Complete installation of hardware as described in the Getting Started Guide for 
 8. Click the **Close** button to close the TCP socket connection to the SerDes Configuration Utility and stop the VI.
 
 ## Related Documents
-- [PXIe-148X Configuration Scripts User Guides](../../reference/config-scripts-user-guide.md)
+- [PXIe-148X Configuration Scripts User Guides](../../reference/gettingstartedexample/config-scripts-user-guide.md)
