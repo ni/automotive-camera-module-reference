@@ -3,7 +3,7 @@
 
 This tutorial teaches you the steps needed to run a serializer/deserializer (SerDes) configuration script using a PXIe-148X module and familiarize you with the basic functionality provided by the SerDes Configuration Script Example.
 
-SerDes configuration scripts are used to configure serializers and deserializers through the I<sup>2</sup>C bus interface. The SerDes Configuration Script Example runs a script through the SerDes Configuration Utility executable and exposes all of the optional arguments for the utility, which makes the SerDes Configuration Script Example a good troubleshooting tool for configuration scripts. 
+SerDes configuration scripts are used to configure serializers and deserializers through the I<sup>2</sup>C bus interface. The SerDes Configuration Script Example runs configuration scripts through the SerDes Configuration Utility executable and exposes all of the optional arguments for the utility, which makes the SerDes Configuration Script Example a good troubleshooting tool for SerDes configuration scripts. 
 
 ### Table of contents
 {: .no_toc }
@@ -58,8 +58,6 @@ Complete installation of hardware as described in the Getting Started Guide for 
 
 ## Running a SerDes Configuration Script
 
-> Note: For the purposes of this tutorial, all input control values not specified should be left as the default value.
-
 1. Select the **RIO Device** from the dropdown menu that corresponds to your interface module.
 2. Set the **Bitfile Path** to the bitfile that corresponds to your interface module. The default shipping bitfiles are in the 'FPGA Bitfiles' subfolder located in the project folder (created at the Project Root location specified in Project Creator).
 3. (Optional) Modify the **SerDes Script Utiltiy Server Configuration** controls.
@@ -72,7 +70,7 @@ Complete installation of hardware as described in the Getting Started Guide for 
     ![Configuration Settings SerDes Configuration Script Example](../../images/PXIe-148X-SerDesConfigScript-ConfigurationSettings.png)
 
 4. Run the VI and wait for the **Running** indicator to illuminate.
-5. Add a serial channel to the **Serial Channels** array control using a valid serial channel for interface module in the format "SI" for Serial Input or "SO" for Serial Output followed by the channel number (i.e. "SI0").
+5. Add a serial channel to the **Serial Channels** array control using a valid serial channel for interface module in the format "SI" for Serial Input or "SO" for Serial Output followed by the channel number (i.e. "SI0"). The configuration script is run on the I<sup>2</sup>C bus or buses associated with the serial channels specified in this array.
 6. Select a **Configuration Script Path** that corresponds to a valid configuration script for your interface module and channel type. The scripts are used to configure the deserializer on the interface module as well as the serializer and image sensor on the camera. The configuration scripts provided with the getting started example are in the project folder under the subfolder 'Host\\Scripts'.
  
     > The **SerDes Script Utility Client Commands** values are now similar to the figure below.
