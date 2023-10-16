@@ -60,8 +60,10 @@ For help in determining the root cause of the error, wire the script output from
 
 ![I2C Script Output](../../images/PXIe-148X-I2C-Script-Output.PNG)
 
+> **FlexRIO Driver version 24Q1 Update** - The SerDes Configuration Script Utility was updated to run as a TCP server with the host LabVIEW code operating as a TCP client to send commands for running SerDes configuration scripts. The update improves configuration script execution time when running more than one script, but also requires removal of the script output parameter in the Run Configuration Script VI. Troubleshooting is now done by running the stand-alone SerDes Configuration Script Example. See the [SerDes Configuration Script Tutorial](../../tutorials/gettingstartedexample/gse-serdes-config-script.md) for details.
+
 ### How to debug FIFO overflow errors (-52012)
-The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acqusition, Tap, and Generation examples and links to other debugging steps to take when encountering these errors.
+The Getting Started Examples use many FIFOs to pass data and metadata between the Host and the FPGA. While many of these FIFOs are small or transmit small amounts of data, any of them can fail as you approach your total system bandwidth limitations.  Below are the FIFOs you can find the in the Acquisition, Tap, and Generation examples and links to other debugging steps to take when encountering these errors.
 
 -  Acquisition/ TAP FIFOs
     - LLP Packets FIFO - There is one of these FIFOs per serial channel. These can overflow if the FIFO sending data from the FPGA to the host does not have any space in it. This can happen when we do not write LLP packets to disk on the host side fast enough and make space in the FIFO for incoming data. For a more detailed explanation refer to [How to debug Acquisition FIFO overflow](#how-to-debug-acquisition-fifo-overflow).
@@ -131,7 +133,7 @@ The overall architecture of our Host and FPGA example code is to have the host q
 
 ![GPIO Write Bool](../../images/PXIe-148X-GPIO-Write-Bool.PNG)
 
-Aditionally the host will check certain statuses that can give you clues about how or why an error occured. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
+Additionally the host will check certain statuses that can give you clues about how or why an error occurred. The Acquisition and Generation states are queried and will display "Error" if something has gone wrong.
 
 ![Generation Check State](../../images/PXIe-148X-Gen-Check-State.PNG)
 
@@ -140,7 +142,7 @@ There are other times where we wait for a certain state to be returned from the 
 ![Acquisition Check Done](../../images/PXIe-148X-Acq-Done-State.PNG)
 
 ### Get serial input channel status from the FPGA
-One of the best ways to diagnose Acqusition or TAP FPGA errors is to monitor the Serial Input Channel Status indicator from the FPGA. This indicator can be added to the Acquisition or Tap GSE from the Read Serial Input Channel Status VI.
+One of the best ways to diagnose Acquisition or TAP FPGA errors is to monitor the Serial Input Channel Status indicator from the FPGA. This indicator can be added to the Acquisition or Tap GSE from the Read Serial Input Channel Status VI.
 
 ![Serial Input Channel Status](../../images/PXIe-148X-Serial-Input-Status.PNG)
 
@@ -154,8 +156,8 @@ The cluster has the following indicators:
 - **dram status** - This indicator gives you insight into the state of the DRAM manager.
    - **bytes written** - Number of bytes written to this channel's DRAM partition.
    - **bytes read** - Number of bytes read from this channel's DRAM partition.
-   - **overflow** - The DRAM parition could not be written to because the partition was full.
-   - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
+   - **overflow** - The DRAM partition could not be written to because the partition was full.
+   - **partition full** - A live status showing when the partition is full. The partition can be full, it just needs to be read from before additional writes are made.
    - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
 
 
@@ -183,8 +185,8 @@ The cluster has the following indicators:
 - **dram status** - This indicator gives you insight into the state of the DRAM manager.
    - **bytes written** - Number of bytes written to this channel's DRAM partition.
    - **bytes read** - Number of bytes read from this channel's DRAM partition.
-   - **overflow** - The DRAM parition could not be written to because the partition was full.
-   - **partition full** - A live status showing when the parition is full. The partition can be full, it just needs to be read from before additional writes are made.
+   - **overflow** - The DRAM partition could not be written to because the partition was full.
+   - **partition full** - A live status showing when the partition is full. The partition can be full, it just needs to be read from before additional writes are made.
    - **last byte flushed** - An end of acquisition status where the last valid byte of the last packet has been read from the DRAM partition.
 - **num buffered llp timestamps** - The number of LLP timestamps that are waiting to be generated. This should be close to the number of buffered LLP packets.
 - **generation done** - Indicates the generation has completed.
@@ -203,7 +205,7 @@ When debugging or investigating FPGA behavior, there are some general strategies
     > Note: All of the strategies below will require the FPGA to be recompiled to reflect the suggested changes.
 
 #### Add additional indicators that allow you to poll and view the information from the host. 
-Adding indicators will allow you to read the status back of intersting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
+Adding indicators will allow you to read the status back of interesting signals from the host. This will give you a "last updated" view of the signals in question. It will not allow you to monitor every change to a signal but can give you good insights.
     
 ![Generation In Reset](../../images/PXIe-148X-Gen-In-Reset.PNG)
 
@@ -213,12 +215,12 @@ Dropping down a basic latch when a certain condition occurs can allow you to sav
 ![Latch Ready Indicator](../../images/PXIe-148X-Latch-Ready-Indicator.PNG)
 
 #### You can count rising and falling edges to see where things are going wrong
-This is a good way to measure boolean signals to see how many times a certain condition occurs. This can give you insights into complexe data flow problems wondering how many times a gate or state is allowing valid data to flow.
+This is a good way to measure boolean signals to see how many times a certain condition occurs. This can give you insights into complex data flow problems wondering how many times a gate or state is allowing valid data to flow.
     
 ![Latch Ready Counter](../../images/PXIe-148X-Latch-Ready-Counter.PNG)
 
 #### Add an FPGA to Host FIFO to send up debug information sideband.
-This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a cerain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
+This technique takes a long time to setup, can dramatically change the resource utilization, and can change overall system bandwidth usage. It is the best way to instrument every single change on a certain signal and pipe it up to the host. Having the host pull data from the fifo and store it can lead to bandwidth and file system concerns, so only use this technique if you really need to capture every change on a signal in the FPGA.
     
 ![DMA Debug](../../images/PXIe-148X-DMA-Debug.PNG)
 
