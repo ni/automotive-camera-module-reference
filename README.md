@@ -5,3 +5,4 @@ support collateral for NI's automotive camera modules:
 - PXIe-1486
 - PXIe-1487
 - PXIe-1488
+- PXIe-1489
