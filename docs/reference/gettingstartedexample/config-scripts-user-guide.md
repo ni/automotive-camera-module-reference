@@ -3,7 +3,7 @@
 
 Learn how to use the included configuration scripts with the FlexRIO integrated I/O getting started examples for each hardware configuration of your FlexRIO PXIe-148X GMSL or FPD-Link interface module to acquire images or, for serializer-deserializer variants, to tap the data flow between the source and destination for image data.
 
-**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be appliable.
+**Note:** This document references the example included with the NI-FlexRIO 22Q3 driver. Examples included in newer releases of the driver should be applicable.
 
 ### Table of contents
 {: .no_toc }
@@ -76,3 +76,63 @@ Serializer (Output) Configuration Script: `Host\Scripts\MAX9295A\Tap\RAW12_ID1_S
 
 In the special case mentioned above where two or more tap serializers are linked to the same deserializer, the following script should be used alongside the above serializer script to drive both inputs of the deserializer:
 `Host\Scripts\MAX9295A\Tap\RAW12_ID0_ToRevSplit_Ser_Tap.cpp`
+
+## SerDes Configuration Utility
+The SerDes configuration utility is used by the PXIe-148X Getting Started Example to run multiple types of configuration scripts for serializers and deserializers by executing a sequence of commands over the I<sup>2</sup>C bus. GMSL scripts are .cpp files that are formatted as comma separated hexadecimal byte values, which are parsed into a sequence of I<sup>2</sup>C write or transfer commands and executed by the utility. FPD-Link configuration scripts are Python files with runtime logic such as variables and if/else statements that prevent parsing into I<sup>2</sup>C commands. Therefore, the SerDes configuration utility is written in Python to allow execution of FPD-Link configuration scripts in the Python interpreter.
+
+For Windows distributions the SerDes configuration utility is compiled into an executable and installed in `C:\Users\Public\Documents\National Instruments\FlexRIO`. For Linux distributions the utility is installed in `/usr/share/ni-flexrio/csi2serdesconfig`.
+
+FlexRIO driver version 24Q1 and later uses the SerDes configuration utility [serdes_config_util_server](#serdesconfigutilserver).
+
+FlexRIO driver version 23Q4 and earlier uses the SerDes configuration utility [niflexriocsi2serdesconfig](#niflexriocsi2serdesconfig).
+
+### serdes_config_util_server
+The serdes_config_util_server utility runs as a TCP socket server with LabVIEW host code acts as TCP socket client. Operating as a server allows the utility to open a single FlexRIO API session to run multiple scripts, which improves the script execution time when running more than one script compared to the niflexriocsi2serdesconfig utility. In LabVIEW, the utility is launched using the <font face="courier new">System Exec.vi</font> with the wait until completion parameter disabled. Configuration scripts are run by sending TCP write commands to the utility. The server is closed when the client closes the TCP connection.
+
+ To update applications created with GSE API VIs prior to FlexRIO driver version 24Q1, install FlexRIO driver version 24Q1 or later and replace <font face="courier new">Run Configuration Script.vi</font> in the application with the new GSE API VI located in `Host\Common\API`. Usage information for the utility is shown below.
+
+```
+usage: serdes_config_util_server.exe [-h] [--host HOST] [--port PORT] [--timeout TIMEOUT] [-s [{1486,1487}]] [-v] [-o OUTPUT] resource bitfile
+
+NI-FlexRIO Command Line Socket Server Utility for configuration of PXIe-148X CSI-2 serializers, deserializers, and camera modules.
+
+positional arguments:
+  resource              the name of the RIO resource to use for configuration
+  bitfile               the path of the bitfile to use for configuration
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --host HOST           the socket hostname in internet domain notation or an IPv4 address
+  --port PORT           the socket port number
+  --timeout TIMEOUT     the socket timeout in seconds to wait for a client connection
+  -s [{1486,1487}], --simulated_module [{1486,1487}]
+                        enable execution of utility without opening a FlexRIO session for testing script syntax
+  -v, --verbose         increase output verbosity
+  -o OUTPUT, --output OUTPUT
+                        redirect stdout to the specified output file
+```
+
+### niflexriocsi2serdesconfig
+The niflexriocsi2serdesconfig runs a single configuration script for each execution of the utility. It opens a FlexRIO API session, runs a configuration script, and closes the FlexRIO API session each time it is run. In LabVIEW, the utility is launched using the <font face="courier new">System Exec.vi</font> with the wait until completion parameter enabled. Usage information for the utility is shown below.
+
+```
+usage: niflexriocsi2serdesconfig.exe [-h] [-s [{1486,1487}]] [-v] [-w]
+                                     [-p POSC]
+                                     resource bitfile serdes script
+
+NI-FlexRIO Command Line Utility for PXIe-1486 and PXIe-1487 CSI-2 serializers, deserializers, and camera modules.
+
+positional arguments:
+  resource              the name of the RIO resource to use for configuration
+  bitfile               the path of the bitfile to use for configuration
+  serdes                the name of the i2c bus instance to use for configuration
+  script                the configuration script to execute
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s [{1486,1487}], --simulated_module [{1486,1487}]
+                        enable execution of utility without opening a FlexRIO session for testing script syntax
+  -v, --verbose         increase output verbosity
+  -w, --wait            wait for keypress
+  -p POSC, --posc POSC  create posc config binary file
+```
