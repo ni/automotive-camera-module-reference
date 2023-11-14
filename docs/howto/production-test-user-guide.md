@@ -1,4 +1,5 @@
 # PXIe-148X Production Test User Guide
+{: .no_toc }
 This user guide highlights optimizations made to the PXIe-148X module software support to improve the user experience for production test development.
 
 > Note: Software improvements referenced in this document are included with the NI-FlexRIO 24Q1 driver and later.
