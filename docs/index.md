@@ -23,6 +23,12 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 
 ---
 
+## How To
+
+- [PXIe-148X Production Test User Guide](howto/production-test-user-guide.md)
+
+---
+
 ## Reference Material
 ### Getting Started Example
 - [PXIe-148X Getting Started Example - Acquisition Help](reference/gettingstartedexample/gse-acq-help.md)
