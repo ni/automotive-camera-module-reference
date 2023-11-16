@@ -39,3 +39,4 @@ Additional documentation for NI's automotive camera modules can be found at [ni.
 
 ### Hardware
 - [Automotive Camera Module Variants - Quick Reference](reference/hardware/automotive-camera-module-variants.md)
+- [Power Over Coax](reference/hardware/powerovercoax.md)
