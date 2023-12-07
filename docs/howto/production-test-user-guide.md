@@ -14,34 +14,7 @@ This user guide highlights optimizations made to the PXIe-148X module software s
 ---
 
 ## Using the Wait for PoC Safe to Disconnect Feature
-Disconnecting and connecting coaxial cables to a PXIe-148X module with power-over-coax (PoC) enabled may result in damaged hardware. The **Wait for PoC safe to Disconnect** function waits and blocks until specified channels with power-over-coax are safe to disconnect to prevent accidental hardware damage. 
-
-### FlexRIO LabVIEW Host API
-The **Wait for PoC Safe to Disconnect** LabVIEW VI is located in the NI FlexRIO API Automotive Vision palette.
-
-![FlexRIO API Automotive Vision Palette](../images/FlexRIO-API-Automotive-Vision-Palette.png)
-
-![Wait for PoC Safe to Disconnect VI](../images/Wait-for-PoC-Safe-to-Disconnect.png)
-
-The key input parameters for the **Wait for PoC Safe to Disconnect** function are described below. See the LabVIEW context help for complete function documentation.
-
-The **Channels** input parameter accepts a string input type or an array of strings input type. When using the string input type, channels are specified as a single channel such as "SI0", a range such as "SI0-SI3" or a list such as "SI0,SI3". When using the array of strings input type, each element of the array is a single channel such as "SI0", "SO2", etc.
-
-The **Timeout (ms)** input parameter specifies a time limit in milliseconds to wait until safe to disconnect. A value of -1 indicates to wait indefinitely.
-
-> Warning: Waiting indefinitely causes the LabVIEW VI to hang if the discharge threshold for safe to disconnect is not met.
-
-> See the [Power Over Coax](../reference/hardware/powerovercoax.md#setting-the-timeout) reference document for help in determining timeout values.
-
-### LabVIEW Block Diagram Example
-The block diagram below provides an example of a production test sequence with the **Wait for PoC Safe to Disconnect** function included.
-
-![Wait for PoC Safe to Disconnect](../images/Wait-For-PoC-Safe-To-Disconnect-Example.png)
-
-### Timeout Errors
-When a **Wait for PoC Safe to Disconnect** timeout error occurs, the error message provides a list of channels that timed out.
-
-![Wait for PoC Safe to Disconnect Error](../images/Wait-For-PoC-Safe-To-Disconnect-Error.png)
+Disconnecting and connecting coaxial cables to a PXIe-148X module with power-over-coax (PoC) enabled may result in damaged hardware. See [Power Over Coax (PoC)](../reference/hardware/powerovercoax.md) for details.
 
 ## Optimizing Configuration Script Execution
 Optimization of Serializer/Deserializer (SerDes) configuration script execution differs depending on the type of SerDes component being configured, [FPD-Link](#fpd-link) or [GMSL](#gmsl).
