@@ -44,6 +44,8 @@ The **Timeout (ms)** input parameter specifies a time limit in milliseconds to w
 
 > See the [Setting the Timeout](#setting-the-timeout) section for help in determining timeout values.
 
+*New in version NI-FlexRIO 24Q1*
+
 ### LabVIEW Block Diagram Example
 The block diagram below provides an example of a production test sequence with the **Wait for PoC Safe to Disconnect** function included.
 
