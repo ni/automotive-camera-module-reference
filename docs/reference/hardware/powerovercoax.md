@@ -63,7 +63,7 @@ The LabVIEW code will look like:
 
 ![Setting-Timeout-Diagram](../../images/Setting-Timeout-Diagram.png)
 
-An example run of the profiler shows that the discharge time is 1.97 s for the PXIe-1487 connected to a Leopard Imaging IMX490 camera.
+An example run of the profiler shows that the discharge time is 1.97 s for the PXIe-1487 connected to a Leopard Imaging LI-IMX490 camera.
 
 ![Setting-Wait-Safe-Disconnect-Timeout](../../images/Setting-Wait-Safe-Disconnect-Timeout.png)
 
