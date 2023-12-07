@@ -42,7 +42,7 @@ The **Timeout (ms)** input parameter specifies a time limit in milliseconds to w
 
 > Warning: Waiting indefinitely causes the LabVIEW VI to hang if the discharge threshold for safe to disconnect is not met.
 
-> See the [Power Over Coax](../../reference/hardware/powerovercoax.md#setting-the-timeout) reference document for help in determining timeout values.
+> See the [Setting the Timeout](#setting-the-timeout) section for help in determining timeout values.
 
 ### LabVIEW Block Diagram Example
 The block diagram below provides an example of a production test sequence with the **Wait for PoC Safe to Disconnect** function included.
@@ -54,7 +54,7 @@ When a **Wait for PoC Safe to Disconnect** timeout error occurs, the error messa
 
 ![Wait for PoC Safe to Disconnect Error](../../images/Wait-For-PoC-Safe-To-Disconnect-Error.png)
 
-### Setting the timeout
+### Setting the Timeout
 The correct timeout value for a given pair of PXIe-148x and camera models requires characterization. It is possible to set the timeout to -1 which disables the timeout allowing characterization of the discharge time. One approach is to use LabVIEW's Performance profiler found under the Tools/Profile/Performance and Memory... menu.
 
 ![Tool-Profile-Menu](../../images/Tools-Profile-Menu.png)
