@@ -158,7 +158,11 @@ Refer to this document to understand the elements of the getting started example
 
 ## General
 - **Stop Generation** - Creates a manual stop trigger for the generation. Clicking this button stops all processing loops (Display, I2C, GPIO, monitoring, and LLP generation) and causes the VI to stop running.
-    > This control may be set while the VI is running.
+    > This control may be set while the VI is running.\
+\
+The **Power Over Coax Source** is set to **None** and the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect) may take several seconds while the channel discharges and the VI may appear unresponsive. The timeout is set to a constant 60 s on the block diagram and may need adjustment depending on the details of the system. If using an external power source, turn it off before the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect).\
+*Updated in version NI-FlexRIO 24Q1*
+
 - **Generation State** - Displays the current state of the generation (Idle, Ready for Start Trigger, Generate Packets, Done, or Error)
 - **Generation Stopped** - Indicates that the generation has stopped. Generation can stop upon clicking **Stop Generation**, when an error condition is detected, or upon completing successfully.
 - **Number of Generated Packets** - Displays the total number of LLP packets generated for each serial output channel.
