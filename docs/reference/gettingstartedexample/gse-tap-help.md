@@ -226,7 +226,11 @@ Refer to this document to understand the elements of the getting started example
 - **Sensor Setup Complete** - Starts the tap process after SerDes configuration has completed. Click this button after **Waiting for Sensor Setup** is illuminated and SerDes setup through a connected acquisition device (e.g. an ECU or PXIe-148X acquisition board) has completed.
 - **Waiting for Sensor Setup** - Indicates that the board is initialized, ready for SerDes setup by a connected acquisition device, and paused before starting tap to allow SerDes setup to complete.
 - **Stop Acquisition** - Creates a manual stop trigger for the acquisition. Clicking this button will cause all processing loops (Display, I2C, GPIO, monitoring, and LLP acquisition) to stop and the VI to stop running.
-    > This control may be set while the VI is running.
+    > This control may be set while the VI is running.\
+\
+The **Power Over Coax Source** is set to `None` and the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect) may take several seconds while the channel discharges and the VI may appear unresponsive. The timeout is set to a constant 60 s on the block diagram and may need adjustment depending on the details of the system. If using an external power source, turn it off before the call to `Wait for Safe to Disconnect`.\
+*Updated in version NI-FlexRIO 24Q1*
+
 - **Acquisition In Progress** - Indicates that the configuration is complete and the acquisition has started.
 - **Acquisition Duration (s)** - Displays the duration in seconds between the start of the acquisition and the time a stop trigger is received.
     > Note: **Acquisition Duration (s)** does not include configuration time or post processing time.
