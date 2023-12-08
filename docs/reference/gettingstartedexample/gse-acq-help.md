@@ -197,7 +197,7 @@ Refer to this document to understand the elements of the getting started example
 - **Stop Acquisition** - Creates a manual stop trigger for the acquisition. Clicking this button will cause all processing loops (Display, I2C, GPIO, monitoring, and LLP acquisition) to stop and the VI to stop running.
     > This control may be set while the VI is running.\
 \
-The **Power Over Coax Source** is set to `None` and the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect) may take several seconds while the channel discharges and the VI may appear unresponsive. The timeout is set to a constant 60 s on the block diagram and may need adjustment depending on the details of the system. If using an external power source, turn it off before the call to `Wait for Safe to Disconnect`.\
+The **Power Over Coax Source** is set to **None** and the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect) may take several seconds while the channel discharges and the VI may appear unresponsive. The timeout is set to a constant 60 s on the block diagram and may need adjustment depending on the details of the system. If using an external power source, turn it off before the call to [Wait for Safe to Disconnect](../hardware/powerovercoax.md#wait-for-safe-to-disconnect).\
 *Updated in version NI-FlexRIO 24Q1*
 
 - **Acquisition In Progress** - Indicates that the configuration is complete and the acquisition has started.
